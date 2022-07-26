@@ -1,0 +1,11 @@
+{
+  "hash": "6d01a7fa90071fcedcc30c8bf361bd35",
+  "result": {
+    "markdown": "---\ntitle: Post With Code\nauthor: Harlow Malloc\ndate: '2022-07-01'\ncategories:\n  - news\n  - code\n  - analysis\nformat:\n  html:\n    code-fold: true\n---\n\nThis is a post with executable code.\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\nx = 5 + 3\nprint(x)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n8\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
