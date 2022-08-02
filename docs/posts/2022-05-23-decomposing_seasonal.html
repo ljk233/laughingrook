@@ -170,7 +170,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#initialise-and-plot-the-time-series" id="toc-initialise-and-plot-the-time-series" class="nav-link" data-scroll-target="#initialise-and-plot-the-time-series">Initialise and plot the time series</a></li>
   <li><a href="#decompose-the-time-series" id="toc-decompose-the-time-series" class="nav-link" data-scroll-target="#decompose-the-time-series">Decompose the time series</a></li>
   </ul></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes">Footnotes</a></li>
   </ul>
 </nav>
     </div>
@@ -214,9 +213,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
 <p>Return estimates of the trend, seasoanl, and irregular components of a seaonal time series using the <code>seasonal_decompose</code> function in StasModels.</p>
 <p>Data was sourced from Rdatasets<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> using StatsModels <code>Datasets</code> package.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>The <code>seasonal_decompose</code> function in StasModels returns an instance of <code>DecomposeResult</code>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
-<p>The <code>plot</code> method of <code>DecomposeResult</code> returns a summary plot showing the original time series and its three components.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> Not that this method does not work for quarterly time series;<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> these should instead be plotted using the <code>plot</code> method of a Pandas <code>Series</code>.</p>
-<p>We plotted the seasonally adjusted series by subtracting seasonal component from the original time series.</p>
+<p>StatsModels’ <code>seasonal_decompose</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> function returns an instance of <code>DecomposeResult</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>The <code>plot</code> method of <code>DecomposeResult</code> returns a summary plot showing the original time series and its three components.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Note that this method does not work for quarterly time series;<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a> these instead should be plotted using the <code>plot</code> method of a Pandas <code>Series</code>.</p>
 <p>This topic was covered in M249, Book 2, Part 1.4.</p>
 </section>
 <section id="dependencies" class="level2">
@@ -228,7 +226,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Set the graphing defaults. (This is optional.)</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sns.set_theme()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -267,12 +264,12 @@ Name: time, dtype: float64</code></pre>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_elecequip <span class="op">=</span> pd.Series(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>elecequip.data[<span class="st">'value'</span>].to_numpy(),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'NEW ORDERS INDEX'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'obs'</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>pd.date_range(</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1996-01'</span>,</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>elecequip.data[<span class="st">'value'</span>].size,</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span><span class="st">'M'</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'MONTH'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'month'</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ts_elecequip.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -280,7 +277,7 @@ Name: time, dtype: float64</code></pre>
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;
 DatetimeIndex: 195 entries, 1996-01-31 to 2012-03-31
 Freq: M
-Series name: NEW ORDERS INDEX
+Series name: obs
 Non-Null Count  Dtype  
 --------------  -----  
 195 non-null    float64
@@ -291,13 +288,14 @@ memory usage: 3.0 KB</code></pre>
 <p>Plot the time series.</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ts_elecequip.index,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ts_elecequip,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>ts_elecequip.index,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>ts_elecequip,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>        kind<span class="op">=</span><span class="st">'line'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>        aspect<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'new orders index'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x20d20e9a230&gt;</code></pre>
+<pre><code>Text(6.085000000000001, 0.5, 'new orders index')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-23-decomposing_seasonal_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
@@ -311,10 +309,10 @@ memory usage: 3.0 KB</code></pre>
 </div>
 <p>Plot the decomposed time series. We pass <code>observed=True</code> as we’ve already plotted the time series above.</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> decomp_ts.plot(observed<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>f.set_tight_layout(<span class="va">True</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>f.set_figheight(<span class="dv">6</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>f.set_figwidth(<span class="dv">10</span>)</span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>_f <span class="op">=</span> decomp_ts.plot(observed<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>_f.set_tight_layout(<span class="va">True</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>_f.set_figheight(<span class="dv">6</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>_f.set_figwidth(<span class="dv">10</span>)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-23-decomposing_seasonal_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
@@ -322,12 +320,14 @@ memory usage: 3.0 KB</code></pre>
 </div>
 <p>Plot a specific component by accessing the relevant attribute.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>decomp_ts.trend.index,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>decomp_ts.trend,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>decomp_ts.trend.index,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>decomp_ts.trend,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        kind<span class="op">=</span><span class="st">'line'</span>,</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        aspect<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'new orders index'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-23-decomposing_seasonal_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
@@ -359,29 +359,27 @@ Name: seasonal factors, dtype: float64</code></pre>
 <div class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sadjusted <span class="op">=</span> decomp_ts.observed <span class="op">-</span> decomp_ts.seasonal</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(x<span class="op">=</span>sadjusted.index, y<span class="op">=</span>sadjusted, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'SADJUSTED'</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'new orders index'</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-23-decomposing_seasonal_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="footnotes" class="level2">
-<h2 class="anchored" data-anchor-id="footnotes">Footnotes</h2>
 
 
+</section>
 </section>
 
 
 <div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1" role="doc-endnote"><p>Arel-Bundock V (2022). Rdatasets: A collection of datasets originally distributed in various R packages. R package version 1.0.0, https://vincentarelbundock.github.io/Rdatasets.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>Arel-Bundock V (2022). Rdatasets: A collection of datasets originally distributed in various R packages. R package version 1.0.0, https://vincentarelbundock.github.io/Rdatasets<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/devel/datasets/index.html">The Datasets Package</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.seasonal.DecomposeResult.html">statsmodels.tsa.seasonal.DecomposeResult</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>Assign the returned object to an instance variable to prevent it being plotted twice<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>It calls the method <code>infer_freq</code> that is not supported by <code>Series</code> with a <code>PeriodIndex</code><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.seasonal.seasonal_decompose.html">statsmodels.tsa.seasonal.seasonal_decompose</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.seasonal.DecomposeResult.html">statsmodels.tsa.seasonal.DecomposeResult</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>Assign the returned object to an instance variable to prevent it being plotted twice<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>It calls the method <code>infer_freq</code> that is not supported by <code>Series</code> with a <code>PeriodIndex</code><a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
