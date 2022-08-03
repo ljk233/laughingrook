@@ -9,7 +9,7 @@
 <meta name="author" content="LaughingRook">
 <meta name="dcterms.date" content="2022-05-30">
 
-<title>LaughingRook - Simple Exponential Smoothing</title>
+<title>LaughingRook - Holt’s Exponential Smoothing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Simple Exponential Smoothing</h1>
+<h1 class="title">Holt’s Exponential Smoothing</h1>
   <div class="quarto-categories">
     <div class="quarto-category">M249</div>
     <div class="quarto-category">Statistics</div>
@@ -216,11 +216,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="summary-notes" class="level2">
 <h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
-<p>Use simple exponential smoothing method to model a non-seasonal time series with no trend.</p>
+<p>Use Holt’s exponential smoothing method to model a non-seasonal time series with a trend.</p>
 <p>Data was sourced from Rdatasets<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> using StatsModels <code>Datasets</code> package.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>We use StatsModels’ <code>SimpleExpSmoothing</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> class to model the time series.</p>
-<p>Fitting the time series using the <code>SimpleExpSmoothing.fit</code> method returns an instance of <code>HoltWinterResult</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
-<p>This topic is covered in M249, Book 2, Parts 2.6 &amp; 2.9.</p>
+<p>We use StatsModels’ <code>Holt</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> class to model the time series.</p>
+<p>Fitting the time series using the <code>Holt.fit</code> method returns an instance of <code>HoltWinterResult</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>This topic is covered in M249, Book 2, Parts 2.7 &amp; 2.9</p>
 </section>
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
@@ -245,82 +245,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="load-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bomregions <span class="op">=</span> datasets.get_rdataset(<span class="st">'bomregions'</span>, package<span class="op">=</span><span class="st">'DAAG'</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bomregions.data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>hartnagel <span class="op">=</span> datasets.get_rdataset(<span class="st">'Hartnagel'</span>, package<span class="op">=</span><span class="st">'carData'</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>hartnagel.data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 109 entries, 0 to 108
-Data columns (total 22 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   Year       109 non-null    int64  
- 1   eastAVt    99 non-null     float64
- 2   seAVt      99 non-null     float64
- 3   southAVt   99 non-null     float64
- 4   swAVt      99 non-null     float64
- 5   westAVt    99 non-null     float64
- 6   northAVt   99 non-null     float64
- 7   mdbAVt     99 non-null     float64
- 8   auAVt      99 non-null     float64
- 9   eastRain   109 non-null    float64
- 10  seRain     109 non-null    float64
- 11  southRain  109 non-null    float64
- 12  swRain     109 non-null    float64
- 13  westRain   109 non-null    float64
- 14  northRain  109 non-null    float64
- 15  mdbRain    109 non-null    float64
- 16  auRain     109 non-null    float64
- 17  SOI        109 non-null    float64
- 18  co2mlo     50 non-null     float64
- 19  co2law     79 non-null     float64
- 20  CO2        109 non-null    float64
- 21  sunspot    109 non-null    float64
-dtypes: float64(21), int64(1)
-memory usage: 18.9 KB</code></pre>
+RangeIndex: 38 entries, 0 to 37
+Data columns (total 8 columns):
+ #   Column    Non-Null Count  Dtype  
+---  ------    --------------  -----  
+ 0   year      38 non-null     int64  
+ 1   tfr       38 non-null     int64  
+ 2   partic    38 non-null     int64  
+ 3   degrees   38 non-null     float64
+ 4   fconvict  38 non-null     float64
+ 5   ftheft    34 non-null     float64
+ 6   mconvict  38 non-null     float64
+ 7   mtheft    34 non-null     float64
+dtypes: float64(5), int64(3)
+memory usage: 2.5 KB</code></pre>
 </div>
 </div>
 </section>
 <section id="initialise-and-plot-the-time-series" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-and-plot-the-time-series">Initialise and plot the time series</h3>
-<p>The first observation is in 1900.</p>
+<p>The first observation is in 1931.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bomregions.data[<span class="st">'Year'</span>].head(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hartnagel.data[<span class="st">'year'</span>].head(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>0    1900
-Name: Year, dtype: int64</code></pre>
+<pre><code>0    1931
+Name: year, dtype: int64</code></pre>
 </div>
 </div>
 <p>Initialise the <code>Series</code>.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_srain <span class="op">=</span> pd.Series(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>bomregions.data[<span class="st">'southRain'</span>].to_numpy(),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'south rainfall'</span>,</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_fertility <span class="op">=</span> pd.Series(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>hartnagel.data[<span class="st">'tfr'</span>].to_numpy(),</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'total fertility rate'</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>pd.date_range(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1900'</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>bomregions.data[<span class="st">'southRain'</span>].size,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1931'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>hartnagel.data[<span class="st">'tfr'</span>].size,</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span><span class="st">'A-DEC'</span>,</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'year'</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ts_srain.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ts_fertility.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;
-DatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31
+DatetimeIndex: 38 entries, 1931-12-31 to 1968-12-31
 Freq: A-DEC
-Series name: south rainfall
-Non-Null Count  Dtype  
---------------  -----  
-109 non-null    float64
-dtypes: float64(1)
-memory usage: 1.7 KB</code></pre>
+Series name: total fertility rate
+Non-Null Count  Dtype
+--------------  -----
+38 non-null     int64
+dtypes: int64(1)
+memory usage: 608.0 bytes</code></pre>
 </div>
 </div>
-<p>Plot the time series</p>
+<p>Plot the time series.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(x<span class="op">=</span>ts_srain.index, y<span class="op">=</span>ts_srain, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(x<span class="op">=</span>ts_fertility.index, y<span class="op">=</span>ts_fertility, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-30-simple_exponential_smoothing_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-06-holts_exponential_smoothing_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -328,50 +314,50 @@ memory usage: 1.7 KB</code></pre>
 <h3 class="anchored" data-anchor-id="smooth-the-time-series">Smooth the time series</h3>
 <p>Model and fit the time series.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>smoothed <span class="op">=</span> tsa.SimpleExpSmoothing(ts_srain, initialization_method<span class="op">=</span><span class="st">'estimated'</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fitted <span class="op">=</span> smoothed.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>holt <span class="op">=</span> tsa.Holt(ts_fertility, initialization_method<span class="op">=</span><span class="st">'estimated'</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fitted <span class="op">=</span> holt.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Construct a <code>DataFrame</code> holding both the <em>observed</em> and <em>fitted</em> time series.</p>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>all_ts_srain <span class="op">=</span> pd.merge(</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    left<span class="op">=</span>ts_srain.rename(<span class="st">'obs'</span>),</span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>all_ts_fertility <span class="op">=</span> pd.merge(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    left<span class="op">=</span>ts_fertility.rename(<span class="st">'obs'</span>),</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    right<span class="op">=</span>fitted.fittedvalues.rename(<span class="st">'fit'</span>),</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    left_index<span class="op">=</span><span class="va">True</span>,</span>
 <span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    right_index<span class="op">=</span><span class="va">True</span></span>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>all_ts_srain.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>all_ts_fertility.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-DatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31
+DatetimeIndex: 38 entries, 1931-12-31 to 1968-12-31
 Freq: A-DEC
 Data columns (total 2 columns):
  #   Column  Non-Null Count  Dtype  
 ---  ------  --------------  -----  
- 0   obs     109 non-null    float64
- 1   fit     109 non-null    float64
-dtypes: float64(2)
-memory usage: 2.6 KB</code></pre>
+ 0   obs     38 non-null     int64  
+ 1   fit     38 non-null     float64
+dtypes: float64(1), int64(1)
+memory usage: 912.0 bytes</code></pre>
 </div>
 </div>
 <p>Plot the observed and fitted time series.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>_gsource <span class="op">=</span> all_ts_srain.melt(</span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>_gsource <span class="op">=</span> all_ts_fertility.melt(</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'data'</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'south rainfall'</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'total fertility rate'</span>,</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">False</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(</span>
 <span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>_gsource,</span>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'year'</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'south rainfall'</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'total fertility rate'</span>,</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span><span class="st">'data'</span>,</span>
 <span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">'line'</span>,</span>
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-30-simple_exponential_smoothing_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-06-holts_exponential_smoothing_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Get the fitted model’s parameters.</p>
@@ -379,13 +365,15 @@ memory usage: 2.6 KB</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>{</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'alpha'</span>: fitted.params[<span class="st">'smoothing_level'</span>],</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sse'</span>: fitted.sse,</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    },</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'smoothing parameters'</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">'gamma'</span>: fitted.params[<span class="st">'smoothing_trend'</span>],</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sse'</span>: fitted.sse,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    },</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'smoothing parameters'</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>alpha         0.057959
-sse      516565.109844
+<pre><code>alpha         0.985050
+gamma         0.418600
+sse      469164.239529
 Name: smoothing parameters, dtype: float64</code></pre>
 </div>
 </div>
@@ -399,7 +387,7 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'residual'</span>)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-30-simple_exponential_smoothing_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-06-holts_exponential_smoothing_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Plot the in-sample autocorrelations.</p>
@@ -409,7 +397,7 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>))</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-30-simple_exponential_smoothing_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-06-holts_exponential_smoothing_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Return the results of a Ljung-Box test.</p>
@@ -430,8 +418,8 @@ Name: smoothing parameters, dtype: float64</code></pre>
   <tbody>
     <tr>
       <th>20</th>
-      <td>16.243305</td>
-      <td>0.70142</td>
+      <td>24.420038</td>
+      <td>0.224525</td>
     </tr>
   </tbody>
 </table>
@@ -444,25 +432,26 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span>fitted.resid,</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">'hist'</span>,</span>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>            kde<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            bins<span class="op">=</span><span class="dv">15</span>,</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-30-simple_exponential_smoothing_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-06-holts_exponential_smoothing_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="forecasting" class="level3">
 <h3 class="anchored" data-anchor-id="forecasting">Forecasting</h3>
 <p>Plot forecasts for the next 3 years.</p>
-<p>The merge is a <em>full outer join</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, given the indices of <em>all_ts_srain</em> and *_fcast* do not overlap.</p>
+<p>The merge is a <em>full outer join</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, given the indices of <em>all_ts_fertility</em> and *_fcast* do not overlap.</p>
 <p>We initialise a variable to hold reference to the forecasted values, which we use later on to plot the vertial line separating the <em>observed</em>, <em>fitted</em> lines from the <em>forecast</em> line.</p>
 <p>If you think the separator is unnecessary, then *_fcast* is not needed and the forecast could be moved directly into the <code>merge</code> function.</p>
+<section id="plot-of-forecasts-3-years" class="level4">
+<h4 class="anchored" data-anchor-id="plot-of-forecasts-3-years">Plot of forecasts (+3 years)</h4>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>_fcast <span class="op">=</span> fitted.forecast(<span class="dv">3</span>).rename(<span class="st">'fcast'</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>_gsource <span class="op">=</span> pd.merge(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    left<span class="op">=</span>all_ts_srain,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    left<span class="op">=</span>all_ts_fertility,</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    right<span class="op">=</span>_fcast,</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    how<span class="op">=</span><span class="st">'outer'</span>,</span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>    left_index<span class="op">=</span><span class="va">True</span>,</span>
@@ -471,7 +460,7 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">'year'</span>,</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>    axis<span class="op">=</span><span class="dv">0</span></span>
 <span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>).melt(</span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'south rainfall'</span>,</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'total fertility rate'</span>,</span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">False</span></span>
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
 <span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a></span>
@@ -479,14 +468,14 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>_gsource,</span>
 <span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'year'</span>,</span>
 <span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'value'</span>,</span>
-<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span><span class="st">'south rainfall'</span>,</span>
+<span id="cb20-20"><a href="#cb20-20" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span><span class="st">'total fertility rate'</span>,</span>
 <span id="cb20-21"><a href="#cb20-21" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">'line'</span>,</span>
 <span id="cb20-22"><a href="#cb20-22" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
 <span id="cb20-23"><a href="#cb20-23" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb20-24"><a href="#cb20-24" aria-hidden="true" tabindex="-1"></a>plt.axvline(_fcast.index[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, ls<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb20-25"><a href="#cb20-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-30-simple_exponential_smoothing_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-06-holts_exponential_smoothing_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Quantify a forecast.</p>
@@ -500,14 +489,15 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span> [<span class="st">'pred'</span>, <span class="st">'lpb'</span>, <span class="st">'upb'</span>]</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
-<pre><code>pred    388.927004
-lpb     292.550020
-upb     485.303988
+<pre><code>pred    2233.926398
+lpb     2078.367557
+upb     2389.485239
 dtype: float64</code></pre>
 </div>
 </div>
 
 
+</section>
 </section>
 </section>
 
@@ -517,7 +507,7 @@ dtype: float64</code></pre>
 <ol>
 <li id="fn1" role="doc-endnote"><p>Arel-Bundock V (2022). Rdatasets: A collection of datasets originally distributed in various R packages. R package version 1.0.0, https://vincentarelbundock.github.io/Rdatasets<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/devel/datasets/index.html">The Datasets Package</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.holtwinters.SimpleExpSmoothing.html">statsmodels.tsa.holtwinters.SimpleExpSmoothing</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.holtwinters.Holt.html">statsmodels.tsa.holtwinters.Holt</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.holtwinters.HoltWintersResults.html">statsmodels.tsa.holtwinters.HoltWintersResults</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5" role="doc-endnote"><p>“<em>In theory, a <strong>full outer join</strong> is the combination of a left join and a right join. The full outer join includes all rows from the joined tables whether or not the other table has the matching row.</em>” (<a href="https://www.sqltutorial.org/sql-full-outer-join/">sqltutorial.org</a>)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>

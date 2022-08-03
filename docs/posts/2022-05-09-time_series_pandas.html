@@ -170,7 +170,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#monthly-time-series" id="toc-monthly-time-series" class="nav-link" data-scroll-target="#monthly-time-series">Monthly time series</a></li>
   <li><a href="#quarterly-time-series" id="toc-quarterly-time-series" class="nav-link" data-scroll-target="#quarterly-time-series">Quarterly time series</a></li>
   </ul></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes">Footnotes</a></li>
   </ul>
 </nav>
     </div>
@@ -222,7 +221,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>this is useful when plotting the time series</li>
 </ul></li>
 <li>annual or monthly time series: set a <code>DatetimeIndex</code> with <code>date_range</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></li>
-<li>quarterly time series: set a <code>PeriodIndex</code> with <code>period_range</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></li>
+<li>quarterly time series: set a <code>PeriodIndex</code> with <code>period_range</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
 </ul>
 <p>This note is split into three sections, dealing with annual, monthly, and quarterly time series. The general workflow for each section is:</p>
 <ol type="1">
@@ -231,7 +230,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Initialise the <code>Series</code></li>
 <li>Plot the time series</li>
 </ol>
-<p>There is currently an issue with plotting a <code>Series</code> with a <code>PeriodIndex</code> using Seaborn, so we instead use the <code>plot</code> method of <code>Series</code> for quarterly data.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 </section>
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
@@ -296,22 +294,22 @@ Name: Year, dtype: int64</code></pre>
 </div>
 <p>Initialise the annual <code>Series</code>.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_south_rain <span class="op">=</span> pd.Series(</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_srain <span class="op">=</span> pd.Series(</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>bomregions.data[<span class="st">'southRain'</span>].to_numpy(),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'SOUTHERN RAINFALL'</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'obs'</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>pd.date_range(</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1900'</span>,</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>bomregions.data[<span class="st">'southRain'</span>].size,</span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span><span class="st">'A-DEC'</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'YEAR'</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'year'</span></span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ts_south_rain.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ts_srain.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;
 DatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31
 Freq: A-DEC
-Series name: SOUTHERN RAINFALL
+Series name: obs
 Non-Null Count  Dtype  
 --------------  -----  
 109 non-null    float64
@@ -321,13 +319,9 @@ memory usage: 1.7 KB</code></pre>
 </div>
 <p>Plot the time series.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ts_south_rain.index,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ts_south_rain,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(x<span class="op">=</span>ts_srain.index, y<span class="op">=</span>ts_srain, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'south rainfall'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-09-time_series_pandas_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
@@ -363,12 +357,12 @@ Name: time, dtype: float64</code></pre>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ts_elecequip <span class="op">=</span> pd.Series(</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>elecequip.data[<span class="st">'value'</span>].to_numpy(),</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'NEW ORDERS INDEX'</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'new orders index'</span>,</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>pd.date_range(</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1996-01'</span>,</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>elecequip.data[<span class="st">'value'</span>].size,</span>
 <span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span><span class="st">'M'</span>,</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'MONTH'</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'month'</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>ts_elecequip.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -376,7 +370,7 @@ Name: time, dtype: float64</code></pre>
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;
 DatetimeIndex: 195 entries, 1996-01-31 to 2012-03-31
 Freq: M
-Series name: NEW ORDERS INDEX
+Series name: new orders index
 Non-Null Count  Dtype  
 --------------  -----  
 195 non-null    float64
@@ -386,13 +380,8 @@ memory usage: 3.0 KB</code></pre>
 </div>
 <p>Plot the monthly time series.</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ts_elecequip.index,</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ts_elecequip,</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(x<span class="op">=</span>ts_elecequip.index, y<span class="op">=</span>ts_elecequip, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-09-time_series_pandas_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
@@ -421,10 +410,8 @@ dtypes: float64(7)
 memory usage: 9.3 KB</code></pre>
 </div>
 </div>
-<p>Identify the initial quarter.</p>
 <p>According to the <a href="https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Macrodat.html">documentation</a>, the initial quarter is the first quarter of 1959.</p>
-<p>Initialise the quarterly <code>Series</code>.</p>
-<p>Note that we use a <code>period_range</code>, not a <code>date_range</code>.</p>
+<p>Initialise the quarterly <code>Series</code>. Note that we use a <code>period_range</code>, not a <code>date_range</code>.</p>
 <div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ts_exruk <span class="op">=</span> pd.Series(</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>macrodat.data[<span class="st">'exruk'</span>].to_numpy(),</span>
@@ -449,7 +436,7 @@ dtypes: float64(1)
 memory usage: 2.6 KB</code></pre>
 </div>
 </div>
-<p>Plot the quarterly time series.</p>
+<p>Plot the quarterly time series.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ts_exruk.plot(kind<span class="op">=</span><span class="st">'line'</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), ylabel<span class="op">=</span>ts_exruk.name)</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -457,12 +444,9 @@ memory usage: 2.6 KB</code></pre>
 <p><img src="2022-05-09-time_series_pandas_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-</section>
-</section>
-<section id="footnotes" class="level2">
-<h2 class="anchored" data-anchor-id="footnotes">Footnotes</h2>
 
 
+</section>
 </section>
 
 
@@ -473,7 +457,8 @@ memory usage: 2.6 KB</code></pre>
 <li id="fn2" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/devel/datasets/index.html">The Datasets Package</a> (StatsModels)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p>See <a href="https://pandas.pydata.org/docs/reference/api/pandas.date_range.html">pandas.date_range</a> (Pandas)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4" role="doc-endnote"><p>See <a href="https://pandas.pydata.org/docs/reference/api/pandas.period_range.html">pandas.period_range</a> (Pandas)<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>See <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.plot.html">pandas.Series.plot</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5" role="doc-endnote"><p>At the time of writing, there was an using Seabron to plot a <code>Series</code> with a <code>PeriodIndex</code>, so we instead use the <code>plot</code> method of <code>Series</code> for quarterly data.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6" role="doc-endnote"><p>At the time of writing, there was an using Seabron to plot a <code>Series</code> with a <code>PeriodIndex</code>, so we instead use the <code>plot</code> method of <code>Series</code> for quarterly data.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

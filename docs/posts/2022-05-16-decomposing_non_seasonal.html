@@ -170,7 +170,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#initialise-and-plot-the-time-series" id="toc-initialise-and-plot-the-time-series" class="nav-link" data-scroll-target="#initialise-and-plot-the-time-series">Initialise and plot the time series</a></li>
   <li><a href="#decompose-the-time-series" id="toc-decompose-the-time-series" class="nav-link" data-scroll-target="#decompose-the-time-series">Decompose the time series</a></li>
   </ul></li>
-  <li><a href="#footnotes" id="toc-footnotes" class="nav-link" data-scroll-target="#footnotes">Footnotes</a></li>
   </ul>
 </nav>
     </div>
@@ -236,143 +235,95 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="load-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>bomregions <span class="op">=</span> datasets.get_rdataset(<span class="st">'bomregions'</span>, package<span class="op">=</span><span class="st">'DAAG'</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>bomregions.data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>macrodat <span class="op">=</span> datasets.get_rdataset(<span class="st">'Macrodat'</span>, package<span class="op">=</span><span class="st">'Ecdat'</span>, cache<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>macrodat.data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-RangeIndex: 109 entries, 0 to 108
-Data columns (total 22 columns):
- #   Column     Non-Null Count  Dtype  
----  ------     --------------  -----  
- 0   Year       109 non-null    int64  
- 1   eastAVt    99 non-null     float64
- 2   seAVt      99 non-null     float64
- 3   southAVt   99 non-null     float64
- 4   swAVt      99 non-null     float64
- 5   westAVt    99 non-null     float64
- 6   northAVt   99 non-null     float64
- 7   mdbAVt     99 non-null     float64
- 8   auAVt      99 non-null     float64
- 9   eastRain   109 non-null    float64
- 10  seRain     109 non-null    float64
- 11  southRain  109 non-null    float64
- 12  swRain     109 non-null    float64
- 13  westRain   109 non-null    float64
- 14  northRain  109 non-null    float64
- 15  mdbRain    109 non-null    float64
- 16  auRain     109 non-null    float64
- 17  SOI        109 non-null    float64
- 18  co2mlo     50 non-null     float64
- 19  co2law     79 non-null     float64
- 20  CO2        109 non-null    float64
- 21  sunspot    109 non-null    float64
-dtypes: float64(21), int64(1)
-memory usage: 18.9 KB</code></pre>
+RangeIndex: 168 entries, 0 to 167
+Data columns (total 7 columns):
+ #   Column  Non-Null Count  Dtype  
+---  ------  --------------  -----  
+ 0   lhur    168 non-null    float64
+ 1   punew   168 non-null    float64
+ 2   fyff    168 non-null    float64
+ 3   fygm3   168 non-null    float64
+ 4   fygt1   168 non-null    float64
+ 5   exruk   168 non-null    float64
+ 6   gdpjp   162 non-null    float64
+dtypes: float64(7)
+memory usage: 9.3 KB</code></pre>
 </div>
 </div>
 </section>
 <section id="initialise-and-plot-the-time-series" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-and-plot-the-time-series">Initialise and plot the time series</h3>
-<p>Identify the initial year.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bomregions.data[<span class="st">'Year'</span>].head(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>0    1900
-Name: Year, dtype: int64</code></pre>
-</div>
-</div>
 <p>Initialise the <code>Series</code>.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_south_rain <span class="op">=</span> pd.Series(</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>bomregions.data[<span class="st">'southRain'</span>].to_numpy(),</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'SOUTHERN RAINFALL'</span>,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>pd.date_range(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1900'</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>bomregions.data[<span class="st">'southRain'</span>].size,</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span><span class="st">'A-DEC'</span>,</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'YEAR'</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>ts_south_rain.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>According to the <a href="https://vincentarelbundock.github.io/Rdatasets/doc/Ecdat/Macrodat.html">documentation</a>, the initial quarter is the first quarter of 1959.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>ts_exruk <span class="op">=</span> pd.Series(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>macrodat.data[<span class="st">'exruk'</span>].to_numpy(),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'exchange rate'</span>,</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>pd.period_range(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        start<span class="op">=</span><span class="st">'1959-01-01'</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        periods<span class="op">=</span>macrodat.data[<span class="st">'exruk'</span>].size,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        freq<span class="op">=</span><span class="st">'Q'</span>,</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'quarter'</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>ts_exruk.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.series.Series'&gt;
-DatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31
-Freq: A-DEC
-Series name: SOUTHERN RAINFALL
+PeriodIndex: 168 entries, 1959Q1 to 2000Q4
+Freq: Q-DEC
+Series name: exchange rate
 Non-Null Count  Dtype  
 --------------  -----  
-109 non-null    float64
+168 non-null    float64
 dtypes: float64(1)
-memory usage: 1.7 KB</code></pre>
+memory usage: 2.6 KB</code></pre>
 </div>
 </div>
-<p>Plot the time series.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sns.relplot(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ts_south_rain.index,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ts_south_rain,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Plot the quarterly time series.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ts_exruk.plot(kind<span class="op">=</span><span class="st">'line'</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), ylabel<span class="op">=</span>ts_exruk.name)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-16-decomposing_non_seasonal_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="2022-05-16-decomposing_non_seasonal_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="decompose-the-time-series" class="level3">
 <h3 class="anchored" data-anchor-id="decompose-the-time-series">Decompose the time series</h3>
 <p>Try <em>order</em> = 5.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ma5 <span class="op">=</span> ts_south_rain.rolling(window<span class="op">=</span><span class="dv">5</span>, center<span class="op">=</span><span class="va">True</span>).mean().dropna()</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ma5.index,</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ma5,</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'ma5'</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ma5 <span class="op">=</span> ts_exruk.rolling(window<span class="op">=</span><span class="dv">5</span>, center<span class="op">=</span><span class="va">True</span>).mean().dropna()</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> ma5.plot(kind<span class="op">=</span><span class="st">'line'</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), ylabel<span class="op">=</span>ts_exruk.name)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-05-16-decomposing_non_seasonal_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Try <em>order</em> = 15.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ma15 <span class="op">=</span> ts_exruk.rolling(window<span class="op">=</span><span class="dv">15</span>, center<span class="op">=</span><span class="va">True</span>).mean().dropna()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> ma15.plot(kind<span class="op">=</span><span class="st">'line'</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), ylabel<span class="op">=</span>ts_exruk.name)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-16-decomposing_non_seasonal_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Try <em>order</em> = 15.</p>
-<div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ma15 <span class="op">=</span> ts_south_rain.rolling(window<span class="op">=</span><span class="dv">15</span>, center<span class="op">=</span><span class="va">True</span>).mean().dropna()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ma15.index,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ma15,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'ma15'</span>)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Try <em>order</em> = 25.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ma25 <span class="op">=</span> ts_exruk.rolling(window<span class="op">=</span><span class="dv">25</span>, center<span class="op">=</span><span class="va">True</span>).mean().dropna()</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> ma25.plot(kind<span class="op">=</span><span class="st">'line'</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">6</span>), ylabel<span class="op">=</span>ts_exruk.name)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="2022-05-16-decomposing_non_seasonal_files/figure-html/cell-9-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Try <em>order</em> = 25.</p>
-<div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ma25 <span class="op">=</span> ts_south_rain.rolling(window<span class="op">=</span><span class="dv">25</span>, center<span class="op">=</span><span class="va">True</span>).mean().dropna()</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>ma25.index,</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span>ma25,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    aspect<span class="op">=</span><span class="dv">2</span>,</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>g.set_ylabels(<span class="st">'ma25'</span>)</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2022-05-16-decomposing_non_seasonal_files/figure-html/cell-10-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-</section>
-</section>
-<section id="footnotes" class="level2">
-<h2 class="anchored" data-anchor-id="footnotes">Footnotes</h2>
 
 
+</section>
 </section>
 
 
@@ -382,6 +333,7 @@ memory usage: 1.7 KB</code></pre>
 <li id="fn1" role="doc-endnote"><p>Arel-Bundock V (2022). Rdatasets: A collection of datasets originally distributed in various R packages. R package version 1.0.0, https://vincentarelbundock.github.io/Rdatasets<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/devel/datasets/index.html">The Datasets Package</a> (StatsModels)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3" role="doc-endnote"><p>See <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.rolling.html">pandas.Series.rolling</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>At the time of writing, there was an using Seabron to plot a <code>Series</code> with a <code>PeriodIndex</code>, so we instead use the <code>plot</code> method of <code>Series</code> for quarterly data.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
