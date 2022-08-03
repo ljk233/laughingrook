@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="LaughingRook">
+<meta name="dcterms.date" content="2022-06-16">
 
-<title>LaughingRook – holt_winters_exponential_smoothing</title>
+<title>LaughingRook - Holt-Winter’s Exponential Smoothing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -163,9 +165,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#holt-winters-exponential-smoothing" id="toc-holt-winters-exponential-smoothing" class="nav-link active" data-scroll-target="#holt-winters-exponential-smoothing">Holt-Winter’s Exponential Smoothing</a>
-  <ul class="collapse">
-  <li><a href="#summary-notes" id="toc-summary-notes" class="nav-link" data-scroll-target="#summary-notes">Summary notes</a></li>
+  <li><a href="#summary-notes" id="toc-summary-notes" class="nav-link active" data-scroll-target="#summary-notes">Summary notes</a></li>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
   <li><a href="#main" id="toc-main" class="nav-link" data-scroll-target="#main">Main</a>
   <ul class="collapse">
@@ -175,27 +175,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#check-the-model" id="toc-check-the-model" class="nav-link" data-scroll-target="#check-the-model">Check the model</a></li>
   <li><a href="#forecasting" id="toc-forecasting" class="nav-link" data-scroll-target="#forecasting">Forecasting</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Holt-Winter’s Exponential Smoothing</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">M249</div>
+    <div class="quarto-category">Statistics</div>
+    <div class="quarto-category">TimeSeries</div>
+  </div>
+  </div>
 
 
-<section id="holt-winters-exponential-smoothing" class="level1">
-<h1>Holt-Winter’s Exponential Smoothing</h1>
-<blockquote class="blockquote">
-<p>Use Holt-Winter’s exponential smoothing method to model a seasonal time series with a trend.</p>
-</blockquote>
-<ul>
-<li>toc: true</li>
-<li>badges: true</li>
-<li>comments: true</li>
-<li>categories: [m249, timeseries]</li>
-<li>permalink: /2022/06/16/holt_winters_exponential_smoothing_time_series/</li>
-</ul>
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>LaughingRook </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">June 16, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
 <section id="summary-notes" class="level2">
 <h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
 <p>Use Holt-Winter’s exponential smoothing method to model a seasonal time series with a trend.</p>
@@ -490,7 +508,6 @@ dtype: float64</code></pre>
 
 </section>
 </section>
-</section>
 
 
 <div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
@@ -551,6 +568,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
   function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
