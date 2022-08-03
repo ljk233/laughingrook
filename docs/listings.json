@@ -2,11 +2,11 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2022-06-07-tt_us_avg_tuition.html",
       "/posts/2022-06-16-holt_winters_exponential_smoothing.html",
       "/posts/2022-07-25-ztest_pop_means.html",
       "/posts/2022-07-25-ztest_pop_proportion.html",
       "/posts/2022-07-05-tt_acs.html",
+      "/posts/2022-06-07-tt_us_avg_tuition.html",
       "/posts/2022-05-30-simple_exponential_smoothing.html",
       "/posts/2022-06-06-holts_exponential_smoothing.html",
       "/posts/2022-05-28-advent_of_code_2015_day3.html",
