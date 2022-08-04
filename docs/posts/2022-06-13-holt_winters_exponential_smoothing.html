@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="LaughingRook">
-<meta name="dcterms.date" content="2022-06-16">
+<meta name="dcterms.date" content="2022-06-13">
 
 <title>LaughingRook - Holt-Winter’s Exponential Smoothing</title>
 <style>
@@ -205,7 +205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 16, 2022</p>
+      <p class="date">June 13, 2022</p>
     </div>
   </div>
     
@@ -217,9 +217,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="summary-notes" class="level2">
 <h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
 <p>Use Holt-Winter’s exponential smoothing method to model a seasonal time series with a trend.</p>
-<p>Data was sourced from Rdatasets<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> using StatsModels <code>Datasets</code> package.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>We use StatsModels’ <code>ExponentialSmoothing</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> class to model the time series.</p>
-<p>Fitting the time series using the <code>ExponentialSmoothing.fit</code> method returns an instance of <code>HoltWinterResult</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Data was taken from the Open University’s M249, Practical Modern Statistics.</p>
+<p>We use StatsModels’ <code>ExponentialSmoothing</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> class to model the time series.</p>
+<p>Fitting the time series using the <code>ExponentialSmoothing.fit</code> method returns an instance of <code>HoltWinterResult</code>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>This topic is covered in M249, Book 2, Parts 2.7 &amp; 2.9</p>
 </section>
 <section id="dependencies" class="level2">
@@ -301,7 +301,7 @@ memory usage: 4.7 KB</code></pre>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(x<span class="op">=</span>ts_demand.index, y<span class="op">=</span>ts_demand, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Transform time series.</p>
@@ -310,7 +310,7 @@ memory usage: 4.7 KB</code></pre>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(x<span class="op">=</span>ts_logdemand.index, y<span class="op">=</span>ts_logdemand, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-8-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -351,22 +351,21 @@ memory usage: 7.0 KB</code></pre>
 <p>Plot the observerved and fitted time series.</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>_gsource <span class="op">=</span> all_ts_logdemand.melt(</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'data'</span>,</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    value_name<span class="op">=</span><span class="st">'log demand'</span>,</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">False</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sns.relplot(</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>_gsource,</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'month'</span>,</span>
-<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'log demand'</span>,</span>
-<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span><span class="st">'data'</span>,</span>
-<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">'line'</span>,</span>
-<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'log demand'</span>,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>_gsource,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'month'</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'value'</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span><span class="st">'log demand'</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">'line'</span>,</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Get the fitted model’s parameters.</p>
@@ -398,7 +397,7 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'residual'</span>)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Plot the in-sample autocorrelations.</p>
@@ -408,7 +407,7 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.xticks(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">21</span>))</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Return the results of a Ljung-Box test.</p>
@@ -447,14 +446,14 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-16-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
 <section id="forecasting" class="level3">
 <h3 class="anchored" data-anchor-id="forecasting">Forecasting</h3>
 <p>Plot forecasts for the next 12 months.</p>
-<p>The merge is a <em>full outer join</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, given the indices of <em>all_ts_logdemand</em> and *_fcast* do not overlap.</p>
+<p>The merge is a <em>full outer join</em><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, given the indices of <em>all_ts_logdemand</em> and *_fcast* do not overlap.</p>
 <p>We initialise a variable to hold reference to the forecasted values, which we use later on to plot the vertial line separating the <em>observed</em>, <em>fitted</em> lines from the <em>forecast</em> line.</p>
 <p>If you think the separator is unnecessary, then *_fcast* is not needed and the forecast could be moved directly into the <code>merge</code> function.</p>
 <div class="cell" data-execution_count="16">
@@ -484,7 +483,7 @@ Name: smoothing parameters, dtype: float64</code></pre>
 <span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>plt.axvline(_fcast.index[<span class="dv">0</span>], alpha<span class="op">=</span><span class="fl">0.7</span>, ls<span class="op">=</span><span class="st">'--'</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
 <span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-06-16-holt_winters_exponential_smoothing_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
+<p><img src="2022-06-13-holt_winters_exponential_smoothing_files/figure-html/cell-17-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Quantify a forecast.</p>
@@ -513,11 +512,9 @@ dtype: float64</code></pre>
 <div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1" role="doc-endnote"><p>Arel-Bundock V (2022). Rdatasets: A collection of datasets originally distributed in various R packages. R package version 1.0.0, https://vincentarelbundock.github.io/Rdatasets<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/devel/datasets/index.html">The Datasets Package</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.holtwinters.ExponentialSmoothing.html">statsmodels.tsa.holtwinters.ExponentialSmoothing</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.holtwinters.HoltWintersResults.html">statsmodels.tsa.holtwinters.HoltWintersResults</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5" role="doc-endnote"><p>“<em>In theory, a <strong>full outer join</strong> is the combination of a left join and a right join. The full outer join includes all rows from the joined tables whether or not the other table has the matching row.</em>” (<a href="https://www.sqltutorial.org/sql-full-outer-join/">sqltutorial.org</a>)<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/dev/generated/statsmodels.tsa.holtwinters.ExponentialSmoothing.html">statsmodels.tsa.holtwinters.ExponentialSmoothing</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.tsa.holtwinters.HoltWintersResults.html">statsmodels.tsa.holtwinters.HoltWintersResults</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>“<em>In theory, a <strong>full outer join</strong> is the combination of a left join and a right join. The full outer join includes all rows from the joined tables whether or not the other table has the matching row.</em>” (<a href="https://www.sqltutorial.org/sql-full-outer-join/">sqltutorial.org</a>)<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

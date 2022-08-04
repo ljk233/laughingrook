@@ -344,16 +344,48 @@ memory usage: 3.0 KB</code></pre>
 Name: seasonal factors, dtype: float64</code></pre>
 </div>
 </div>
-<p>Plot the seasonally adjusted series.</p>
+<p>Construct a <code>DataFrame</code> holding both the (log) <em>observed</em> and <em>seasonally adjusted</em> time series.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sadjusted <span class="op">=</span> pd.Series(</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>decomp.observed <span class="op">-</span> decomp.seasonal,</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'new orders index'</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(x<span class="op">=</span>sadjusted.index, y<span class="op">=</span>sadjusted, kind<span class="op">=</span><span class="st">'line'</span>, aspect<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>all_ts_elecequip <span class="op">=</span> pd.merge(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    left<span class="op">=</span>ts_elecequip.rename(<span class="st">'obs'</span>),</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    right<span class="op">=</span>pd.Series(</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        data<span class="op">=</span>decomp.observed <span class="op">-</span> decomp.seasonal,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        name<span class="op">=</span><span class="st">'sadjusted'</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    left_index<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    right_index<span class="op">=</span><span class="va">True</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>all_ts_elecequip.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+DatetimeIndex: 195 entries, 1996-01-31 to 2012-03-31
+Freq: M
+Data columns (total 2 columns):
+ #   Column     Non-Null Count  Dtype  
+---  ------     --------------  -----  
+ 0   obs        195 non-null    float64
+ 1   sadjusted  195 non-null    float64
+dtypes: float64(2)
+memory usage: 8.6 KB</code></pre>
+</div>
+</div>
+<p>Plot the two time series, <em>observed</em> and <em>sadjusted</em>.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>_gsource <span class="op">=</span> all_ts_elecequip.melt(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    var_name<span class="op">=</span><span class="st">'new orders index'</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    ignore_index<span class="op">=</span><span class="va">False</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>).reset_index()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>_g <span class="op">=</span> sns.relplot(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>            data<span class="op">=</span>_gsource,</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span><span class="st">'month'</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span><span class="st">'value'</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            hue<span class="op">=</span><span class="st">'new orders index'</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>            kind<span class="op">=</span><span class="st">'line'</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>            aspect<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-05-23-decomposing_seasonal_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<p><img src="2022-05-23-decomposing_seasonal_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 
