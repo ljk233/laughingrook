@@ -1,7 +1,9 @@
+/.drafts/
 /.quarto/
 /_site/*
-posts/__cache/*
-posts/.ipynb_checkpoints/*
-posts/__temp/*
-posts/__drafts/*
-scipts/*
+/.scipts/
+/.virtual_documents/
+posts/__cache/
+posts/.ipynb_checkpoints/
+posts/__temp/
+
