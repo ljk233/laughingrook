@@ -4,7 +4,7 @@
     "items": [
       "/posts/2022-07-25-ztest_pop_means.html",
       "/posts/2022-07-25-ztest_pop_proportion.html",
-      "/posts/2022-07-05-tt_acs.html",
+      "/posts/2022-06-27-arima1_time_series.html",
       "/posts/2022-06-25-advent_of_code_2015_day7.html",
       "/posts/2022-06-20-stationary_time_series_differencing.html",
       "/posts/2022-06-18-advent_of_code_2015_day6.html",
@@ -17,7 +17,6 @@
       "/posts/2022-06-02-tsp_backtracking.html",
       "/posts/2022-05-30-simple_exponential_smoothing.html",
       "/posts/2022-05-28-advent_of_code_2015_day3.html",
-      "/posts/2022-05-26-stack_adt.html",
       "/posts/2022-05-23-decomposing_seasonal.html",
       "/posts/2022-05-19-advent_of_code_2015_day2.html",
       "/posts/2022-05-16-decomposing_non_seasonal.html",

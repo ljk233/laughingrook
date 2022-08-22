@@ -1,2 +1,7 @@
 /.quarto/
 /_site/*
+posts/__cache/*
+posts/.ipynb_checkpoints/*
+posts/__temp/*
+posts/__drafts/*
+scipts/*
