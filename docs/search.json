@@ -11,112 +11,105 @@
     "href": "index.html",
     "title": "LaughingRook",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\nJul 25, 2022\n\n\nTesting Hypotheses: Z-Tests And Population Means\n\n\nM248,Statistics\n\n\n\n\nJul 25, 2022\n\n\nTesting Hypotheses: Z-Tests And Population Proportion\n\n\nM248,Statistics\n\n\n\n\nJun 27, 2022\n\n\nArima Modelling I\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nJun 25, 2022\n\n\nAdvent of Code 2015, Day 7\n\n\nAdventOfCode\n\n\n\n\nJun 20, 2022\n\n\nStationary Time Series\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nJun 18, 2022\n\n\nAdvent of Code 2015, Day 6\n\n\nAdventOfCode\n\n\n\n\nJun 13, 2022\n\n\nHolt-Winter’s Exponential Smoothing\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nJun 11, 2022\n\n\nAdvent of Code 2015, Day 5\n\n\nAdventOfCode\n\n\n\n\nJun 9, 2022\n\n\nDijkstra’s Shortest Path\n\n\nAlgorithm\n\n\n\n\nJun 7, 2022\n\n\nCollege Tuition Fees in the USA\n\n\nTidyTuesday\n\n\n\n\nJun 6, 2022\n\n\nHolt’s Exponential Smoothing\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nJun 4, 2022\n\n\nAdvent of Code 2015, Day 4\n\n\nAdventOfCode\n\n\n\n\nJun 2, 2022\n\n\nTravelling Salesperson Problem (Backtracking)\n\n\nAlgorithm,Graph\n\n\n\n\nMay 30, 2022\n\n\nSimple Exponential Smoothing\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nMay 28, 2022\n\n\nAdvent of Code 2015, Day 3\n\n\nAdventOfCode\n\n\n\n\nMay 23, 2022\n\n\nDecomposing Seasonal Time Series\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nMay 19, 2022\n\n\nAdvent of Code 2015, Day 2\n\n\nAdventOfCode\n\n\n\n\nMay 16, 2022\n\n\nDecomposing Non-Seasonal Time Series\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nMay 12, 2022\n\n\nTravelling Salesperson Problem (Brute-force Search)\n\n\nAlgorithm,Graph\n\n\n\n\nMay 9, 2022\n\n\nSetting Up a Time Series With Pandas\n\n\nM249,Statistics,TimeSeries\n\n\n\n\nMay 5, 2022\n\n\nAdvent of Code 2015, Day 1\n\n\nAdventOfCode\n\n\n\n\nMay 2, 2022\n\n\nStratified Analyses\n\n\nM249,Statistics\n\n\n\n\nApr 28, 2022\n\n\nInitialising an Undirected Graph in NetworkX\n\n\nGraph\n\n\n\n\nApr 25, 2022\n\n\nCohort and Case-Control Studies\n\n\nM249,Statistics\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\nDate\n\n\nTitle\n\n\nCategories\n\n\n\n\n\n\nAug 22, 2022\n\n\nStratified Analyses\n\n\nM249,Statistics\n\n\n\n\nAug 20, 2022\n\n\nAdvent of Code 2015, Day 1\n\n\nAdventOfCode\n\n\n\n\nAug 18, 2022\n\n\nInitialising an Undirected Graph in NetworkX\n\n\nGraph\n\n\n\n\nAug 15, 2022\n\n\nCohort and Case-Control Studies\n\n\nM249,Statistics\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/2022-04-25-cohort_case_control_studies.html",
-    "href": "posts/2022-04-25-cohort_case_control_studies.html",
+    "objectID": "posts/2022-08-15-cohort_case_control_studies.html",
+    "href": "posts/2022-08-15-cohort_case_control_studies.html",
     "title": "Cohort and Case-Control Studies",
     "section": "",
-    "text": "Perform an epidemiological study on the results of a cohort study analysing the possible association between compulsory redundancies and incidents of serious self-inflicted injury (SSI) (Keefe, V., et al (2002)). The exposure is being made compulsorily redundant; and the disease is incidents of serious self-inflicted injury.\nThe study results were as follows.\n\n\n\n\nSSI (+)\nno SSI (-)\n\n\n\n\nmade redundant (+)\n14\n1931\n\n\nnot made redundant (-)\n4\n1763\n\n\n\nThe results were initialised as a NumPy array. Measures of association (odds ratio and relative risk) were calculated, including confidence interval estimates. A chi-squared test of no association was used to test the strength of evidence of an association. For completeness, we rounded-off the analysis by performing Fisher’s exact test.\nNote, some of the results were outputted as Pandas Series, rather than using the default return type. This is optional, and only done to provide a more standardised results output.\nThese topics are covered by M249, Book 1, Part 1."
+    "text": "Perform an epidemiological study on the results of a cohort study analysing the possible association between compulsory redundancies and incidents of serious self-inflicted injury (SSI) (Keefe, V., et al (2002)). The exposure is being made compulsorily redundant, and the disease is incidents of serious self-inflicted injury.\nThe study results were as follows.\n\n\n\n\nSSI (+)\nno SSI (-)\n\n\n\n\nmade redundant (+)\n14\n1931\n\n\nnot made redundant (-)\n4\n1763\n\n\n\nThe results were initialised as a NumPy array, and the analysis was undertaken using (mainly) StatsModels’ Table2x21 class and SciPy. Measures of association2 were calculated, including confidence interval estimates. A chi-squared test of no association was used to test the strength of evidence of an association. We rounded-off the analysis by performing Fisher’s exact test.3 4\nNote, some of the results were outputted as Pandas Series, rather than using the default return type. This was done done to provide a more standardised results output.\nThese topics are covered by M249 Book 1, Part 1."
   },
   {
-    "objectID": "posts/2022-04-25-cohort_case_control_studies.html#dependencies",
-    "href": "posts/2022-04-25-cohort_case_control_studies.html#dependencies",
+    "objectID": "posts/2022-08-15-cohort_case_control_studies.html#dependencies",
+    "href": "posts/2022-08-15-cohort_case_control_studies.html#dependencies",
     "title": "Cohort and Case-Control Studies",
     "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels import api as sm"
+    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels import api as sm\n%load_ext watermark\n\nThe watermark extension is already loaded. To reload it, use:\n  %reload_ext watermark"
   },
   {
-    "objectID": "posts/2022-04-25-cohort_case_control_studies.html#global-constants",
-    "href": "posts/2022-04-25-cohort_case_control_studies.html#global-constants",
+    "objectID": "posts/2022-08-15-cohort_case_control_studies.html#constants",
+    "href": "posts/2022-08-15-cohort_case_control_studies.html#constants",
     "title": "Cohort and Case-Control Studies",
-    "section": "Global constants",
-    "text": "Global constants\nThese are the results from the study.\n\nOBS = np.array([[14, 1931], [4, 1763]])"
+    "section": "Constants",
+    "text": "Constants\nThese are the results from the study.\n\nOBS = np.array([[14, 1931], [4, 1763]])"
   },
   {
-    "objectID": "posts/2022-04-25-cohort_case_control_studies.html#main",
-    "href": "posts/2022-04-25-cohort_case_control_studies.html#main",
+    "objectID": "posts/2022-08-15-cohort_case_control_studies.html#main",
+    "href": "posts/2022-08-15-cohort_case_control_studies.html#main",
     "title": "Cohort and Case-Control Studies",
     "section": "Main",
-    "text": "Main\n\nInitialise the results\n\nctable = sm.stats.Table2x2(OBS)\nprint(ctable)\n\nA 2x2 contingency table with counts:\n[[  14. 1931.]\n [   4. 1763.]]\n\n\n\n\nMeasures of association\n\nOdds ratio\nReturn the point and interval estimates of the odds ratio.\n\npd.Series(\n    data={\n        'point': ctable.oddsratio,\n        'lcb': ctable.oddsratio_confint()[0],\n        'ucb': ctable.oddsratio_confint()[1],\n    },\n    name='odds ratio'\n)\n\npoint    3.195495\nlcb      1.049877\nucb      9.726081\nName: odds ratio, dtype: float64\n\n\n\n\nRelative risk\nReturn a point and interval estimate for the relative risk.\n\npd.Series(\n    data={\n        'point': ctable.riskratio,\n        'lcb': ctable.riskratio_confint()[0],\n        'ucb': ctable.riskratio_confint()[1],\n    },\n    name='relative risk'\n)\n\npoint    3.179692\nlcb      1.048602\nucb      9.641829\nName: relative risk, dtype: float64\n\n\n\n\n\nChi-squared test for no association\nThe expected frequencies under the null hypothesis of no association.\n\nctable.fittedvalues\n\narray([[   9.43157328, 1935.56842672],\n       [   8.56842672, 1758.43157328]])\n\n\nThe differences between the observed and expected frequencies.\n\nOBS - ctable.fittedvalues\n\narray([[ 4.56842672, -4.56842672],\n       [-4.56842672,  4.56842672]])\n\n\nThe contributions to the chi-squared test statistic.\n\nctable.chi2_contribs\n\narray([[2.21283577, 0.01078263],\n       [2.43574736, 0.01186883]])\n\n\nThe results of the chi-squared test.\n\nres = ctable.test_nominal_association()\npd.Series(\n    data={'statistic': res.statistic, 'pval': res.pvalue, 'df': int(res.df)},\n    name='chi-squared test',\n    dtype=object\n)\n\nstatistic    4.671235\npval         0.030672\ndf                  1\nName: chi-squared test, dtype: object\n\n\n\n\nFisher’s exact test\nThis study would not need Fisher’s exact test, given all expected frequencies are greater than 5, but we show it for completeness. There is no version of Fisher’s exact test in StatsModels, so we use SciPy instead.\n\n_, pval = st.fisher_exact(ctable.table)\npd.Series(data={'pval': pval}, name='fisher''s exact')\n\npval    0.033877\nName: fishers exact, dtype: float64"
+    "text": "Main\n\nInitialise the contingency table\n\nctable = sm.stats.Table2x2(OBS)\nprint(ctable)\n\nA 2x2 contingency table with counts:\n[[  14. 1931.]\n [   4. 1763.]]\n\n\n\n\nMeasures of association\nReturn point and interval estimates of the odds ratio.\n\npd.Series(\n    data=[ctable.oddsratio,\n          ctable.oddsratio_confint()[0],\n          ctable.oddsratio_confint()[1]],\n    index=['point', 'lcb', 'ucb'],\n    name='odds ratio'\n)\n\npoint    3.195495\nlcb      1.049877\nucb      9.726081\nName: odds ratio, dtype: float64\n\n\nReturn point and interval estimates for the relative risk.\n\npd.Series(\n    data=[ctable.riskratio,\n          ctable.riskratio_confint()[0],\n          ctable.riskratio_confint()[1]],\n    index=['point', 'lcb', 'ucb'],\n    name='relative risk'\n)\n\npoint    3.179692\nlcb      1.048602\nucb      9.641829\nName: relative risk, dtype: float64\n\n\n\n\nChi-squared test for no association\nReturn the expected frequencies under the null hypothesis of no association.\n\nctable.fittedvalues\n\narray([[   9.43157328, 1935.56842672],\n       [   8.56842672, 1758.43157328]])\n\n\nReturn the differences between the observed and expected frequencies.\n\nOBS - ctable.fittedvalues\n\narray([[ 4.56842672, -4.56842672],\n       [-4.56842672,  4.56842672]])\n\n\nReturn the contributions to the chi-squared test statistic.\n\nctable.chi2_contribs\n\narray([[2.21283577, 0.01078263],\n       [2.43574736, 0.01186883]])\n\n\nReturn the results of the chi-squared test.\nWe pass the argument dtype=object, so the Series can handle both float and int data types.\n\nres = ctable.test_nominal_association()\npd.Series(\n    data=[res.statistic, res.pvalue, int(res.df)],\n    index=['statistc', 'pvalue', 'df'],\n    name='chi-squared test',\n    dtype=object\n)\n\nstatistc    4.671235\npvalue      0.030672\ndf                 1\nName: chi-squared test, dtype: object\n\n\n\n\nFisher’s exact test\n\n_, pvalue = st.fisher_exact(ctable.table)\npd.Series(\n    data=[pvalue],\n    index=['pvalue'],\n    name='fisher''s exact'\n)\n\npvalue    0.033877\nName: fishers exact, dtype: float64"
   },
   {
-    "objectID": "posts/2022-04-25-cohort_case_control_studies.html#references",
-    "href": "posts/2022-04-25-cohort_case_control_studies.html#references",
+    "objectID": "posts/2022-08-15-cohort_case_control_studies.html#references",
+    "href": "posts/2022-08-15-cohort_case_control_studies.html#references",
     "title": "Cohort and Case-Control Studies",
     "section": "References",
-    "text": "References\nVera Keefe, Papaarangi Reid, Clint Ormsby, Bridget Robson, Gordon Purdie, Joanne Baxter, Ngäti Kahungunu Iwi Incorporated, Serious health events following involuntary job loss in New Zealand meat processing workers, International Journal of Epidemiology, Volume 31, Issue 6, December 2002, Pages 1155–1161, https://doi.org/10.1093/ije/31.6.1155"
+    "text": "References\nVera Keefe, Papaarangi Reid, Clint Ormsby, Bridget Robson, Gordon Purdie, Joanne Baxter, Ngäti Kahungunu Iwi Incorporated, Serious health events following involuntary job loss in New Zealand meat processing workers, International Journal of Epidemiology, Volume 31, Issue 6, December 2002, Pages 1155–1161, https://doi.org/10.1093/ije/31.6.1155\n\n%watermark --iversions\n\nstatsmodels: 0.13.2\nscipy      : 1.9.0\nnumpy      : 1.23.2\nsys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]\npandas     : 1.4.3"
   },
   {
-    "objectID": "posts/2022-04-28-initialise_undirected_graph_networkx.html",
-    "href": "posts/2022-04-28-initialise_undirected_graph_networkx.html",
+    "objectID": "posts/2022-08-18-initialise_undirected_graph_networkx.html",
+    "href": "posts/2022-08-18-initialise_undirected_graph_networkx.html",
     "title": "Initialising an Undirected Graph in NetworkX",
     "section": "",
-    "text": "Initialise and populate an undirected weighted graph using NetworkX. The source data is a CSV file listing the road network in Europe as an edge list. (Nodes are cities, and the edges represent roads connecting cities.)\nWe first import the data into a Pandas DataFrame. You don’t have to use a DataFrame to hold the source data, but there are special characters in the source data, and so we outsourced dealing with them to Pandas. Next, we exported the DataFrame as a dictionary of dictionaries. We initialised an empty graph, and populated it (using list comprehension and the dictionary.) We closed the note by showing how to access the nodes, neighbors, and edges of the graph.\nWhilst we could populate the graph during initialisation, we found it added unneeded complexity. Final note, the |edges| ≠ |edge list| because the NetworkX Graph class does not permit parallel edges between two nodes. (In other words, the source list has multiple roads connecting some cities.)"
+    "text": "Initialise and populate an undirected weighted graph using NetworkX.\nThe source data is a CSV file listing the road network in Europe as an edge list.1\nWe first imported the data into a Pandas DataFrame.2 Next, we exported the DataFrame as a collection of dictionaries.3 We initialised an empty graph,4 and populated it. We closed the notebook by showing how to access the nodes, neighbors, and edges of the graph.\nWhilst we could populate the graph during initialisation, we found it added unneeded complexity.\nThe |edges| ≠ |edge list| because NetworkX’s Graph class does not permit parallel edges between two nodes.5"
   },
   {
-    "objectID": "posts/2022-04-28-initialise_undirected_graph_networkx.html#dependencies",
-    "href": "posts/2022-04-28-initialise_undirected_graph_networkx.html#dependencies",
+    "objectID": "posts/2022-08-18-initialise_undirected_graph_networkx.html#dependencies",
+    "href": "posts/2022-08-18-initialise_undirected_graph_networkx.html#dependencies",
     "title": "Initialising an Undirected Graph in NetworkX",
     "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nimport networkx as nx"
+    "text": "Dependencies\n\nfrom dataclasses import dataclass\nimport pandas as pd\nimport networkx as nx\n%load_ext watermark\n\n\nClasses\n\n@dataclass(frozen=True)\nclass PandasERoad:\n    \"\"\"A dataclass to help the conversion of the raod network data as a\n    graph.\n\n    Stores the remote url and maps the column titles to common graph\n    terminology\n    \"\"\"\n\n    url: str = ('https://raw.githubusercontent.com/ljk233'\n                + '/laughingrook-datasets/main/graphs/eroads_edge_list.csv')\n    u: str = 'origin_reference_place'\n    v: str = 'destination_reference_place'\n    uco: str = 'origin_country_code'\n    vco: str = 'destination_country_code'\n    w: str = 'distance'\n    rn: str = 'road_number'\n    wc: str = 'watercrossing'"
   },
   {
-    "objectID": "posts/2022-04-28-initialise_undirected_graph_networkx.html#global-constants",
-    "href": "posts/2022-04-28-initialise_undirected_graph_networkx.html#global-constants",
+    "objectID": "posts/2022-08-18-initialise_undirected_graph_networkx.html#constants",
+    "href": "posts/2022-08-18-initialise_undirected_graph_networkx.html#constants",
     "title": "Initialising an Undirected Graph in NetworkX",
-    "section": "Global constants",
-    "text": "Global constants\nThis is the URL to the source data.\n\nEROADS_URL = ('https://raw.githubusercontent.com/ljk233/laughingrook-datasets'\n              + '/main/graphs/eroads_edge_list.csv')\n\nColumn titles in the source data. We feel it improves the readability of the code when populating the graph, but it is optional, and you could instead directly pass the column titles.\n\nU = 'origin_reference_place'\nV = 'destination_reference_place'\nUCO = 'origin_country_code'\nVCO = 'destination_country_code'\nW = 'distance'\nRN = 'road_number'\nWC = 'watercrossing'"
+    "section": "Constants",
+    "text": "Constants\nThis is the URL to the source data.\n\nEROADS_URL = ('https://raw.githubusercontent.com/ljk233/laughingrook-datasets'\n              + '/main/graphs/eroads_edge_list.csv')\n\n\nClasses\n\n@dataclass(frozen=True)\nclass PandasERoad:\n    \"\"\"A dataclass to help the conversion of the raod network data as a\n    graph.\n\n    Stores the remote url and maps the column titles to common graph\n    terminology\n    \"\"\"\n    url: str = ('https://raw.githubusercontent.com/ljk233'\n                + '/laughingrook-datasets/main/graphs/eroads_edge_list.csv')\n    u: str = 'origin_reference_place'\n    v: str = 'destination_reference_place'\n    uco: str = 'origin_country_code'\n    vco: str = 'destination_country_code'\n    w: str = 'distance'\n    rn: str = 'road_number'\n    wc: str = 'watercrossing'"
   },
   {
-    "objectID": "posts/2022-04-28-initialise_undirected_graph_networkx.html#main",
-    "href": "posts/2022-04-28-initialise_undirected_graph_networkx.html#main",
+    "objectID": "posts/2022-08-18-initialise_undirected_graph_networkx.html#main",
+    "href": "posts/2022-08-18-initialise_undirected_graph_networkx.html#main",
     "title": "Initialising an Undirected Graph in NetworkX",
     "section": "Main",
-    "text": "Main\n\nImport the data\n\neroads = pd.read_csv(EROADS_URL)\neroads.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 1250 entries, 0 to 1249\nData columns (total 7 columns):\n #   Column                       Non-Null Count  Dtype \n---  ------                       --------------  ----- \n 0   road_number                  1250 non-null   object\n 1   origin_country_code          1250 non-null   object\n 2   origin_reference_place       1250 non-null   object\n 3   destination_country_code     1250 non-null   object\n 4   destination_reference_place  1250 non-null   object\n 5   distance                     1250 non-null   int64 \n 6   watercrossing                1250 non-null   bool  \ndtypes: bool(1), int64(1), object(5)\nmemory usage: 59.9+ KB\n\n\n\n\nExport data to a dictionary\nEach entry in the dictionary is a dictionary representing a single row, where the keys are the column titles.\n\nedges = eroads.to_dict(orient='records')\nedges[0]\n\n{'road_number': 'E01',\n 'origin_country_code': 'GB',\n 'origin_reference_place': 'Larne',\n 'destination_country_code': 'GB',\n 'destination_reference_place': 'Belfast',\n 'distance': 36,\n 'watercrossing': False}\n\n\n\n\nInitalise the graph\n\ng = nx.Graph()\n\n\n\nPopulate the graph\nAdds the nodes. We perform it on both the source and destination nodes in the edge list to ensure we populate all the cities. (There’s a chance that a city does not appear as a source city in the data.) The dictionary we pass in the tuple are data describing a node.\n\ng.add_nodes_from((e[U], {'country': e[UCO]}) for e in edges)\ng.add_nodes_from((e[V], {'country': e[VCO]}) for e in edges)\n\nAdd the edges. Given this is an undirected graph, there is no need to add the reverse edges, v → u. The dictionary we pass in the tuple are data that describe an edge.\n\ng.add_edges_from((e[U], e[V], {'weight': e[W], RN: e[RN], WC: e[WC]},)\n                 for e in edges)\n\n\n\nInspect the graph\nGet a description of the graph.\n\nprint(g)\n\nGraph with 894 nodes and 1198 edges\n\n\nGet a selection of the nodes.\n\n[n for n in g][:5]\n\n['Larne', 'Belfast', 'Dublin', 'Wexford', 'Rosslare']\n\n\nOutput a more descriptive list of nodes by calling the nodes() method.\n\n[n for n in g.nodes(data=True)][:5]\n\n[('Larne', {'country': 'GB'}),\n ('Belfast', {'country': 'GB'}),\n ('Dublin', {'country': 'IRL'}),\n ('Wexford', {'country': 'IRL'}),\n ('Rosslare', {'country': 'IRL'})]\n\n\nView the neighbours of the Roma node.\n\n[neighbor for neighbor in g['Roma']]\n\n['Arezzo', 'Grosseto', 'Pescara', 'San Cesareo']\n\n\nWe can get a more descriptive list of a node’s neighbours by not using list comprehension.\n\nprint(g['Roma'])\n\n{'Arezzo': {'weight': 219, 'road_number': 'E35', 'watercrossing': False}, 'Grosseto': {'weight': 182, 'road_number': 'E80', 'watercrossing': False}, 'Pescara': {'weight': 209, 'road_number': 'E80', 'watercrossing': False}, 'San Cesareo': {'weight': 36, 'road_number': 'E821', 'watercrossing': False}}\n\n\nFinally, we can simply output the edges of the Roma node.\n\n[e for e in g.edges('Roma', data=True)]\n\n[('Roma',\n  'Arezzo',\n  {'weight': 219, 'road_number': 'E35', 'watercrossing': False}),\n ('Roma',\n  'Grosseto',\n  {'weight': 182, 'road_number': 'E80', 'watercrossing': False}),\n ('Roma',\n  'Pescara',\n  {'weight': 209, 'road_number': 'E80', 'watercrossing': False}),\n ('Roma',\n  'San Cesareo',\n  {'weight': 36, 'road_number': 'E821', 'watercrossing': False})]"
+    "text": "Main\n\ner = PandasERoad()\n\n\nImport the data\n\neroads = pd.read_csv(er.url)\neroads.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 1250 entries, 0 to 1249\nData columns (total 7 columns):\n #   Column                       Non-Null Count  Dtype \n---  ------                       --------------  ----- \n 0   road_number                  1250 non-null   object\n 1   origin_country_code          1250 non-null   object\n 2   origin_reference_place       1250 non-null   object\n 3   destination_country_code     1250 non-null   object\n 4   destination_reference_place  1250 non-null   object\n 5   distance                     1250 non-null   int64 \n 6   watercrossing                1250 non-null   bool  \ndtypes: bool(1), int64(1), object(5)\nmemory usage: 59.9+ KB\n\n\n\n\nExport data to a dictionary\nEach entry in the list is a dictionary representing a single row, where the keys are the column titles.\n\nedges = eroads.to_dict(orient='records')\nedges[0]\n\n{'road_number': 'E01',\n 'origin_country_code': 'GB',\n 'origin_reference_place': 'Larne',\n 'destination_country_code': 'GB',\n 'destination_reference_place': 'Belfast',\n 'distance': 36,\n 'watercrossing': False}\n\n\n\n\nInitalise and populate the graph\n\ng = nx.Graph()\n\nAdds the nodes. We perform it on both the source and destination nodes in the edge list to ensure we populate all the cities, given there’s a chance that a city does not appear as a source city in the data.\n\ng.add_nodes_from((e[er.u], {'country': e[er.uco]}) for e in edges)\ng.add_nodes_from((e[er.v], {'country': e[er.vco]}) for e in edges)\n\nAdd the edges. Given this is an undirected graph, there is no need to add the reverse edges V → U.\nExample of output from edge_to_tuple\n\nedge_to_tuple(edges[0], er)\n\n('Larne',\n 'Belfast',\n {'weight': 36, 'road_number': 'E01', 'watercrossing': False})\n\n\nPopulate the edges.\n\ng.add_edges_from(edge_to_tuple(edge, er) for edge in edges)\n\n\n\nInspect the graph\nGet a description of the graph.\n\nprint(g)\n\nGraph with 894 nodes and 1198 edges\n\n\nGet a selection of the nodes.\n\n[n for n in g][:5]\n\n['Larne', 'Belfast', 'Dublin', 'Wexford', 'Rosslare']\n\n\nOutput a more descriptive list of nodes by calling the nodes() method.\n\n[n for n in g.nodes(data=True)][:5]\n\n[('Larne', {'country': 'GB'}),\n ('Belfast', {'country': 'GB'}),\n ('Dublin', {'country': 'IRL'}),\n ('Wexford', {'country': 'IRL'}),\n ('Rosslare', {'country': 'IRL'})]\n\n\nView the neighbours of the Roma node.\n\n[neighbor for neighbor in g['Roma']]\n\n['Arezzo', 'Grosseto', 'Pescara', 'San Cesareo']\n\n\nWe can get a more descriptive output of a node’s neighbours by not using list comprehension.\n\ng['Roma']\n\nAtlasView({'Arezzo': {'weight': 219, 'road_number': 'E35', 'watercrossing': False}, 'Grosseto': {'weight': 182, 'road_number': 'E80', 'watercrossing': False}, 'Pescara': {'weight': 209, 'road_number': 'E80', 'watercrossing': False}, 'San Cesareo': {'weight': 36, 'road_number': 'E821', 'watercrossing': False}})\n\n\nFinally, we can simply output the edges of the Roma node.\n\n[e for e in g.edges('Roma', data=True)]\n\n[('Roma',\n  'Arezzo',\n  {'weight': 219, 'road_number': 'E35', 'watercrossing': False}),\n ('Roma',\n  'Grosseto',\n  {'weight': 182, 'road_number': 'E80', 'watercrossing': False}),\n ('Roma',\n  'Pescara',\n  {'weight': 209, 'road_number': 'E80', 'watercrossing': False}),\n ('Roma',\n  'San Cesareo',\n  {'weight': 36, 'road_number': 'E821', 'watercrossing': False})]\n\n\n\n%watermark --iversions\n\npandas  : 1.4.3\nsys     : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]\nnetworkx: 2.8.6"
   },
   {
-    "objectID": "posts/2022-05-02-stratified_analyses.html",
-    "href": "posts/2022-05-02-stratified_analyses.html",
+    "objectID": "posts/2022-08-22-stratified_analyses.html",
+    "href": "posts/2022-08-22-stratified_analyses.html",
     "title": "Stratified Analyses",
     "section": "",
-    "text": "Perform a stratified analyses on the results of a stratified case-control study.\nData was taken from investigating the possible association between alcohol consumption and fatal car accidents in New York (J.R. McCarroll and W. Haddon Jr, 1962). The data was stratified by marital status, which was believed to be a possible confounder. The exposure was blood alcohol level of 100mg% or greater. Cases were drivers who were killed in car accidents for which they were considered to be responsible, and controls were selected drivers passing the locations where the accidents of the cases occurred, at the same time of day and on the same day of the week.\nThe results were as follows.\n\n\n\nMarried\ncases (+)\ncontrols (-)\n\n\n\n\nexposed (+)\n4\n5\n\n\nnot exposed (-)\n5\n103\n\n\n\n\n\n\nNot married\ncases (+)\ncontrols (-)\n\n\n\n\nexposed (+)\n10\n3\n\n\nnot exposed (-)\n5\n43\n\n\n\nThe tables were initialised as two NumPy NDArrays, one for each stratum/level. The analysis was performed using two classes from StatsModels: StratifiedTable1 and Table2x2.2 The results were outputted to either a Pandas Series or DataFrame, depending on the dimensionality of the result. (This is optional, and done so to provide a standardised output.)\nThese topics are covered in M249, Book 1, Part 2."
+    "text": "Perform a stratified analyses on the results of a stratified case-control study.\nData was taken from investigating the possible association between alcohol consumption and fatal car accidents in New York (J.R. McCarroll and W. Haddon Jr, 1962). The data was stratified by marital status, which was believed to be a possible confounder. The exposure was blood alcohol level of 100mg% or greater. Cases were drivers who were killed in car accidents for which they were considered to be responsible, and controls were selected drivers passing the locations where the accidents of the cases occurred, at the same time of day and on the same day of the week.\nThe results were as follows.\nStratum 1\n\n\n\nMarried\ncases (+)\ncontrols (-)\n\n\n\n\nexposed (+)\n4\n5\n\n\nnot exposed (-)\n5\n103\n\n\n\nStratum 2\n\n\n\nNot married\ncases (+)\ncontrols (-)\n\n\n\n\nexposed (+)\n10\n3\n\n\nnot exposed (-)\n5\n43\n\n\n\nThe results were initialised as two NumPy NDArrays, one for each stratum/level. The analysis was performed using two classes from StatsModels: StratifiedTable1 and Table2x2.2 The results were outputted to either a Pandas Series or DataFrame, depending on the dimensionality of the result. (This is optional, and done so to provide a standardised output.)\nThese topics are covered in M249, Book 1, Part 2."
   },
   {
-    "objectID": "posts/2022-05-02-stratified_analyses.html#dependencies",
-    "href": "posts/2022-05-02-stratified_analyses.html#dependencies",
+    "objectID": "posts/2022-08-22-stratified_analyses.html#dependencies",
+    "href": "posts/2022-08-22-stratified_analyses.html#dependencies",
     "title": "Stratified Analyses",
     "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom statsmodels import api as sm"
+    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom statsmodels import api as sm\n%load_ext watermark"
   },
   {
-    "objectID": "posts/2022-05-02-stratified_analyses.html#global-constants",
-    "href": "posts/2022-05-02-stratified_analyses.html#global-constants",
+    "objectID": "posts/2022-08-22-stratified_analyses.html#constants",
+    "href": "posts/2022-08-22-stratified_analyses.html#constants",
     "title": "Stratified Analyses",
-    "section": "Global constants",
-    "text": "Global constants\nThese are the results from the study.\n\nMARRIED = np.array([[4, 5], [5, 103]])\nNOT_MARRIED = np.array([[10, 3], [5, 43]])"
+    "section": "Constants",
+    "text": "Constants\nThese are the results from the study.\n\nMARRIED = np.array([[4, 5], [5, 103]])\nNOT_MARRIED = np.array([[10, 3], [5, 43]])"
   },
   {
-    "objectID": "posts/2022-05-02-stratified_analyses.html#main",
-    "href": "posts/2022-05-02-stratified_analyses.html#main",
+    "objectID": "posts/2022-08-22-stratified_analyses.html#main",
+    "href": "posts/2022-08-22-stratified_analyses.html#main",
     "title": "Stratified Analyses",
     "section": "Main",
-    "text": "Main\n\nInitialise the contingency tables\n\nctables = sm.stats.StratifiedTable([MARRIED, NOT_MARRIED])\nctables.table\n\narray([[[  4.,  10.],\n        [  5.,   3.]],\n\n       [[  5.,   5.],\n        [103.,  43.]]])\n\n\n\n\nOdds ratios\n\nStratum-specific odds ratios\n\nres = pd.DataFrame(index=['odds ratio', 'lcb', 'ucb'])\nfor level, arr in zip(['married', 'not married'], [MARRIED, NOT_MARRIED]):\n    ctable = sm.stats.Table2x2(arr)\n    res[level] = (ctable.oddsratio,\n                  ctable.oddsratio_confint()[0],\n                  ctable.oddsratio_confint()[1])\nres.T\n\n\n\n\n\n  \n    \n      \n      odds ratio\n      lcb\n      ucb\n    \n  \n  \n    \n      married\n      16.480000\n      3.354211\n      80.969975\n    \n    \n      not married\n      28.666667\n      5.856619\n      140.316070\n    \n  \n\n\n\n\n\n\nCrude odds ratio\n\nctable = sm.stats.Table2x2(MARRIED + NOT_MARRIED)\npd.Series(\n    data={\n        'point': ctable.oddsratio,\n        'lcb': ctable.oddsratio_confint()[0],\n        'ucb': ctable.oddsratio_confint()[1]\n     },\n    name='crude odds ratio'\n)\n\npoint    25.550000\nlcb       8.682174\nucb      75.188827\nName: crude odds ratio, dtype: float64\n\n\n\n\nAdjusted odds ratio (Mantel–Haenszel odds ratio)\n\npd.Series(\n    data={\n        'point': ctables.oddsratio_pooled,\n        'lcb': ctables.oddsratio_pooled_confint()[0],\n        'ucb': ctables.oddsratio_pooled_confint()[1]\n     },\n    name='Mantel-Haeszel odds ratio'\n)\n\npoint    23.000610\nlcb       7.465154\nucb      70.866332\nName: Mantel-Haeszel odds ratio, dtype: float64\n\n\n\n\n\nTest for no association\nThis is the Mantel–Haenszel test.\n\nres = ctables.test_null_odds(correction=True)\npd.Series(\n    data={'statistic': res.statistic, 'pval': res.pvalue},\n    name='test for no association'\n).round(5)\n\nstatistic    36.60431\npval          0.00000\nName: test for no association, dtype: float64\n\n\n\n\nTest for homogeneity\nThis is Tarone’s test.\n\nres = ctables.test_equal_odds(adjust=True)\npd.Series(\n    data={'statistic': res.statistic.round(5), 'pval': res.pvalue.round(5)},\n    name='test for homogeneity'\n)\n\nstatistic    0.23557\npval         0.62742\nName: test for homogeneity, dtype: float64"
+    "text": "Main\n\nInitialise the contingency tables\n\nctables = sm.stats.StratifiedTable([MARRIED, NOT_MARRIED])\nprint(ctables.table)\n\n[[[  4.  10.]\n  [  5.   3.]]\n\n [[  5.   5.]\n  [103.  43.]]]\n\n\n\n\nOdds ratios\nReturn point and interval estimates of the stratum-specific odds ratios.\n\nres = pd.DataFrame(index=['point', 'lcb', 'ucb'])\nfor level, arr in zip(['married', 'not married'], [MARRIED, NOT_MARRIED]):\n    ctable = sm.stats.Table2x2(arr)\n    res[level] = [ctable.oddsratio,\n                  ctable.oddsratio_confint()[0],\n                  ctable.oddsratio_confint()[1]]\nres.T\n\n\n\n\n\n  \n    \n      \n      point\n      lcb\n      ucb\n    \n  \n  \n    \n      married\n      16.480000\n      3.354211\n      80.969975\n    \n    \n      not married\n      28.666667\n      5.856619\n      140.316070\n    \n  \n\n\n\n\nReturn point and interval estimates of the crude odds ratio.\n\nctable = sm.stats.Table2x2(MARRIED + NOT_MARRIED)\npd.Series(\n    data=[ctable.oddsratio,\n          ctable.oddsratio_confint()[0],\n          ctable.oddsratio_confint()[1]],\n    index=['point', 'lcb', 'ucb'],\n    name='odds ratio'\n)\n\npoint    25.550000\nlcb       8.682174\nucb      75.188827\nName: odds ratio, dtype: float64\n\n\nReturn point and interval estimates of the adjusted (Mantel–Haenszel) odds ratio.\n\npd.Series(\n    data=[ctables.oddsratio_pooled,\n          ctables.oddsratio_pooled_confint()[0],\n          ctables.oddsratio_pooled_confint()[1]],\n    index=['point', 'lcb', 'ucb'],\n    name='Mantel-Haeszel odds ratio'\n)\n\npoint    23.000610\nlcb       7.465154\nucb      70.866332\nName: Mantel-Haeszel odds ratio, dtype: float64\n\n\n\n\nTest for no association\nThis is the Mantel–Haenszel test.\n\nres = ctables.test_null_odds(correction=True)\npd.Series(\n    data=[res.statistic.round(5), res.pvalue.round(5)],\n    index=['statistc', 'pvalue'],\n    name='test for no association',\n)\n\nstatistc    36.604306\npvalue       0.000000\nName: test for no association, dtype: float64\n\n\n\n\nTest for homogeneity\nThis is Tarone’s test.\n\nres = ctables.test_equal_odds(adjust=True)\npd.Series(\n    data=[res.statistic.round(5), res.pvalue.round(5)],\n    index=['statistc', 'pvalue'],\n    name='test for homogeneity'\n)\n\nstatistc    0.23557\npvalue      0.62742\nName: test for homogeneity, dtype: float64"
   },
   {
-    "objectID": "posts/2022-05-02-stratified_analyses.html#references",
-    "href": "posts/2022-05-02-stratified_analyses.html#references",
+    "objectID": "posts/2022-08-22-stratified_analyses.html#references",
+    "href": "posts/2022-08-22-stratified_analyses.html#references",
     "title": "Stratified Analyses",
     "section": "References",
-    "text": "References\nMcCarroll, J.R. and Haddon Jr, W., 1962. A controlled study of fatal automobile accidents in New York City. Journal of chronic diseases, 15(8), pp.811-826."
-  },
-  {
-    "objectID": "posts/2022-05-02-stratified_analyses.html#footnotes",
-    "href": "posts/2022-05-02-stratified_analyses.html#footnotes",
-    "title": "Stratified Analyses",
-    "section": "Footnotes",
-    "text": "Footnotes"
+    "text": "References\nMcCarroll, J.R. and Haddon Jr, W., 1962. A controlled study of fatal automobile accidents in New York City. Journal of chronic diseases, 15(8), pp.811-826.\n\n%watermark --iversions\n\nstatsmodels: 0.13.2\nnumpy      : 1.23.2\npandas     : 1.4.3\nsys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]"
   },
   {
     "objectID": "posts/2022-05-05-advent_of_code_2015_day1.html",
@@ -147,528 +140,38 @@
     "text": "Main\n\nLoad the input\n\nline = lr.datasets.get_advent_input(2015, 1)\nprint(f\"line = '{line[:5]}'\")\n\nline = '()((('\n\n\n\n\nTransform the input\n\nm = {'(': 1, ')': -1}\ndirections = [m[bracket] for bracket in line]\nprint(f\"directions = {directions[:5]}\")\n\ndirections = [1, -1, 1, 1, 1]\n\n\n\n\nPart 1\n\nprint(f\"Solution = {sum(directions)}\")\n\nSolution = 138\n\n\n\n\nPart 2\n\nprint(f\"Solution = {find_first(-1, accumulate(directions)) + 1}\")\n\nSolution = 1771\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit sum(directions)\nprint('Part 2 =')\n%timeit find_first(-1, accumulate(directions)) + 1\n\nPart 1 =\n62.5 µs ± 1.03 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\nPart 2 =\n73.6 µs ± 468 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)"
   },
   {
-    "objectID": "posts/2022-05-09-time_series_pandas.html",
-    "href": "posts/2022-05-09-time_series_pandas.html",
-    "title": "Setting Up a Time Series With Pandas",
+    "objectID": "posts/2022-08-20-advent_of_code_2015_day1.html",
+    "href": "posts/2022-08-20-advent_of_code_2015_day1.html",
+    "title": "Advent of Code 2015, Day 1",
     "section": "",
-    "text": "Initialise a Pandas Series with a DatetimeIndex or PeriodIndex to represent a time series.\nData was sourced from Rdatasets1 via StatsModels2.\nWhen initialising the Series:\n\npass a NumPy array to the data argument\npass an actual argument to the name argument\n\nthis is useful when plotting the time series\n\nannual or monthly time series: set a DatetimeIndex with date_range3\nquarterly time series: set a PeriodIndex with period_range45\n\nThis note is split into three sections, dealing with annual, monthly, and quarterly time series. The general workflow for each section is:\n\nLoad the data\nIdentify the date of the initial observation\nInitialise the Series\nPlot the time series"
+    "text": "This is my solution to Advent of Code 2015, Day 1: Not Quite Lisp."
   },
   {
-    "objectID": "posts/2022-05-09-time_series_pandas.html#dependencies",
-    "href": "posts/2022-05-09-time_series_pandas.html#dependencies",
-    "title": "Setting Up a Time Series With Pandas",
+    "objectID": "posts/2022-08-20-advent_of_code_2015_day1.html#dependencies",
+    "href": "posts/2022-08-20-advent_of_code_2015_day1.html#dependencies",
+    "title": "Advent of Code 2015, Day 1",
     "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nfrom statsmodels import datasets\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
+    "text": "Dependencies\n\nfrom itertools import accumulate\nimport laughingrook as lr"
   },
   {
-    "objectID": "posts/2022-05-09-time_series_pandas.html#main",
-    "href": "posts/2022-05-09-time_series_pandas.html#main",
-    "title": "Setting Up a Time Series With Pandas",
-    "section": "Main",
-    "text": "Main\n\nAnnual time series\nLoad the data.\n\nbomregions = datasets.get_rdataset('bomregions', package='DAAG', cache=True)\nbomregions.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 109 entries, 0 to 108\nData columns (total 22 columns):\n #   Column     Non-Null Count  Dtype  \n---  ------     --------------  -----  \n 0   Year       109 non-null    int64  \n 1   eastAVt    99 non-null     float64\n 2   seAVt      99 non-null     float64\n 3   southAVt   99 non-null     float64\n 4   swAVt      99 non-null     float64\n 5   westAVt    99 non-null     float64\n 6   northAVt   99 non-null     float64\n 7   mdbAVt     99 non-null     float64\n 8   auAVt      99 non-null     float64\n 9   eastRain   109 non-null    float64\n 10  seRain     109 non-null    float64\n 11  southRain  109 non-null    float64\n 12  swRain     109 non-null    float64\n 13  westRain   109 non-null    float64\n 14  northRain  109 non-null    float64\n 15  mdbRain    109 non-null    float64\n 16  auRain     109 non-null    float64\n 17  SOI        109 non-null    float64\n 18  co2mlo     50 non-null     float64\n 19  co2law     79 non-null     float64\n 20  CO2        109 non-null    float64\n 21  sunspot    109 non-null    float64\ndtypes: float64(21), int64(1)\nmemory usage: 18.9 KB\n\n\nIdentify the initial year.\n\nbomregions.data['Year'].head(1)\n\n0    1900\nName: Year, dtype: int64\n\n\nInitialise the annual Series.\n\nts_srain = pd.Series(\n    data=bomregions.data['southRain'].to_numpy(),\n    name='obs',\n    index=pd.date_range(\n        start='1900',\n        periods=bomregions.data['southRain'].size,\n        freq='A-DEC',\n        name='year'\n    )\n)\nts_srain.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31\nFreq: A-DEC\nSeries name: obs\nNon-Null Count  Dtype  \n--------------  -----  \n109 non-null    float64\ndtypes: float64(1)\nmemory usage: 1.7 KB\n\n\nPlot the time series.\n\ng = sns.relplot(x=ts_srain.index, y=ts_srain, kind='line', aspect=2)\nplt.ylabel('south rainfall')\nplt.show()\n\n\n\n\n\n\nMonthly time series\nLoad the data.\n\nelecequip = datasets.get_rdataset('elecequip', package='fpp2', cache=True)\nelecequip.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 195 entries, 0 to 194\nData columns (total 2 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   time    195 non-null    float64\n 1   value   195 non-null    float64\ndtypes: float64(2)\nmemory usage: 3.2 KB\n\n\nIdentify the initial month.\n\nelecequip.data['time'].head(1)\n\n0    1996.0\nName: time, dtype: float64\n\n\nInitialise the monthly Series.\n\nts_elecequip = pd.Series(\n    data=elecequip.data['value'].to_numpy(),\n    name='new orders index',\n    index=pd.date_range(\n        start='1996-01',\n        periods=elecequip.data['value'].size,\n        freq='M',\n        name='month'\n    )\n)\nts_elecequip.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 195 entries, 1996-01-31 to 2012-03-31\nFreq: M\nSeries name: new orders index\nNon-Null Count  Dtype  \n--------------  -----  \n195 non-null    float64\ndtypes: float64(1)\nmemory usage: 3.0 KB\n\n\nPlot the monthly time series.\n\n_g = sns.relplot(x=ts_elecequip.index, y=ts_elecequip, kind='line', aspect=2)\nplt.show()\n\n\n\n\n\n\nQuarterly time series\nLoad the data.\n\nmacrodat = datasets.get_rdataset('Macrodat', package='Ecdat', cache=True)\nmacrodat.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 168 entries, 0 to 167\nData columns (total 7 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   lhur    168 non-null    float64\n 1   punew   168 non-null    float64\n 2   fyff    168 non-null    float64\n 3   fygm3   168 non-null    float64\n 4   fygt1   168 non-null    float64\n 5   exruk   168 non-null    float64\n 6   gdpjp   162 non-null    float64\ndtypes: float64(7)\nmemory usage: 9.3 KB\n\n\nAccording to the documentation, the initial quarter is the first quarter of 1959.\nInitialise the quarterly Series. Note that we use a period_range, not a date_range.\n\nts_exruk = pd.Series(\n    data=macrodat.data['exruk'].to_numpy(),\n    name='USD-GBP EXCHANGE RATE',\n    index=pd.period_range(\n        start='1959-01-01',\n        periods=macrodat.data['exruk'].size,\n        freq='Q',\n        name='QUARTER'\n    )\n)\nts_exruk.info()\n\n<class 'pandas.core.series.Series'>\nPeriodIndex: 168 entries, 1959Q1 to 2000Q4\nFreq: Q-DEC\nSeries name: USD-GBP EXCHANGE RATE\nNon-Null Count  Dtype  \n--------------  -----  \n168 non-null    float64\ndtypes: float64(1)\nmemory usage: 2.6 KB\n\n\nPlot the quarterly time series.6\n\nts_exruk.plot(kind='line', figsize=(12, 6), ylabel=ts_exruk.name)\nplt.show()"
-  },
-  {
-    "objectID": "posts/2022-05-12-tsp_bruteforce.html",
-    "href": "posts/2022-05-12-tsp_bruteforce.html",
-    "title": "Travelling Salesperson Problem (Brute-force Search)",
-    "section": "",
-    "text": "A solution to the Travelling Salesperson Problem using a brute-force search.\nThe Travelling Salesperson Problem is defined as:\n\nGiven a set of cities and distances between every pair of cities, the [Travelling Salesperson] problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.\nTraveling Salesman Problem (TSP) Implementation (GeeksForGeeks)\n\nIn this implementation, we generate permutations and check if the |path| < |min path|.\nWe use a complete undirected graph, with each edge being assigned a random weight (representing the distance).\nWhilst the function works, it is unusuable when |nodes(g)| ≥ 11, given P(11, 11) = 36720000 permutations to check!"
-  },
-  {
-    "objectID": "posts/2022-05-12-tsp_bruteforce.html#dependencies",
-    "href": "posts/2022-05-12-tsp_bruteforce.html#dependencies",
-    "title": "Travelling Salesperson Problem (Brute-force Search)",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport random as rand\nimport math\nimport itertools as it\nimport networkx as nx"
-  },
-  {
-    "objectID": "posts/2022-05-12-tsp_bruteforce.html#function",
-    "href": "posts/2022-05-12-tsp_bruteforce.html#function",
-    "title": "Travelling Salesperson Problem (Brute-force Search)",
-    "section": "Function",
-    "text": "Function\n\ndef bruteforce_tsp(G: nx.Graph, start: object) -> float | int:\n    \"\"\"Return the shortest route that visits every city exactly once and\n    ends back at the start.\n\n    Solves the travelling salesperson with a brute-force search using\n    permutations.\n\n    Preconditions:\n    - G is a complete weighted graph\n    - start in G\n    - WG[u, v]['weight'] is the distance u -> v\n    \"\"\"\n    neighbours = set((node for node in G.nodes if node != start))\n    min_dist = math.inf\n    for path in it.permutations(neighbours):\n        u, dist = start, 0\n        for v in path:\n            dist += G.edges[u, v]['weight']\n            u = v\n        min_dist = min(min_dist, dist + G.edges[u, start]['weight'])\n\n    return min_dist"
-  },
-  {
-    "objectID": "posts/2022-05-12-tsp_bruteforce.html#main",
-    "href": "posts/2022-05-12-tsp_bruteforce.html#main",
-    "title": "Travelling Salesperson Problem (Brute-force Search)",
-    "section": "Main",
-    "text": "Main\n\nInitialise the graph\nWe initialise a complete weighted undirected graph with 5 nodes.\n\ncg = nx.complete_graph(['origin', 'a', 'b', 'c', 'd'])\ng = nx.Graph((u, v, {'weight': rand.randint(1, 10)}) for u, v in cg.edges)\nprint(f\"g = {g}\")\n\ng = Graph with 5 nodes and 10 edges\n\n\n\n\nFind the shortest path from the origin\n\nprint(f\"Shortest path from the origin = {bruteforce_tsp(g, 'origin')}\")\n\nShortest path from the origin = 31\n\n\n\n\nCheck the performance\n\nfor n in [4, 6, 8, 10]:\n    print(f\"|nodes(g)| = {n}\")\n    cg = nx.complete_graph(n)\n    g = nx.Graph((u, v, {'weight': rand.randint(1, 10)}) for u, v in cg.edges)\n    %timeit bruteforce_tsp(g, 1)\n\n|nodes(g)| = 4\n16.2 µs ± 86 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)\n|nodes(g)| = 6\n442 µs ± 890 ns per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\n|nodes(g)| = 8\n24.4 ms ± 126 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)\n|nodes(g)| = 10\n2.18 s ± 18.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)"
-  },
-  {
-    "objectID": "posts/2022-05-16-decomposing_non_seasonal.html",
-    "href": "posts/2022-05-16-decomposing_non_seasonal.html",
-    "title": "Decomposing Non-Seasonal Time Series",
-    "section": "",
-    "text": "Return the estimate of the trend component of a non-seasonal time series by taking the simple moving average.\nData was sourced from Rdatasets1 using StatsModels Datasets package.2\nThree trend estimates were obtained, using the workflow: rolling3 → mean → dropna\nThe choice of order must be an odd number. Too low an order risks under-smoothing, meaning much of the irrelavent noise is kept. Coversely, too high an order risks over-smoothing, meaning any subtle (but important) changes in the trend are ironed out\nThis topic was covered in M249, Book 2, Part 1.4."
-  },
-  {
-    "objectID": "posts/2022-05-16-decomposing_non_seasonal.html#dependencies",
-    "href": "posts/2022-05-16-decomposing_non_seasonal.html#dependencies",
-    "title": "Decomposing Non-Seasonal Time Series",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nfrom statsmodels import datasets\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-05-16-decomposing_non_seasonal.html#main",
-    "href": "posts/2022-05-16-decomposing_non_seasonal.html#main",
-    "title": "Decomposing Non-Seasonal Time Series",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nmacrodat = datasets.get_rdataset('Macrodat', package='Ecdat', cache=True)\nmacrodat.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 168 entries, 0 to 167\nData columns (total 7 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   lhur    168 non-null    float64\n 1   punew   168 non-null    float64\n 2   fyff    168 non-null    float64\n 3   fygm3   168 non-null    float64\n 4   fygt1   168 non-null    float64\n 5   exruk   168 non-null    float64\n 6   gdpjp   162 non-null    float64\ndtypes: float64(7)\nmemory usage: 9.3 KB\n\n\n\n\nInitialise and plot the time series\nInitialise the Series.\nAccording to the documentation, the initial quarter is the first quarter of 1959.\n\nts_exruk = pd.Series(\n    data=macrodat.data['exruk'].to_numpy(),\n    name='exchange rate',\n    index=pd.period_range(\n        start='1959-01-01',\n        periods=macrodat.data['exruk'].size,\n        freq='Q',\n        name='quarter'\n    )\n)\nts_exruk.info()\n\n<class 'pandas.core.series.Series'>\nPeriodIndex: 168 entries, 1959Q1 to 2000Q4\nFreq: Q-DEC\nSeries name: exchange rate\nNon-Null Count  Dtype  \n--------------  -----  \n168 non-null    float64\ndtypes: float64(1)\nmemory usage: 2.6 KB\n\n\nPlot the quarterly time series.4\n\nts_exruk.plot(kind='line', figsize=(12, 6), ylabel=ts_exruk.name)\nplt.show()\n\n\n\n\n\n\nDecompose the time series\nTry order = 5.\n\nma5 = ts_exruk.rolling(window=5, center=True).mean().dropna()\n_g = ma5.plot(kind='line', figsize=(12, 6), ylabel=ts_exruk.name)\nplt.show()\n\n\n\n\nTry order = 15.\n\nma15 = ts_exruk.rolling(window=15, center=True).mean().dropna()\n_g = ma15.plot(kind='line', figsize=(12, 6), ylabel=ts_exruk.name)\nplt.show()\n\n\n\n\nTry order = 25.\n\nma25 = ts_exruk.rolling(window=25, center=True).mean().dropna()\n_g = ma25.plot(kind='line', figsize=(12, 6), ylabel=ts_exruk.name)\nplt.show()"
-  },
-  {
-    "objectID": "posts/2022-05-19-advent_of_code_2015_day2.html",
-    "href": "posts/2022-05-19-advent_of_code_2015_day2.html",
-    "title": "Advent of Code 2015, Day 2",
-    "section": "",
-    "text": "This is my solution to Advent of Code 2015, Day 2: I Was Told There Would Be No Math."
-  },
-  {
-    "objectID": "posts/2022-05-19-advent_of_code_2015_day2.html#dependencies",
-    "href": "posts/2022-05-19-advent_of_code_2015_day2.html#dependencies",
-    "title": "Advent of Code 2015, Day 2",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport laughingrook as lr"
-  },
-  {
-    "objectID": "posts/2022-05-19-advent_of_code_2015_day2.html#functions",
-    "href": "posts/2022-05-19-advent_of_code_2015_day2.html#functions",
-    "title": "Advent of Code 2015, Day 2",
+    "objectID": "posts/2022-08-20-advent_of_code_2015_day1.html#functions",
+    "href": "posts/2022-08-20-advent_of_code_2015_day1.html#functions",
+    "title": "Advent of Code 2015, Day 1",
     "section": "Functions",
-    "text": "Functions\n\ndef paper_needed(length: int, width: int, height: int) -> int:\n    \"\"\"Return the wrapping paper needed for a present with dims (l, w, h).\n    \"\"\"\n    planes = [(length * width), (width * height), (height * length)]\n    return min(planes) + (2 * sum(planes))\n\n\ndef ribbon_needed(length: int, width: int, height: int) -> int:\n    \"\"\"Return the ribbon needed to cover a present with dims (l, w, h).\n    \"\"\"\n    bow = length * width * height\n    ribbon = 2 * sum(sorted([length, width, height])[:2])\n    return bow + ribbon"
+    "text": "Functions\n\ndef find_first(x, A) -> int:\n    \"\"\"Find the first index i where A[i] = x.\n\n    Precondtions:\n    - x in A\n    - A is 1-dimensional\n    - A support iteration\n    \"\"\"\n    return next(i for i, a in enumerate(A) if a == x)"
   },
   {
-    "objectID": "posts/2022-05-19-advent_of_code_2015_day2.html#main",
-    "href": "posts/2022-05-19-advent_of_code_2015_day2.html#main",
-    "title": "Advent of Code 2015, Day 2",
+    "objectID": "posts/2022-08-20-advent_of_code_2015_day1.html#main",
+    "href": "posts/2022-08-20-advent_of_code_2015_day1.html#main",
+    "title": "Advent of Code 2015, Day 1",
     "section": "Main",
-    "text": "Main\n\nLoad the input\n\nlines = lr.datasets.get_advent_input(2015, 2)\nprint(f\"lines = {lines[:5]}\")\n\nfile was cached.\nlines = ['4x23x21', '22x29x19', '11x4x11', '8x10x5', '24x18x16']\n\n\n\n\nTransform the input\n\nllines = (line.split('x') for line in lines)\npdims = [[int(x) for x in lline] for lline in llines]\nprint(f\"pdims = {pdims[:5]}\")\n\npdims = [[4, 23, 21], [22, 29, 19], [11, 4, 11], [8, 10, 5], [24, 18, 16]]\n\n\n\n\nPart 1\n\nprint(f\"Solution = {sum(paper_needed(l, w, h) for (l, w, h) in pdims)}\")\n\nSolution = 1598415\n\n\n\n\nPart 2\n\nprint(f\"Solution = {sum(ribbon_needed(l, w, h) for (l, w, h) in pdims)}\")\n\nSolution = 3812909\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit sum(paper_needed(l, w, h) for (l, w, h) in pdims)\nprint('Part 2 =')\n%timeit sum(ribbon_needed(l, w, h) for (l, w, h) in pdims)\n\nPart 1 =\n433 µs ± 2.7 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\nPart 2 =\n468 µs ± 2.19 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)"
+    "text": "Main\n\nLoad the input\n\nline = lr.datasets.get_advent_input(2015, 1)\nprint(f\"line = '{line[:5]}'\")\n\nline = '()((('\n\n\n\n\nTransform the input\n\nm = {'(': 1, ')': -1}\ndirections = [m[bracket] for bracket in line]\nprint(f\"directions = {directions[:5]}\")\n\ndirections = [1, -1, 1, 1, 1]\n\n\n\n\nPart 1\n\nprint(f\"Solution = {sum(directions)}\")\n\nSolution = 138\n\n\n\n\nPart 2\n\nprint(f\"Solution = {find_first(-1, accumulate(directions)) + 1}\")\n\nSolution = 1771\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit sum(directions)\nprint('Part 2 =')\n%timeit find_first(-1, accumulate(directions)) + 1\n\nPart 1 =\n62.5 µs ± 1.03 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\nPart 2 =\n73.6 µs ± 468 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)"
   },
   {
-    "objectID": "posts/2022-05-23-decomposing_seasonal.html",
-    "href": "posts/2022-05-23-decomposing_seasonal.html",
-    "title": "Decomposing Seasonal Time Series",
-    "section": "",
-    "text": "Return estimates of the trend, seasoanl, and irregular components of a seaonal time series using the seasonal_decompose function in StasModels.\nData was sourced from Rdatasets1 using StatsModels Datasets package.2\nStatsModels’ seasonal_decompose3 function returns an instance of DecomposeResult.4\nThe plot method of DecomposeResult returns a summary plot showing the original time series and its three components.5 Note that this method does not work for quarterly time series;6 these instead should be plotted using the plot method of a Pandas Series.\nThis topic was covered in M249, Book 2, Part 1.4."
-  },
-  {
-    "objectID": "posts/2022-05-23-decomposing_seasonal.html#dependencies",
-    "href": "posts/2022-05-23-decomposing_seasonal.html#dependencies",
-    "title": "Decomposing Seasonal Time Series",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nfrom statsmodels import datasets\nfrom statsmodels.tsa import api as tsa\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-05-23-decomposing_seasonal.html#main",
-    "href": "posts/2022-05-23-decomposing_seasonal.html#main",
-    "title": "Decomposing Seasonal Time Series",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nelecequip = datasets.get_rdataset('elecequip', package='fpp2', cache=True)\nelecequip.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 195 entries, 0 to 194\nData columns (total 2 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   time    195 non-null    float64\n 1   value   195 non-null    float64\ndtypes: float64(2)\nmemory usage: 3.2 KB\n\n\n\n\nInitialise and plot the time series\nThe first observation is in January 1996.\n\nelecequip.data['time'].head(1)\n\n0    1996.0\nName: time, dtype: float64\n\n\nInitialise the Series.\n\nts_elecequip = pd.Series(\n    data=elecequip.data['value'].to_numpy(),\n    name='obs',\n    index=pd.date_range(\n        start='1996-01',\n        periods=elecequip.data['value'].size,\n        freq='M',\n        name='month'\n    )\n)\nts_elecequip.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 195 entries, 1996-01-31 to 2012-03-31\nFreq: M\nSeries name: obs\nNon-Null Count  Dtype  \n--------------  -----  \n195 non-null    float64\ndtypes: float64(1)\nmemory usage: 3.0 KB\n\n\nPlot the time series.\n\n_g = sns.relplot(x=ts_elecequip.index, y=ts_elecequip, kind='line', aspect=2)\nplt.show()\n\n\n\n\n\n\nDecompose the time series\n\ndecomp = tsa.seasonal_decompose(ts_elecequip)\n\nPlot the decomposed time series. We pass observed=True as we’ve already plotted the time series above.\n\n_f = decomp.plot(observed=False)\n_f.set_tight_layout(True)\n_f.set_figheight(6)\n_f.set_figwidth(10)\nplt.show()\n\n\n\n\nPlot a specific component by accessing the relevant attribute.\n\n_g = sns.relplot(x=decomp.trend.index, y=decomp.trend, kind='line', aspect=2)\nplt.ylabel('new orders index')\nplt.show()\n\n\n\n\nGet the seasonal factors.\n\ndecomp.seasonal[:12].rename(\n    'seasonal factors'\n).set_axis(\n    pd.Index(range(1, 13), name='period'),\n    axis=0\n)\n\nperiod\n1     -5.887662\n2     -6.199273\n3      8.083171\n4     -6.314968\n5     -4.818468\n6      7.976088\n7     -1.575338\n8    -16.870416\n9      7.304324\n10     3.007671\n11     3.847366\n12    11.447504\nName: seasonal factors, dtype: float64\n\n\nConstruct a DataFrame holding both the (log) observed and seasonally adjusted time series.\n\nall_ts_elecequip = pd.merge(\n    left=ts_elecequip.rename('obs'),\n    right=pd.Series(\n        data=decomp.observed - decomp.seasonal,\n        name='sadjusted'\n    ),\n    left_index=True,\n    right_index=True\n)\nall_ts_elecequip.info()\n\n<class 'pandas.core.frame.DataFrame'>\nDatetimeIndex: 195 entries, 1996-01-31 to 2012-03-31\nFreq: M\nData columns (total 2 columns):\n #   Column     Non-Null Count  Dtype  \n---  ------     --------------  -----  \n 0   obs        195 non-null    float64\n 1   sadjusted  195 non-null    float64\ndtypes: float64(2)\nmemory usage: 8.6 KB\n\n\nPlot the two time series, observed and sadjusted.\n\n_gsource = all_ts_elecequip.melt(\n    var_name='new orders index',\n    ignore_index=False\n).reset_index()\n\n_g = sns.relplot(\n            data=_gsource,\n            x='month',\n            y='value',\n            hue='new orders index',\n            kind='line',\n            aspect=2\n)"
-  },
-  {
-    "objectID": "posts/2022-05-28-advent_of_code_2015_day3.html",
-    "href": "posts/2022-05-28-advent_of_code_2015_day3.html",
-    "title": "Advent of Code 2015, Day 3",
-    "section": "",
-    "text": "This is my solution to Advent of Code 2015, Day 3: Perfectly Spherical Houses in a Vacuum."
-  },
-  {
-    "objectID": "posts/2022-05-28-advent_of_code_2015_day3.html#dependencies",
-    "href": "posts/2022-05-28-advent_of_code_2015_day3.html#dependencies",
-    "title": "Advent of Code 2015, Day 3",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport laughingrook as lr"
-  },
-  {
-    "objectID": "posts/2022-05-28-advent_of_code_2015_day3.html#functions",
-    "href": "posts/2022-05-28-advent_of_code_2015_day3.html#functions",
-    "title": "Advent of Code 2015, Day 3",
+    "objectID": "posts/2022-08-18-initialise_undirected_graph_networkx.html#functions",
+    "href": "posts/2022-08-18-initialise_undirected_graph_networkx.html#functions",
+    "title": "Initialising an Undirected Graph in NetworkX",
     "section": "Functions",
-    "text": "Functions\n\ndef get_next(position, direction) -> tuple:\n    \"\"\"Return the next position based on the given direction.\n    \"\"\"\n    x, y = position\n    if direction == '>':\n        return (x+1, y)\n    elif direction == '<':\n        return (x-1, y)\n    elif direction == '^':\n        return (x, y+1)\n    else:\n        return (x, y-1)\n\n\ndef deliver_presents(directions: str) -> set:\n    \"\"\"Return a set of tuples representing the positions of houses where\n    presents were delivered.\n    \"\"\"\n    houses = set()\n    position = (0, 0)\n    houses.add(position)\n    for direction in directions:\n        next_position = get_next(position, direction)\n        houses.add(next_position)\n        position = next_position\n    return houses"
-  },
-  {
-    "objectID": "posts/2022-05-28-advent_of_code_2015_day3.html#main",
-    "href": "posts/2022-05-28-advent_of_code_2015_day3.html#main",
-    "title": "Advent of Code 2015, Day 3",
-    "section": "Main",
-    "text": "Main\n\nLoad the input\n\nline = lr.datasets.get_advent_input(2015, 3)\nprint(f\"line = '{line[:5]}'\")\n\nfile was cached.\nline = '^^<<v'\n\n\n\n\nPart 1\n\nprint(f'Solution = {len(deliver_presents(line))}')\n\nSolution = 2565\n\n\n\n\nPart 2\n\nsanta_houses = deliver_presents(line[::2])\nrobot_houses = deliver_presents(line[1::2])\nprint(f'Solution = {len(santa_houses.union(robot_houses))}')\n\nSolution = 2639\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit len(deliver_presents(line))\nprint('Part 2 =')\n%timeit len(deliver_presents(line[::2]).union(deliver_presents(line[1::2])))\n\nPart 1 =\n2.18 ms ± 37.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nPart 2 =\n2.15 ms ± 27.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)"
-  },
-  {
-    "objectID": "posts/2022-05-30-simple_exponential_smoothing.html",
-    "href": "posts/2022-05-30-simple_exponential_smoothing.html",
-    "title": "Simple Exponential Smoothing",
-    "section": "",
-    "text": "Use simple exponential smoothing method to model a non-seasonal time series with no trend.\nData was sourced from Rdatasets1 using StatsModels Datasets package.2\nWe use StatsModels’ SimpleExpSmoothing3 class to model the time series.\nFitting the time series using the SimpleExpSmoothing.fit method returns an instance of HoltWinterResult.4\nThis topic is covered in M249, Book 2, Parts 2.6 & 2.9."
-  },
-  {
-    "objectID": "posts/2022-05-30-simple_exponential_smoothing.html#dependencies",
-    "href": "posts/2022-05-30-simple_exponential_smoothing.html#dependencies",
-    "title": "Simple Exponential Smoothing",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels import api as sm\nfrom statsmodels import datasets\nfrom statsmodels.tsa import api as tsa\nfrom statsmodels.graphics import tsaplots\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-05-30-simple_exponential_smoothing.html#main",
-    "href": "posts/2022-05-30-simple_exponential_smoothing.html#main",
-    "title": "Simple Exponential Smoothing",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nbomregions = datasets.get_rdataset('bomregions', package='DAAG', cache=True)\nbomregions.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 109 entries, 0 to 108\nData columns (total 22 columns):\n #   Column     Non-Null Count  Dtype  \n---  ------     --------------  -----  \n 0   Year       109 non-null    int64  \n 1   eastAVt    99 non-null     float64\n 2   seAVt      99 non-null     float64\n 3   southAVt   99 non-null     float64\n 4   swAVt      99 non-null     float64\n 5   westAVt    99 non-null     float64\n 6   northAVt   99 non-null     float64\n 7   mdbAVt     99 non-null     float64\n 8   auAVt      99 non-null     float64\n 9   eastRain   109 non-null    float64\n 10  seRain     109 non-null    float64\n 11  southRain  109 non-null    float64\n 12  swRain     109 non-null    float64\n 13  westRain   109 non-null    float64\n 14  northRain  109 non-null    float64\n 15  mdbRain    109 non-null    float64\n 16  auRain     109 non-null    float64\n 17  SOI        109 non-null    float64\n 18  co2mlo     50 non-null     float64\n 19  co2law     79 non-null     float64\n 20  CO2        109 non-null    float64\n 21  sunspot    109 non-null    float64\ndtypes: float64(21), int64(1)\nmemory usage: 18.9 KB\n\n\n\n\nInitialise and plot the time series\nThe first observation is in 1900.\n\nbomregions.data['Year'].head(1)\n\n0    1900\nName: Year, dtype: int64\n\n\nInitialise the Series.\n\nts_srain = pd.Series(\n    data=bomregions.data['southRain'].to_numpy(),\n    name='south rainfall',\n    index=pd.date_range(\n        start='1900',\n        periods=bomregions.data['southRain'].size,\n        freq='A-DEC',\n        name='year'\n    )\n)\nts_srain.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31\nFreq: A-DEC\nSeries name: south rainfall\nNon-Null Count  Dtype  \n--------------  -----  \n109 non-null    float64\ndtypes: float64(1)\nmemory usage: 1.7 KB\n\n\nPlot the time series\n\n_g = sns.relplot(x=ts_srain.index, y=ts_srain, kind='line', aspect=2)\nplt.show()\n\n\n\n\n\n\nSmooth the time series\nModel and fit the time series.\n\nsmoothed = tsa.SimpleExpSmoothing(ts_srain, initialization_method='estimated')\nfitted = smoothed.fit()\n\nConstruct a DataFrame holding both the observed and fitted time series.\n\nall_ts_srain = pd.merge(\n    left=ts_srain.rename('obs'),\n    right=fitted.fittedvalues.rename('fit'),\n    left_index=True,\n    right_index=True\n)\nall_ts_srain.info()\n\n<class 'pandas.core.frame.DataFrame'>\nDatetimeIndex: 109 entries, 1900-12-31 to 2008-12-31\nFreq: A-DEC\nData columns (total 2 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   obs     109 non-null    float64\n 1   fit     109 non-null    float64\ndtypes: float64(2)\nmemory usage: 2.6 KB\n\n\nPlot the observed and fitted time series.\n\n_gsource = all_ts_srain.melt(\n    var_name='south rainfall',\n    ignore_index=False\n).reset_index()\n\ng = sns.relplot(\n            data=_gsource,\n            x='year',\n            y='value',\n            hue='south rainfall',\n            kind='line',\n            aspect=2\n)\nplt.show()\n\n\n\n\nGet the fitted model’s parameters.\n\npd.Series(\n    data={\n        'alpha': fitted.params['smoothing_level'],\n        'sse': fitted.sse,\n    },\n    name='smoothing parameters'\n)\n\nalpha         0.057959\nsse      516565.109844\nName: smoothing parameters, dtype: float64\n\n\n\n\nCheck the model\nPlot the forecasting errors.\n\n_g = sns.relplot(x=fitted.resid.index, y=fitted.resid, kind='line', aspect=2)\nplt.axhline(0, alpha=0.7, ls='--', color='black')\nplt.ylabel('residual')\nplt.show()\n\n\n\n\nPlot the in-sample autocorrelations.\n\n_f, _ax = plt.subplots(figsize=(11.8, 5.5))\ntsaplots.plot_acf(fitted.resid, ax=_ax, lags=20, zero=False)\nplt.xticks(range(1, 21))\nplt.show()\n\n\n\n\nReturn the results of a Ljung-Box test.\n\nsm.stats.acorr_ljungbox(fitted.resid, lags=[20])\n\n\n\n\n\n  \n    \n      \n      lb_stat\n      lb_pvalue\n    \n  \n  \n    \n      20\n      16.243305\n      0.70142\n    \n  \n\n\n\n\nPlot a histogram of the forecasting errors.\n\n_g = sns.displot(\n            x=fitted.resid,\n            kind='hist',\n            kde=True,\n            bins=15,\n            aspect=2\n)\nplt.show()\n\n\n\n\n\n\nForecasting\nPlot forecasts for the next 3 years.\nThe merge is a full outer join5, given the indices of all_ts_srain and *_fcast* do not overlap.\nWe initialise a variable to hold reference to the forecasted values, which we use later on to plot the vertial line separating the observed, fitted lines from the forecast line.\nIf you think the separator is unnecessary, then *_fcast* is not needed and the forecast could be moved directly into the merge function.\n\n_fcast = fitted.forecast(3).rename('fcast')\n_gsource = pd.merge(\n    left=all_ts_srain,\n    right=_fcast,\n    how='outer',\n    left_index=True,\n    right_index=True\n).rename_axis(\n    'year',\n    axis=0\n).melt(\n    var_name='south rainfall',\n    ignore_index=False\n).reset_index()\n\n_g = sns.relplot(\n            data=_gsource,\n            x='year',\n            y='value',\n            hue='south rainfall',\n            kind='line',\n            aspect=2\n)\nplt.axvline(_fcast.index[0], alpha=0.7, ls='--', color='black')\nplt.show()\n\n\n\n\nQuantify a forecast.\n\n_fcast = fitted.forecast(1)[0]\n_std_err = np.sqrt(\n    st.norm().ppf(0.975) * (fitted.sse / fitted.fittedvalues.size)\n)\npd.Series(\n    data=[_fcast, _fcast - _std_err,_fcast + _std_err],\n    index= ['pred', 'lpb', 'upb']\n)\n\npred    388.927004\nlpb     292.550020\nupb     485.303988\ndtype: float64"
-  },
-  {
-    "objectID": "posts/2022-06-02-tsp_backtracking.html",
-    "href": "posts/2022-06-02-tsp_backtracking.html",
-    "title": "Travelling Salesperson Problem (Backtracking)",
-    "section": "",
-    "text": "A solution to the Travelling Salesperson Problem using backtracking.\nThe Travelling Salesperson Problem is defined as:\n\nGiven a set of cities and distances between every pair of cities, the [Travelling Salesperson] problem is to find the shortest possible route that visits every city exactly once and returns to the starting point.\nTraveling Salesman Problem (TSP) Implementation (GeeksForGeeks)\n\nIn this implementation, we use recursiive backtracking, which is generally more efficient then generating permutations.\nWe use a complete undirected graph, with each edge being assigned a random weight (representing the distance)."
-  },
-  {
-    "objectID": "posts/2022-06-02-tsp_backtracking.html#dependencies",
-    "href": "posts/2022-06-02-tsp_backtracking.html#dependencies",
-    "title": "Travelling Salesperson Problem (Backtracking)",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport math\nimport collections\nimport random as rand\nimport networkx as nx"
-  },
-  {
-    "objectID": "posts/2022-06-02-tsp_backtracking.html#function",
-    "href": "posts/2022-06-02-tsp_backtracking.html#function",
-    "title": "Travelling Salesperson Problem (Backtracking)",
-    "section": "Function",
-    "text": "Function\n\ndef backtracking_tsp(G: nx.Graph, start: object) -> float | int:\n    \"\"\"Return the shortest route that visits every city exactly once and\n    ends back at the start.\n\n    Solves the travelling salesperson problem using backtracking.\n\n    Preconditions:\n    - G is a complete weighted graph\n    - 'start' in G\n    - G[u, v]['weight'] is the distance u -> v\n    \"\"\"\n    def _tsp(G, visited, u, dist, min_dist):\n        if visited.total() == (len(G.nodes) - 1):\n            min_dist = min(min_dist, dist + G.edges[u, start]['weight'])\n        else:\n            for v in G.nodes:\n                if visited[v] == 0 and v != start:\n                    visited[v] += 1\n                    next_dist = dist + G.edges[u, v]['weight']\n                    if next_dist < min_dist:\n                        min_dist = _tsp(G, visited, v, next_dist, min_dist)\n                    visited[v] -= 1\n        return min_dist\n\n    return _tsp(G, collections.Counter(), start, 0, math.inf)"
-  },
-  {
-    "objectID": "posts/2022-06-02-tsp_backtracking.html#example-usage",
-    "href": "posts/2022-06-02-tsp_backtracking.html#example-usage",
-    "title": "Travelling Salesperson Problem (Backtracking)",
-    "section": "Example usage",
-    "text": "Example usage\n\nInitialise the graph\n\ncg = nx.complete_graph(['origin', 'a', 'b', 'c', 'd'])\ng = nx.Graph((u, v, {'weight': rand.randint(1, 10)}) for u, v in cg.edges)\nprint(f\"g = {g}\")\n\ng = Graph with 5 nodes and 10 edges\n\n\n\n\nFind the shortest path from the origin\n\nprint(f\"Shortest path from the origin = {backtracking_tsp(g, 'origin')}\")\n\nShortest path from the origin = 11"
-  },
-  {
-    "objectID": "posts/2022-06-02-tsp_backtracking.html#performance",
-    "href": "posts/2022-06-02-tsp_backtracking.html#performance",
-    "title": "Travelling Salesperson Problem (Backtracking)",
-    "section": "Performance",
-    "text": "Performance\n\nfor n in [4, 6, 8, 10]:\n    cg = nx.complete_graph(n)\n    g = nx.Graph((u, v, {'weight': rand.randint(1, 10)}) for u, v in cg.edges)\n    print(f\"|nodes(g)| = {n}\")\n    %timeit backtracking_tsp(g, 1)\n\n|nodes(g)| = 4\n35.3 µs ± 305 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)\n|nodes(g)| = 6\n596 µs ± 1.59 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)\n|nodes(g)| = 8\n7.84 ms ± 32.8 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)\n|nodes(g)| = 10\n87.8 ms ± 210 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)"
-  },
-  {
-    "objectID": "posts/2022-06-04-advent_of_code_2015_day4.html",
-    "href": "posts/2022-06-04-advent_of_code_2015_day4.html",
-    "title": "Advent of Code 2015, Day 4",
-    "section": "",
-    "text": "This is my solution to Advent of Code 2015, Day 4: The Ideal Stocking Stuffer."
-  },
-  {
-    "objectID": "posts/2022-06-04-advent_of_code_2015_day4.html#dependencies",
-    "href": "posts/2022-06-04-advent_of_code_2015_day4.html#dependencies",
-    "title": "Advent of Code 2015, Day 4",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport hashlib"
-  },
-  {
-    "objectID": "posts/2022-06-04-advent_of_code_2015_day4.html#functions",
-    "href": "posts/2022-06-04-advent_of_code_2015_day4.html#functions",
-    "title": "Advent of Code 2015, Day 4",
-    "section": "Functions",
-    "text": "Functions\n\ndef mine_advent_coins(key: str, n: int) -> int:\n    \"\"\"Return the suffix needed so md5(key + suffix).hex begins with\n    n_zeroes.\n    \"\"\"\n    def hex_prefix(suffix, n) -> str:\n        return hashlib.md5(f'{(key + str(suffix))}'.encode()).hexdigest()[:n]\n\n    suffix = 1\n    prefix, target_prefix =  hex_prefix(suffix, n), '0' * n\n    while prefix != target_prefix:\n        suffix += 1\n        prefix = hex_prefix(suffix, n)\n\n    return suffix"
-  },
-  {
-    "objectID": "posts/2022-06-04-advent_of_code_2015_day4.html#main",
-    "href": "posts/2022-06-04-advent_of_code_2015_day4.html#main",
-    "title": "Advent of Code 2015, Day 4",
-    "section": "Main",
-    "text": "Main\n\nInitialise the input\n\nKEY = 'ckczppom'\n\n\n\nPart 1\n\nprint(f'Solution = {mine_advent_coins(KEY, 5)}')\n\nSolution = 117946\n\n\n\n\nPart 2\n\nprint(f'Solution = {mine_advent_coins(KEY, 6)}')\n\nSolution = 3938038\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit mine_advent_coins(KEY, 5)\nprint('Part 2 =')\n%timeit mine_advent_coins(KEY, 6)\n\nPart 1 =\n145 ms ± 1.01 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)\nPart 2 =\n4.91 s ± 34.7 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)"
-  },
-  {
-    "objectID": "posts/2022-06-06-holts_exponential_smoothing.html",
-    "href": "posts/2022-06-06-holts_exponential_smoothing.html",
-    "title": "Holt’s Exponential Smoothing",
-    "section": "",
-    "text": "Use Holt’s exponential smoothing method to model a non-seasonal time series with a trend.\nData was sourced from Rdatasets1 using StatsModels Datasets package.2\nWe use StatsModels’ Holt3 class to model the time series.\nFitting the time series using the Holt.fit method returns an instance of HoltWinterResult.4\nThis topic is covered in M249, Book 2, Parts 2.7 & 2.9"
-  },
-  {
-    "objectID": "posts/2022-06-06-holts_exponential_smoothing.html#dependencies",
-    "href": "posts/2022-06-06-holts_exponential_smoothing.html#dependencies",
-    "title": "Holt’s Exponential Smoothing",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels import api as sm\nfrom statsmodels import datasets\nfrom statsmodels.tsa import api as tsa\nfrom statsmodels.graphics import tsaplots\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-06-06-holts_exponential_smoothing.html#main",
-    "href": "posts/2022-06-06-holts_exponential_smoothing.html#main",
-    "title": "Holt’s Exponential Smoothing",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nhartnagel = datasets.get_rdataset('Hartnagel', package='carData', cache=True)\nhartnagel.data.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 38 entries, 0 to 37\nData columns (total 8 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   year      38 non-null     int64  \n 1   tfr       38 non-null     int64  \n 2   partic    38 non-null     int64  \n 3   degrees   38 non-null     float64\n 4   fconvict  38 non-null     float64\n 5   ftheft    34 non-null     float64\n 6   mconvict  38 non-null     float64\n 7   mtheft    34 non-null     float64\ndtypes: float64(5), int64(3)\nmemory usage: 2.5 KB\n\n\n\n\nInitialise and plot the time series\nThe first observation is in 1931.\n\nhartnagel.data['year'].head(1)\n\n0    1931\nName: year, dtype: int64\n\n\nInitialise the Series.\n\nts_fertility = pd.Series(\n    data=hartnagel.data['tfr'].to_numpy(),\n    name='total fertility rate',\n    index=pd.date_range(\n        start='1931',\n        periods=hartnagel.data['tfr'].size,\n        freq='A-DEC',\n        name='year'\n    )\n)\nts_fertility.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 38 entries, 1931-12-31 to 1968-12-31\nFreq: A-DEC\nSeries name: total fertility rate\nNon-Null Count  Dtype\n--------------  -----\n38 non-null     int64\ndtypes: int64(1)\nmemory usage: 608.0 bytes\n\n\nPlot the time series.\n\n_g = sns.relplot(x=ts_fertility.index, y=ts_fertility, kind='line', aspect=2)\nplt.show()\n\n\n\n\n\n\nSmooth the time series\nModel and fit the time series.\n\nholt = tsa.Holt(ts_fertility, initialization_method='estimated')\nfitted = holt.fit()\n\nConstruct a DataFrame holding both the observed and fitted time series.\n\nall_ts_fertility = pd.merge(\n    left=ts_fertility.rename('obs'),\n    right=fitted.fittedvalues.rename('fit'),\n    left_index=True,\n    right_index=True\n)\nall_ts_fertility.info()\n\n<class 'pandas.core.frame.DataFrame'>\nDatetimeIndex: 38 entries, 1931-12-31 to 1968-12-31\nFreq: A-DEC\nData columns (total 2 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   obs     38 non-null     int64  \n 1   fit     38 non-null     float64\ndtypes: float64(1), int64(1)\nmemory usage: 912.0 bytes\n\n\nPlot the observed and fitted time series.\n\n_gsource = all_ts_fertility.melt(\n    var_name='total fertility rate',\n    ignore_index=False\n).reset_index()\n\ng = sns.relplot(\n            data=_gsource,\n            x='year',\n            y='value',\n            hue='total fertility rate',\n            kind='line',\n            aspect=2\n)\nplt.show()\n\n\n\n\nGet the fitted model’s parameters.\n\npd.Series(\n    data={\n        'alpha': fitted.params['smoothing_level'],\n        'gamma': fitted.params['smoothing_trend'],\n        'sse': fitted.sse,\n    },\n    name='smoothing parameters'\n)\n\nalpha         0.985050\ngamma         0.418600\nsse      469164.239529\nName: smoothing parameters, dtype: float64\n\n\n\n\nCheck the model\nPlot the forecasting errors.\n\n_g = sns.relplot(x=fitted.resid.index, y=fitted.resid, kind='line', aspect=2)\nplt.axhline(0, alpha=0.7, ls='--', color='black')\nplt.ylabel('residual')\nplt.show()\n\n\n\n\nPlot the in-sample autocorrelations.\n\n_f, _ax = plt.subplots(figsize=(11.8, 5.5))\ntsaplots.plot_acf(fitted.resid, ax=_ax, lags=20, zero=False)\nplt.xticks(range(1, 21))\nplt.show()\n\n\n\n\nReturn the results of a Ljung-Box test.\n\nsm.stats.acorr_ljungbox(fitted.resid, lags=[20])\n\n\n\n\n\n  \n    \n      \n      lb_stat\n      lb_pvalue\n    \n  \n  \n    \n      20\n      24.420038\n      0.224525\n    \n  \n\n\n\n\nPlot a histogram of the forecasting errors.\n\n_g = sns.displot(\n            x=fitted.resid,\n            kind='hist',\n            kde=True,\n            aspect=2\n)\nplt.show()\n\n\n\n\n\n\nForecasting\nPlot forecasts for the next 3 years.\nThe merge is a full outer join5, given the indices of all_ts_fertility and *_fcast* do not overlap.\nWe initialise a variable to hold reference to the forecasted values, which we use later on to plot the vertial line separating the observed, fitted lines from the forecast line.\nIf you think the separator is unnecessary, then *_fcast* is not needed and the forecast could be moved directly into the merge function.\n\nPlot of forecasts (+3 years)\n\n_fcast = fitted.forecast(3).rename('fcast')\n_gsource = pd.merge(\n    left=all_ts_fertility,\n    right=_fcast,\n    how='outer',\n    left_index=True,\n    right_index=True\n).rename_axis(\n    'year',\n    axis=0\n).melt(\n    var_name='total fertility rate',\n    ignore_index=False\n).reset_index()\n\n_g = sns.relplot(\n            data=_gsource,\n            x='year',\n            y='value',\n            hue='total fertility rate',\n            kind='line',\n            aspect=2\n)\nplt.axvline(_fcast.index[0], alpha=0.7, ls='--', color='black')\nplt.show()\n\n\n\n\nQuantify a forecast.\n\n_fcast = fitted.forecast(1)[0]\n_std_err = np.sqrt(\n    st.norm().ppf(0.975) * (fitted.sse / fitted.fittedvalues.size)\n)\npd.Series(\n    data=[_fcast, _fcast - _std_err,_fcast + _std_err],\n    index= ['pred', 'lpb', 'upb']\n)\n\npred    2233.926398\nlpb     2078.367557\nupb     2389.485239\ndtype: float64"
-  },
-  {
-    "objectID": "posts/2022-06-07-tt_us_avg_tuition.html",
-    "href": "posts/2022-06-07-tt_us_avg_tuition.html",
-    "title": "College Tuition Fees in the USA",
-    "section": "",
-    "text": "Visualising the average annual cost of College tuition fees in the USA.\n\n\n\n\nHappy to announce the newest #R4DS online learning community project! #TidyTuesday is your weekly #tidyverse practice!Each week we'll post data and a plot at https://t.co/8NaXR93uIX under the datasets link.You clean the data and tweak the plot in R!#rstats #ggplot2 pic.twitter.com/sDaHsB8uwL\n\n— Tom Mock ❤️ Quarto (@thomas_mock) April 2, 2018\n\n\n\n\n\n\n\n(Source: http://trends.collegeboard.org)\n\n\n\n\n\n\n\n\n\n#\nname\ntype\ndescription\n\n\n\n\n0\nState\nstr\nstate’s full name (example 'Alabama')\n\n\n1\n2004-05\nfloat\naverage tuition cost in 2004-05\n\n\n2\n2005-06\nfloat\naverage tuition cost in 2005-06\n\n\n3\n2006-07\nfloat\naverage tuition cost in 2006-07\n\n\n4\n2007-081\nfloat\naverage tuition cost in 2007-08\n\n\n5\n2008-09\nfloat\naverage tuition cost in 2008-09\n\n\n6\n2009-10\nfloat\naverage tuition cost in 2009-10\n\n\n7\n2010-11\nfloat\naverage tuition cost in 2010-11\n\n\n8\n2011-12\nfloat\naverage tuition cost in 2011-12\n\n\n9\n2012-13\nfloat\naverage tuition cost in 2012-13\n\n\n10\n2013-14\nfloat\naverage tuition cost in 2013-14\n\n\n11\n2014-15\nfloat\naverage tuition cost in 2014-15\n\n\n12\n2015-16\nfloat\naverage tuition cost in 2015-16\n\n\n\n\n\n\n\n\n\n#\nname\ntype\ndescription\n\n\n\n\n0\nstate\nstr\nstate’s full name (example 'Alabama')\n\n\n1\nyear\nfloat\ncalendar year (example 2004-05)\n\n\n2\ntuition\nfloat\naverage annual tuition cost\n\n\n\n\n\n\n(Source: American National Standards Institute (ANSI)2)\n\n\n\n#\nname\ntype\ndescription\n\n\n\n\n0\nSTATE\nint\nunique identifier\n\n\n1\nSTUSAB\nstr\nstate’s abbreviation (example 'AL')\n\n\n2\nSTATE_NAME\nstr\nstate’s full name (example 'Alabama')\n\n\n3\nSTATENS\nint\nstate population (year unknown)\n\n\n\n\n\n\n\n\n\nBoth visualisations require us to select specific years,3 so we melt the LazyFrame. This allows both queries to use the same pattern when selecting the years (FILTER). Otherwise, the two queries would use different patterns to select the data (MELT -> FILTER and SELECT). We also removed the white space around the column headers in us_avg_tution4\nMake melted_us_avg_tuition\nCREATE melted_us_avg_tuition AS (\n    MELT\n        us_avg_tution.*\n    WITH INDEX\n        LOWER(STRIP(State)) AS state\n    EXPAND\n        variables AS year,\n        values    AS tuition\n)\n\n\n\n[1] Percentage change in college tuition costs from 2010 to 2015. (Chloropleth heatmap)\nSELECT\n    m.*,\n    ansi.*,\n    PCT_CHANGE(m.tuition).OVER(m.state) AS pct_change\nFROM\n    melted_us_avg_tuition m,\n    ansi\nWHERE\n    ansi.STATE_NAME = m.state\n    AND m.year IN ( '2010-11', '2015-16' )\n[2] College tuition costs in the USA in 2015 (vertical bar chart)\nSELECT\n    *\nFROM\n    melted_us_avg_tuition\nWHERE\n    year = '2015-16'\n[3] Distribution of college tuition costs in the USA in 2015 (horizontal strip plot)\n<See College tuition costs in the USA in 2015>"
-  },
-  {
-    "objectID": "posts/2022-06-07-tt_us_avg_tuition.html#dependencies",
-    "href": "posts/2022-06-07-tt_us_avg_tuition.html#dependencies",
-    "title": "College Tuition Fees in the USA",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nimport polars as pl\nimport altair as alt\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\nfrom vega_datasets import data as vdata"
-  },
-  {
-    "objectID": "posts/2022-06-07-tt_us_avg_tuition.html#constants",
-    "href": "posts/2022-06-07-tt_us_avg_tuition.html#constants",
-    "title": "College Tuition Fees in the USA",
-    "section": "Constants",
-    "text": "Constants\n\nFEE_URL = ('https://github.com/rfordatascience/tidytuesday/blob/master/'\n           + 'data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true')\n\n\nANSI_URL = 'https://www2.census.gov/geo/docs/reference/state.txt'"
-  },
-  {
-    "objectID": "posts/2022-06-07-tt_us_avg_tuition.html#main",
-    "href": "posts/2022-06-07-tt_us_avg_tuition.html#main",
-    "title": "College Tuition Fees in the USA",
-    "section": "Main",
-    "text": "Main\n\nSet themes\n\nalt.themes.enable('latimes')\nsns.set_theme()\n\n\n\nLoad the data\n\nus_avg_tuition = pl.DataFrame(pd.read_excel(FEE_URL)).lazy()\nansi = pl.DataFrame(pd.read_csv(ANSI_URL, sep='|')).lazy()\nstates = alt.topo_feature(vdata.us_10m.url, 'states')\n\n\n\nPrepare the data\n\n\nMake melted_us_avg_tuition\nmelted_us_avg_tuition = us_avg_tuition.rename(\n    {s: s.strip().lower() for s in us_avg_tuition.columns}\n).melt(\n    id_vars='state',\n    variable_name='year',\n    value_name='tuition'\n)\n\n\n\n\nVisualise the data\n\n\nPlot percentage change in college annual tuition costs\n_gq = melted_us_avg_tuition.filter(\n    pl.col('year').apply(lambda x: x in ('2010-11', '2015-16',))\n).with_column(\n    pl.col('tuition').pct_change().over('state').alias('pr_change')\n).with_column(\n    pl.col('pr_change').apply(lambda x: x * 100).round(1).alias('pct_change')\n).filter(\n    pl.col('pct_change').is_not_null()\n).join(\n    other=ansi,\n    left_on='state',\n    right_on='STATE_NAME',\n    how='inner'\n)\n\nalt.Chart(_gq.collect().to_pandas()).mark_geoshape(stroke='black').encode(\n    shape='geo:G',\n    color=alt.Color(\"pct_change\", scale=alt.Scale(scheme=\"oranges\")),\n    tooltip=[alt.Tooltip('state', title='State'),\n             alt.Tooltip('pct_change', title='Change (%))')]\n).transform_lookup(\n    lookup='STATE',\n    from_=alt.LookupData(data=states, key='id'),\n    as_='geo'\n).project(\n    type='albersUsa'\n).properties(\n    title='Percentage change in college tuition costs from 2010 to 2015',\n    width=600,\n    height=400\n)\n\n\n\n\n\n\n\n\n\nPlot college tuition costs in the USA in 2015\n_gq = melted_us_avg_tuition.filter(\n    pl.col('year') == '2015-16'\n)\n\nalt.Chart(_gq.collect().to_pandas()).mark_circle(size=60).encode(\n    x=alt.X('tuition', title='Tuition ($)'),\n    y=alt.Y(\n        'state',\n        sort='-x',\n        axis=alt.Axis(grid=True),\n        title='State'\n    )\n).properties(\n    title='College tuition costs in the USA in 2015-16',\n    width=400,\n    height=600\n)\n\n\n\n\n\n\n\n\n\nPlot distribution of college tuition costs in the USA in 2015\n_gq = melted_us_avg_tuition.filter(\n    pl.col('year') == '2015-16'\n)\n\nsns.catplot(\n        data=_gq.collect().to_pandas(),\n        x='tuition',\n        kind='strip',\n        height=4,\n        aspect=1.5\n)\nplt.title(\n    'Distribution of college tuition costs in the USA in 2015-16',\n    loc='left'\n)\nplt.xlabel('Tuition ($)')\nplt.show()"
-  },
-  {
-    "objectID": "posts/2022-06-09-dijkstra_shortest_path.html",
-    "href": "posts/2022-06-09-dijkstra_shortest_path.html",
-    "title": "Dijkstra’s Shortest Path",
-    "section": "",
-    "text": "Implement a function that will return the single shortest path between any two nodes in a graph.\nDijkstra’s shortest path solves:\n\nGiven a graph and a source vertex in the graph, find the shortest paths from the source to all vertices in the given graph.\nDijkstra’s shortest path algorithm | Greedy Algo-7 (GeeksForGeeks)\n\nWe first implement the algorithm outlined in Dijkstra’s algorithm (Wikipedia).\nWe then show two use cases: the first is an example on how to use the function; and the second shows how to collect all shortest paths from every city using dictionary comprehension."
-  },
-  {
-    "objectID": "posts/2022-06-09-dijkstra_shortest_path.html#dependencies",
-    "href": "posts/2022-06-09-dijkstra_shortest_path.html#dependencies",
-    "title": "Dijkstra’s Shortest Path",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport heapq\nfrom collections import defaultdict\nimport math\nimport networkx as nx\nimport laughingrook as lr"
-  },
-  {
-    "objectID": "posts/2022-06-09-dijkstra_shortest_path.html#functions",
-    "href": "posts/2022-06-09-dijkstra_shortest_path.html#functions",
-    "title": "Dijkstra’s Shortest Path",
-    "section": "Functions",
-    "text": "Functions\n\ndef shortest_paths(g: nx.Graph, start: object) -> dict[dict]:\n    \"\"\"Return the single shortest path from start to all other nodes in\n    G.\n\n    This is an implementation of Dijkstra's algorithm.\n\n    Returns a dictionary with key=node, value={'dist', 'path'}.\n\n    Preconditions:\n    - start in G\n    - edge weights held in key='weight'\n    \"\"\"\n    visited = set()\n    dist = defaultdict(lambda: math.inf)\n    prev = defaultdict(list)\n    dist[start], prev[start] = 0, [start]\n    pq = [(0, start)]\n    while len(pq) >= 1:\n        _, u = heapq.heappop(pq)\n        if u not in visited:\n            visited.add(u)\n            for v in g.neighbors(u):\n                if dist[u] + g.edges[u, v]['weight'] < dist[v]:\n                    dist[v] = dist[u] + g.edges[u, v]['weight']\n                    prev[v] = prev[u] + [v]\n                    heapq.heappush(pq, (dist[v], v))\n\n    return {n: {'dist': dist[n], 'path': prev[n]} for n in g.nodes}\n\n\ndef print_shortest_path(ssp, city):\n    \"\"\"Print the distance and shortest path from Cardiff to the given city.\n    \"\"\"\n    print(f\"Cardiff -> {city}:\\n{ssp[city]['dist']}mi {ssp[city]['path']}\")"
-  },
-  {
-    "objectID": "posts/2022-06-09-dijkstra_shortest_path.html#main",
-    "href": "posts/2022-06-09-dijkstra_shortest_path.html#main",
-    "title": "Dijkstra’s Shortest Path",
-    "section": "Main",
-    "text": "Main\nWe will use the “The International E-road Network” dataset1 for this example.\n\nLoad the data\n\neroads = lr.datasets.get_csv_file('graphs/eroads_edge_list.csv')\neroads.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 1250 entries, 0 to 1249\nData columns (total 7 columns):\n #   Column                       Non-Null Count  Dtype \n---  ------                       --------------  ----- \n 0   road_number                  1250 non-null   object\n 1   origin_country_code          1250 non-null   object\n 2   origin_reference_place       1250 non-null   object\n 3   destination_country_code     1250 non-null   object\n 4   destination_reference_place  1250 non-null   object\n 5   distance                     1250 non-null   int64 \n 6   watercrossing                1250 non-null   bool  \ndtypes: bool(1), int64(1), object(5)\nmemory usage: 59.9+ KB\n\n\n\n\nInitialise the graph\n\neroads = lr.datasets.get_csv_file('graphs/eroads_edge_list.csv')\nU = 'origin_reference_place'\nV = 'destination_reference_place'\nW = 'distance'\nedges = eroads.to_dict(orient='records')\ng = nx.Graph((e[U], e[V], {'weight': e[W]}) for e in edges)\nprint(g)\n\nGraph with 894 nodes and 1198 edges\n\n\n\n\nExample 1: Shortest paths from Cardiff\nFind the shortest paths from Cardiff to all other cities.\n\nssp = shortest_paths(g, 'Cardiff')\n\nOutput the shortest paths connect Cardiff to London, Dublin, and Calais.\n\nfor city in ('London', 'Dublin', 'Calais'):\n    print(f\"Cardiff -> {city}:\\n{ssp[city]['dist']}mi {ssp[city]['path']}\")\n\nCardiff -> London:\n264mi ['Cardiff', 'Newport', 'Bristol', 'London']\nCardiff -> Dublin:\n456mi ['Cardiff', 'Swansea', 'Fishguard', 'Rosslare', 'Wexford', 'Dublin']\nCardiff -> Calais:\n429mi ['Cardiff', 'Newport', 'Bristol', 'London', 'Folkestone', 'Dover', 'Calais']\n\n\n\n\nExample 2: Collect all shortest paths\nReturn a collection of all the shortest paths, from each city to all other cities.\nThis returns a nested dictionary dict[dict[dict]].\n\nall_ssp = {n: shortest_paths(g, n) for n in g.nodes}\n\nRepeat the example above, this time printing the shortest paths from London, Dublin, and Calais to Cardiff.\n\nca = 'Cardiff'\nfor city in ('London', 'Dublin', 'Calais'):\n    print(\n        f\"{city} -> {ca}:\"\n        + f\"\\n{all_ssp[city][ca]['dist']}mi {all_ssp[city][ca]['path']}\"\n    )\n\nLondon -> Cardiff:\n264mi ['London', 'Bristol', 'Newport', 'Cardiff']\nDublin -> Cardiff:\n456mi ['Dublin', 'Wexford', 'Rosslare', 'Fishguard', 'Swansea', 'Cardiff']\nCalais -> Cardiff:\n429mi ['Calais', 'Dover', 'Folkestone', 'London', 'Bristol', 'Newport', 'Cardiff']\n\n\n\n\nPerformance\n\nprint('Time to completion, shortest_paths =')\n%timeit shortest_paths(g, 'Cardiff')\nprint('\\nTime to completion, all_shortest_paths =')\n%timeit {n: shortest_paths(g, n) for n in g.nodes}\n\nTime to completion, shortest_paths =\n3.59 ms ± 53 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)\n\nTime to completion, all_shortest_paths =\n3.42 s ± 24.7 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)"
-  },
-  {
-    "objectID": "posts/2022-06-11-advent_of_code_2015_day5.html",
-    "href": "posts/2022-06-11-advent_of_code_2015_day5.html",
-    "title": "Advent of Code 2015, Day 5",
-    "section": "",
-    "text": "This is my solution to Advent of Code 2015, Day 5: Doesn’t He Have Intern-Elves For This?"
-  },
-  {
-    "objectID": "posts/2022-06-11-advent_of_code_2015_day5.html#dependencies",
-    "href": "posts/2022-06-11-advent_of_code_2015_day5.html#dependencies",
-    "title": "Advent of Code 2015, Day 5",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport laughingrook as lr"
-  },
-  {
-    "objectID": "posts/2022-06-11-advent_of_code_2015_day5.html#constants",
-    "href": "posts/2022-06-11-advent_of_code_2015_day5.html#constants",
-    "title": "Advent of Code 2015, Day 5",
-    "section": "Constants",
-    "text": "Constants\n\nBAD_PAIRS = set(['ab', 'cd', 'pq', 'xy'])\nVOWELS = set(['a', 'e', 'i', 'o', 'u'])"
-  },
-  {
-    "objectID": "posts/2022-06-11-advent_of_code_2015_day5.html#functions",
-    "href": "posts/2022-06-11-advent_of_code_2015_day5.html#functions",
-    "title": "Advent of Code 2015, Day 5",
-    "section": "Functions",
-    "text": "Functions\n\ndef no_bad_pairs(line: str) -> bool:\n    \"\"\"Return true if a given line contains a bad pair\n    \"\"\"\n    for i in range(len(line) - 2):\n        pair = line[i:i+2]\n        if pair in BAD_PAIRS:\n            return False\n    return True\n\n\ndef three_vowels(line: str) -> bool:\n    \"\"\"Return true if a given line contains three vowels\n    \"\"\"\n    return sum(1 if x in VOWELS else 0 for x in line) >= 3\n\n\ndef consecutive_chars(line: str) -> bool:\n    \"\"\"Return true if a given line contains consecutive letters which\n    are the same\n    \"\"\"\n    for i in range(1, len(line)):\n        if line[i] == line[i-1]:\n            return True\n    return False\n\n\ndef any_pairs(line: str) -> bool:\n    \"\"\"Return true if a given line contains pairs of any letters (not\n    overlapping)\n    \"\"\"\n    pairs = set()\n    for j in range(1, len(line) - 1):\n        if line[j] * 3 != line[j-1:j+2]:\n            pair = line[j-1:j+1]\n            if pair in pairs:\n                return True\n            else:\n                pairs.add(pair)\n\n    # check the final pair\n    if line[-1] * 3 != line[-3:]:\n        pair = line[-2:]\n        if pair in pairs:\n            return True\n        else:\n            return False\n\n\ndef hopped_repeat_letters(line: str) -> bool:\n    \"\"\"Return true if a character in the given line repeats with one\n    letter inbetween them\n    \"\"\"\n    for j in range(1, len(line) - 1):\n        if line[j-1] == line[j+1]:\n            return True\n    return False\n\n\ndef count_nice(lines: list[str], *tests) -> bool:\n    \"\"\"Return the total count of nice lines based on the given tests\n    \"\"\"\n    return sum(all(test(line) for test in tests) for line in lines)"
-  },
-  {
-    "objectID": "posts/2022-06-11-advent_of_code_2015_day5.html#main",
-    "href": "posts/2022-06-11-advent_of_code_2015_day5.html#main",
-    "title": "Advent of Code 2015, Day 5",
-    "section": "Main",
-    "text": "Main\n\nLoad the input\n\nlines = lr.datasets.get_advent_input(2015, 5)\nprint(f\"lines = '{lines[:5]}'\")\n\nfile was cached.\nlines = '['rthkunfaakmwmush', 'qxlnvjguikqcyfzt', 'sleaoasjspnjctqt', 'lactpmehuhmzwfjl', 'bvggvrdgjcspkkyj']'\n\n\n\n\nPart 1\n\nans = count_nice(lines, no_bad_pairs, three_vowels, consecutive_chars)\nprint(f'Solution = {ans}')\n\nSolution = 258\n\n\n\n\nPart 2\n\nprint(f'Solution = {count_nice(lines, any_pairs, hopped_repeat_letters)}')\n\nSolution = 53\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit count_nice(lines, no_bad_pairs, three_vowels, consecutive_chars)\nprint('Part 2 =')\n%timeit count_nice(lines, any_pairs, hopped_repeat_letters)\n\nPart 1 =\n3.95 ms ± 19.3 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)\nPart 2 =\n5.41 ms ± 11.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)"
-  },
-  {
-    "objectID": "posts/2022-06-13-holt_winters_exponential_smoothing.html",
-    "href": "posts/2022-06-13-holt_winters_exponential_smoothing.html",
-    "title": "Holt-Winter’s Exponential Smoothing",
-    "section": "",
-    "text": "Use Holt-Winter’s exponential smoothing method to model a seasonal time series with a trend.\nData was taken from the Open University’s M249, Practical Modern Statistics.\nWe use StatsModels’ ExponentialSmoothing1 class to model the time series.\nFitting the time series using the ExponentialSmoothing.fit method returns an instance of HoltWinterResult.2\nThis topic is covered in M249, Book 2, Parts 2.7 & 2.9"
-  },
-  {
-    "objectID": "posts/2022-06-13-holt_winters_exponential_smoothing.html#dependencies",
-    "href": "posts/2022-06-13-holt_winters_exponential_smoothing.html#dependencies",
-    "title": "Holt-Winter’s Exponential Smoothing",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels import api as sm\nfrom statsmodels.tsa import api as tsa\nfrom statsmodels.graphics import tsaplots\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\nimport laughingrook as lr\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-06-13-holt_winters_exponential_smoothing.html#main",
-    "href": "posts/2022-06-13-holt_winters_exponential_smoothing.html#main",
-    "title": "Holt-Winter’s Exponential Smoothing",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nelectricity = lr.datasets.get_csv_file('m249/timeseries/electricity.csv')\nelectricity.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 300 entries, 0 to 299\nData columns (total 3 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   date      300 non-null    object \n 1   demand    300 non-null    int64  \n 2   sademand  300 non-null    float64\ndtypes: float64(1), int64(1), object(1)\nmemory usage: 7.2+ KB\n\n\n\n\nInitialise and plot the time series\nThe first observation is in January 1965.\n\nelectricity['date'].head(1)\n\n0    Jan-1965\nName: date, dtype: object\n\n\nInitialise the Series.\n\nts_demand = pd.Series(\n    data=electricity['demand'].to_numpy(),\n    name='demand',\n    index=pd.date_range(\n        start='1965-01',\n        periods=electricity['demand'].size,\n        freq='M',\n        name='month'\n    )\n)\nts_demand.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 300 entries, 1965-01-31 to 1989-12-31\nFreq: M\nSeries name: demand\nNon-Null Count  Dtype\n--------------  -----\n300 non-null    int64\ndtypes: int64(1)\nmemory usage: 4.7 KB\n\n\nPlot the time series.\n\n_g = sns.relplot(x=ts_demand.index, y=ts_demand, kind='line', aspect=2)\nplt.show()\n\n\n\n\nTransform time series.\n\nts_logdemand = ts_demand.map(np.log).rename('log demand')\n_g = sns.relplot(x=ts_logdemand.index, y=ts_logdemand, kind='line', aspect=2)\nplt.show()\n\n\n\n\n\n\nSmooth the time series\nModel and fit the time series.\n\nholtwint = tsa.ExponentialSmoothing(\n    ts_logdemand,\n    trend=\"additive\",\n    seasonal=\"additive\",\n    initialization_method='estimated'\n)\nfitted = holtwint.fit()\n\nConstruct a DataFrame holding both the observed and fitted time series.\n\nall_ts_logdemand = pd.merge(\n    left=ts_logdemand.rename('obs'),\n    right=fitted.fittedvalues.rename('fit'),\n    left_index=True,\n    right_index=True\n)\nall_ts_logdemand.info()\n\n<class 'pandas.core.frame.DataFrame'>\nDatetimeIndex: 300 entries, 1965-01-31 to 1989-12-31\nFreq: M\nData columns (total 2 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   obs     300 non-null    float64\n 1   fit     300 non-null    float64\ndtypes: float64(2)\nmemory usage: 7.0 KB\n\n\nPlot the observerved and fitted time series.\n\n_gsource = all_ts_logdemand.melt(\n    var_name='log demand',\n    ignore_index=False\n).reset_index()\n\n_g = sns.relplot(\n            data=_gsource,\n            x='month',\n            y='value',\n            hue='log demand',\n            kind='line',\n            aspect=2\n)\nplt.show()\n\n\n\n\nGet the fitted model’s parameters.\n\npd.Series(\n    data={\n        'alpha': fitted.params['smoothing_level'].round(5),\n        'gamma': fitted.params['smoothing_trend'].round(5),\n        'delta': fitted.params['smoothing_seasonal'].round(5),\n        'sse': fitted.sse.round(5)\n    },\n    name='smoothing parameters'\n)\n\nalpha    0.41311\ngamma    0.00000\ndelta    0.00000\nsse      0.60365\nName: smoothing parameters, dtype: float64\n\n\n\n\nCheck the model\nPlot the forecasting errors.\n\n_g = sns.relplot(x=fitted.resid.index, y=fitted.resid, kind='line', aspect=2)\nplt.axhline(0, alpha=0.7, ls='--', color='black')\nplt.ylabel('residual')\nplt.show()\n\n\n\n\nPlot the in-sample autocorrelations.\n\n_f, _ax = plt.subplots(figsize=(11.8, 5.5))\ntsaplots.plot_acf(fitted.resid, ax=_ax, lags=20, zero=False)\nplt.xticks(range(1, 21))\nplt.show()\n\n\n\n\nReturn the results of a Ljung-Box test.\n\nsm.stats.acorr_ljungbox(fitted.resid, lags=[20])\n\n\n\n\n\n  \n    \n      \n      lb_stat\n      lb_pvalue\n    \n  \n  \n    \n      20\n      52.392304\n      0.0001\n    \n  \n\n\n\n\nPlot a histogram of the forecasting errors.\n\n_g = sns.displot(\n    x=fitted.resid,\n    kind='hist',\n    kde=True,\n    aspect=2\n)\nplt.show()\n\n\n\n\n\n\nForecasting\nPlot forecasts for the next 12 months.\nThe merge is a full outer join3, given the indices of all_ts_logdemand and _fcast do not overlap.\nWe initialise a variable to hold reference to the forecasted values, which we use later on to plot the vertial line separating the observed, fitted lines from the forecast line.\nIf you think the separator is unnecessary, then _fcast is not needed and the forecast could be moved directly into the merge function.\n\n_fcast = fitted.forecast(12).rename('fcast')\n_gsource = pd.merge(\n    left=all_ts_logdemand,\n    right=_fcast,\n    left_index=True,\n    right_index=True,\n    how='outer'\n).rename_axis(\n    'month',\n    axis=0\n).melt(\n    var_name='log demand',\n    ignore_index=False\n).reset_index()\n\n_g = sns.relplot(\n    data=_gsource,\n    x='month',\n    y='value',\n    hue='log demand',\n    kind='line',\n    aspect=2\n)\nplt.axvline(_fcast.index[0], alpha=0.7, ls='--', color='black')\nplt.show()\n\n\n\n\nQuantify a forecast.\n\n_fcast = fitted.forecast(1)[0]\n_std_err = np.sqrt(\n    st.norm().ppf(0.975) * (fitted.sse / fitted.fittedvalues.size)\n)\npd.Series(\n    data=[_fcast, _fcast - _std_err, _fcast + _std_err],\n    index=['pred', 'lpb', 'upb']\n)\n\npred    11.486707\nlpb     11.423908\nupb     11.549507\ndtype: float64"
-  },
-  {
-    "objectID": "posts/2022-06-18-advent_of_code_2015_day6.html",
-    "href": "posts/2022-06-18-advent_of_code_2015_day6.html",
-    "title": "Advent of Code 2015, Day 6",
-    "section": "",
-    "text": "This is my solution to Advent of Code 2015, Day 1: Probably a Fire Hazard."
-  },
-  {
-    "objectID": "posts/2022-06-18-advent_of_code_2015_day6.html#dependencies",
-    "href": "posts/2022-06-18-advent_of_code_2015_day6.html#dependencies",
-    "title": "Advent of Code 2015, Day 6",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport laughingrook as lr"
-  },
-  {
-    "objectID": "posts/2022-06-18-advent_of_code_2015_day6.html#functions",
-    "href": "posts/2022-06-18-advent_of_code_2015_day6.html#functions",
-    "title": "Advent of Code 2015, Day 6",
-    "section": "Functions",
-    "text": "Functions\n\ndef is_toggle(line) -> bool:\n    \"\"\"Return true if line is a toggle instruction.\n    \"\"\"\n    return 'toggle' in line\n\n\ndef count_lights(q: list) -> int:\n    \"\"\"Return the number of lights on in the grid after executing the\n    instructions\n    \"\"\"\n    grid = [[False for _ in range(1000)] for _ in range(1000)]\n    for instruction in q:\n        inst, rows, cols = instruction\n        for r in range(rows[0], rows[1]):\n            for c in range(cols[0], cols[1]):\n                if inst == -1:  # is toggle\n                    grid[r][c] = not grid[r][c]\n                elif inst == 0:  # turn off\n                    grid[r][c] = False\n                else:            # turn on\n                    grid[r][c] = True\n\n    lights_on = 0\n    for row in grid:\n        lights_on += sum(row)\n\n    return lights_on\n\n\ndef sum_brightness(q: list) -> int:\n    \"\"\"Return the sum of the brightness of all lights in the grid after\n    executing the instructions.\n    \"\"\"\n    grid = [[0 for _ in range(1000)] for _ in range(1000)]\n    for instruction in q:\n        inst, rows, cols = instruction\n        for r in range(rows[0], rows[1]):\n            for c in range(cols[0], cols[1]):\n                if inst == -1:  # is toggle\n                    grid[r][c] = grid[r][c] + 2\n                elif inst == 0:  # dim light\n                    if grid[r][c] > 0:\n                        grid[r][c] = grid[r][c] - 1\n                else:            # brighten light\n                    grid[r][c] = grid[r][c] + 1\n\n    total_brightness = 0\n    for row in grid:\n        total_brightness += sum(row)\n\n    return total_brightness"
-  },
-  {
-    "objectID": "posts/2022-06-18-advent_of_code_2015_day6.html#main",
-    "href": "posts/2022-06-18-advent_of_code_2015_day6.html#main",
-    "title": "Advent of Code 2015, Day 6",
-    "section": "Main",
-    "text": "Main\n\nLoad the input\n\nlines = lr.datasets.get_advent_input(2015, 6)\nprint(f'lines = {lines[:5]}')\n\nfile was cached.\nlines = ['toggle 461,550 through 564,900', 'turn off 370,39 through 425,839', 'turn off 464,858 through 833,915', 'turn off 812,389 through 865,874', 'turn on 599,989 through 806,993']\n\n\n\n\nPrepare the input\n\nq = []\nfor line in lines:\n    arr = line.split(' ')\n    if arr[0] == 'toggle':\n        inst, start, end = -1, arr[1], arr[3]\n    elif arr[1] == 'off':\n        inst, start, end = 0, arr[2], arr[4]\n    else:\n        inst, start, end = 1, arr[2], arr[4]\n    start = [int(x) for x in start.split(',')]\n    end = [int(x) for x in end.split(',')]\n    rows = start[0], end[0]+1\n    cols = start[1], end[1]+1\n    q.append((inst, rows, cols))\nprint(f'q = {q[:3]}')\n\nq = [(-1, (461, 565), (550, 901)), (0, (370, 426), (39, 840)), (0, (464, 834), (858, 916))]\n\n\n\n\nPart 1\n\nprint(f\"Solution = {count_lights(q)}\")\n\nSolution = 543903\n\n\n\n\nPart 2\n\nprint(f\"Solution = {sum_brightness(q)}\")\n\nSolution = 14687245\n\n\n\n\nPerformance\n\nprint('Part 1 =')\n%timeit count_lights(q)\nprint('Part 2 =')\n%timeit sum_brightness(q)\n\nPart 1 =\n1.29 s ± 25.3 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)\nPart 2 =\n1.94 s ± 19.1 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)"
-  },
-  {
-    "objectID": "posts/2022-06-20-stationary_time_series_differencing.html",
-    "href": "posts/2022-06-20-stationary_time_series_differencing.html",
-    "title": "Stationary Time Series",
-    "section": "",
-    "text": "Return a stationary time series by differencing.\nData was taken from the Open University’s M249, Practical Modern Statistics.\nSeasonal fluctuations increased with level, so a logarithmic transformation was used to make an additive model appropriate. A seasonally adjusted series was obtained using decomposition.\nWe return the time series of the first and second differences. Note that you get the time series of secnd differences by differencing the time series of first differences.1\nThis topic is covered in M249, Book 2, Parts 3.11."
-  },
-  {
-    "objectID": "posts/2022-06-20-stationary_time_series_differencing.html#dependencies",
-    "href": "posts/2022-06-20-stationary_time_series_differencing.html#dependencies",
-    "title": "Stationary Time Series",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom statsmodels.tsa import api as tsa\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\nimport laughingrook as lr\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-06-20-stationary_time_series_differencing.html#main",
-    "href": "posts/2022-06-20-stationary_time_series_differencing.html#main",
-    "title": "Stationary Time Series",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nelectricity = lr.datasets.get_csv_file('m249/timeseries/electricity.csv')\nelectricity.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 300 entries, 0 to 299\nData columns (total 3 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   date      300 non-null    object \n 1   demand    300 non-null    int64  \n 2   sademand  300 non-null    float64\ndtypes: float64(1), int64(1), object(1)\nmemory usage: 7.2+ KB\n\n\n\n\nInitialise and plot the time series\nThe first observation is in January 1965.\n\nelectricity['date'].head(1)\n\n0    Jan-1965\nName: date, dtype: object\n\n\nInitialise the Series.\n\nts_demand = pd.Series(\n    data=electricity['demand'].to_numpy(),\n    name='demand',\n    index=pd.date_range(\n        start='1965-01',\n        periods=electricity['demand'].size,\n        freq='M',\n        name='month'\n    )\n)\nts_demand.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 300 entries, 1965-01-31 to 1989-12-31\nFreq: M\nSeries name: demand\nNon-Null Count  Dtype\n--------------  -----\n300 non-null    int64\ndtypes: int64(1)\nmemory usage: 4.7 KB\n\n\nPlot the time series.\n\n_g = sns.relplot(x=ts_demand.index, y=ts_demand, kind='line', aspect=2)\nplt.show()\n\n\n\n\n\n\nPrepare the time series\nTake the natural logarithm so an additive model is appropriate.\n\nts_logdemand = ts_demand.map(np.log).rename('log demand')\n_g = sns.relplot(x=ts_logdemand.index, y=ts_logdemand, kind='line', aspect=2)\nplt.show()\n\n\n\n\nDecompose the time series.\n\ndecomp = tsa.seasonal_decompose(ts_logdemand)\nsadjusted = pd.Series(\n    data=decomp.observed - decomp.seasonal,\n    name='log demand'\n)\n\nConstruct a DataFrame holding both the (log) observed and seasonally adjusted time series.\n\nall_ts_logdemand = pd.merge(\n    left=ts_logdemand.rename('obs'),\n    right=pd.Series(\n        data=decomp.observed - decomp.seasonal,\n        name='sadjusted'\n    ),\n    left_index=True,\n    right_index=True\n)\nall_ts_logdemand.info()\n\n<class 'pandas.core.frame.DataFrame'>\nDatetimeIndex: 300 entries, 1965-01-31 to 1989-12-31\nFreq: M\nData columns (total 2 columns):\n #   Column     Non-Null Count  Dtype  \n---  ------     --------------  -----  \n 0   obs        300 non-null    float64\n 1   sadjusted  300 non-null    float64\ndtypes: float64(2)\nmemory usage: 15.1 KB\n\n\nPlot the two time series, observed and sadjusted.\n\n_gsource = all_ts_logdemand.melt(\n    var_name='log demand',\n    ignore_index=False\n).reset_index()\n\n_g = sns.relplot(\n            data=_gsource,\n            x='month',\n            y='value',\n            hue='log demand',\n            kind='line',\n            aspect=2\n)\n\n\n\n\n\n\nDifference the time series\nTime series of first differences.\n\ndiff1 = all_ts_logdemand['sadjusted'].diff().dropna()\ng = sns.relplot(x=diff1.index, y=diff1, kind='line', aspect=2)\nplt.title('First diffrences')\nplt.show()\n\n\n\n\nTime series of first differences.\n\ndiff2 = diff1.diff().dropna()\ng = sns.relplot(x=diff2.index, y=diff2, kind='line', aspect=2)\nplt.title('Second diffrences')\nplt.show()"
-  },
-  {
-    "objectID": "posts/2022-06-25-advent_of_code_2015_day7.html",
-    "href": "posts/2022-06-25-advent_of_code_2015_day7.html",
-    "title": "Advent of Code 2015, Day 7",
-    "section": "",
-    "text": "This is my solution to Advent of Code 2015, Day 5: Some Assembly Required"
-  },
-  {
-    "objectID": "posts/2022-06-25-advent_of_code_2015_day7.html#dependencies",
-    "href": "posts/2022-06-25-advent_of_code_2015_day7.html#dependencies",
-    "title": "Advent of Code 2015, Day 7",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport collections\nimport dataclasses\nimport laughingrook as lr"
-  },
-  {
-    "objectID": "posts/2022-06-25-advent_of_code_2015_day7.html#functions",
-    "href": "posts/2022-06-25-advent_of_code_2015_day7.html#functions",
-    "title": "Advent of Code 2015, Day 7",
-    "section": "Functions",
-    "text": "Functions\n\n@dataclasses.dataclass\nclass Wire:\n    line: list[str]\n    output: str = ''\n    op: str = 'ASSIGN'\n    inputs: list = dataclasses.field(default_factory=list)\n\n    def __post_init__(self):\n        self.parse_line()\n\n    def parse_line(self) -> None:\n        lline = self.line.split()\n        self.output = lline[-1]\n\n        left = lline[:-2]\n        for op in ['NOT', 'AND', 'OR', 'LSHIFT', 'RSHIFT']:\n            if op in left:\n                self.op = op\n                left.remove(op)\n        self.inputs = [int(i) if i.isdigit() else i for i in left]\n\n    def evaluate(self) -> None:\n        if self.op == 'ASSIGN':\n            return int(self.inputs[0])\n        elif self.op == 'NOT':\n            return int(65535 - self.inputs[0])\n        elif self.op == 'AND':\n            return int(self.inputs[0] & self.inputs[1])\n        elif self.op == 'OR':\n            return int(self.inputs[0] | self.inputs[1])\n        elif self.op == 'LSHIFT':\n            return int(self.inputs[0] << self.inputs[1])\n        elif self.op == 'RSHIFT':\n            return int(self.inputs[0] >> self.inputs[1])\n        else:\n            raise ValueError('invalid operator')\n\n    def update_input(self, signals: dict) -> None:\n        \"\"\"Replace any signal in wire's inputs with int value.\n        \n        Iterate over wire's inputs: For signal in inputs, if signal\n        in signals then add signals[signal] to inputs. Otherwise append\n        signal to inputs\n        \"\"\"\n        self.inputs = [signals[signal] if signal in signals else signal\n                       for signal in self.inputs]\n\n    def is_complete(self):\n        \"\"\"Return true if the wire's inputs are all of type int.\n        \"\"\"\n        return all(isinstance(signal, int) for signal in self.inputs)\n\n\ndef evaluate(wires: list, override: tuple = None) -> dict:\n    if not override:\n        signals = {}\n    else:\n        signals = {override[0]: override[1]}\n    q = collections.deque(wires)\n    while len(q) >= 1:\n        wire = q.popleft()\n        if wire.is_complete():  # evaluate the string, add to signal map\n            signals[wire.output] = wire.evaluate()\n        else:                   # \n            wire.update_input(signals)\n            q.append(wire)\n    return signals"
-  },
-  {
-    "objectID": "posts/2022-06-25-advent_of_code_2015_day7.html#main",
-    "href": "posts/2022-06-25-advent_of_code_2015_day7.html#main",
-    "title": "Advent of Code 2015, Day 7",
-    "section": "Main",
-    "text": "Main\n\nLoad the input\n\nlines = lr.datasets.get_advent_input(2015, 7)\nlines[:5]\n\nfile was cached.\n\n\n['bn RSHIFT 2 -> bo',\n 'lf RSHIFT 1 -> ly',\n 'fo RSHIFT 3 -> fq',\n 'cj OR cp -> cq',\n 'fo OR fz -> ga']\n\n\nExamples of an instance of Wire.\n\nfor w in [Wire(line) for line in lines[:3]]:\n    print(w)\n\nWire(line='bn RSHIFT 2 -> bo', output='bo', op='RSHIFT', inputs=['bn', 2])\nWire(line='lf RSHIFT 1 -> ly', output='ly', op='RSHIFT', inputs=['lf', 1])\nWire(line='fo RSHIFT 3 -> fq', output='fq', op='RSHIFT', inputs=['fo', 3])\n\n\n\n\nPart 1\n\nprint(f\"Solution = {evaluate([Wire(line) for line in lines])['a']}\")\n\nSolution = 46065\n\n\n\n\nPart 2\n\na = evaluate([Wire(line) for line in lines])['a']\nwires = [wire for wire in [Wire(line) for line in lines]\n         if wire.output != 'b']\nprint(f\"Solution = {evaluate(wires, override=('b', a))['a']}\")\n\nSolution = 14134\n\n\n\n\nPerformance\nPart 1 =\n\n%timeit {evaluate([Wire(line) for line in lines])['a']}\n\n47.3 ms ± 229 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)\n\n\nPart 2 =\n\n%%timeit\na = evaluate([Wire(line) for line in lines])['a']\nwires = [wire for wire in [Wire(line) for line in lines]\n         if wire.output != 'b']\nevaluate(wires, override=('b', a))['a']\n\n94.8 ms ± 291 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)"
-  },
-  {
-    "objectID": "posts/2022-06-27-arima1_time_series.html",
-    "href": "posts/2022-06-27-arima1_time_series.html",
-    "title": "Arima Modelling I",
-    "section": "",
-    "text": "Select, fit, and check an ARIMA model of a time series.\nData was taken from the Open University’s M249, Practical Modern Statistics.\nSeasonal fluctuations increased with level, so a logarithmic transformation was used to make an additive model appropriate. A seasonally adjusted series was obtained using decomposition, which was made stationary using first differences. StatsModels’s ARIMA1 class was used to model and fit the time series. The ARIMA.fit method returns an instance of ARIMAResults.2\nA single plausible model ARIMA(1, 1, 1) was checked and found to be adequate.\nThis topic is covered in M249, Book 2, Parts 3.11."
-  },
-  {
-    "objectID": "posts/2022-06-27-arima1_time_series.html#dependencies",
-    "href": "posts/2022-06-27-arima1_time_series.html#dependencies",
-    "title": "Arima Modelling I",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport numpy as np\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels import api as sm\nfrom statsmodels.tsa import api as tsa\nfrom statsmodels.graphics import tsaplots\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\nimport laughingrook as lr\n\nSet the graphing defaults. (This is optional.)\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-06-27-arima1_time_series.html#main",
-    "href": "posts/2022-06-27-arima1_time_series.html#main",
-    "title": "Arima Modelling I",
-    "section": "Main",
-    "text": "Main\n\nLoad the data\n\nelectricity = lr.datasets.get_csv_file('m249/timeseries/electricity.csv')\nelectricity.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 300 entries, 0 to 299\nData columns (total 3 columns):\n #   Column    Non-Null Count  Dtype  \n---  ------    --------------  -----  \n 0   date      300 non-null    object \n 1   demand    300 non-null    int64  \n 2   sademand  300 non-null    float64\ndtypes: float64(1), int64(1), object(1)\nmemory usage: 7.2+ KB\n\n\n\n\nInitialise and plot the time series\nThe first observation is in January 1965.\n\nelectricity['date'].head(1)\n\n0    Jan-1965\nName: date, dtype: object\n\n\nInitialise the Series.\n\nts_demand = pd.Series(\n    data=electricity['demand'].to_numpy(),\n    name='demand',\n    index=pd.date_range(\n        start='1965-01',\n        periods=electricity['demand'].size,\n        freq='M',\n        name='month'\n    )\n)\nts_demand.info()\n\n<class 'pandas.core.series.Series'>\nDatetimeIndex: 300 entries, 1965-01-31 to 1989-12-31\nFreq: M\nSeries name: demand\nNon-Null Count  Dtype\n--------------  -----\n300 non-null    int64\ndtypes: int64(1)\nmemory usage: 4.7 KB\n\n\nPlot the time series.\n\n_g = sns.relplot(x=ts_demand.index, y=ts_demand, kind='line', aspect=2)\nplt.show()\n\n\n\n\nTransform the time series.\n\nts_logdemand = ts_demand.map(np.log).rename('log demand')\n_g = sns.relplot(x=ts_logdemand.index, y=ts_logdemand, kind='line', aspect=2)\nplt.show()\n\n\n\n\nGet the seasonally adjused series.\n\n_decomp = tsa.seasonal_decompose(ts_logdemand)\nsadjusted = pd.Series(\n    data=_decomp.observed - _decomp.seasonal,\n    name='log demand'\n)\n_g = sns.relplot(x=sadjusted.index, y=sadjusted, kind='line', aspect=2)\n\n\n\n\n\n\nSelect the model\nDifference the time series.\n\ndiff1 = sadjusted.diff().dropna()\n_g = sns.relplot(x=diff1.index, y=diff1, kind='line', aspect=2)\n\n\n\n\nPlot the sample ACF and PACF.\n\nf = plt.figure(figsize=(12, 8))\nax1 = f.add_subplot(211)\nax1.set_xticks(np.arange(1, 21))\nf = tsaplots.plot_acf(diff1, lags=20, zero=False, ax=ax1)\nax2 = f.add_subplot(212)\nf = tsaplots.plot_pacf(diff1, lags=20, zero=False, method='ywm', ax=ax2)\nax2.set_xticks(np.arange(1, 21))\nplt.show()\n\n\n\n\n\n\nFit the model\nModel and fit the time series.\n\narima = tsa.ARIMA(sadjusted, order=(1, 1, 1), trend='t')\nfitted = arima.fit()\n\nConstruct a DataFrame holding both the seasonally adjusted and fitted time series.\nWe perform a left join3, given fitted is missing the initial observation.\n\nall_ts_logdemand = pd.merge(\n    left=sadjusted.rename('sadjusted'),\n    right=fitted.fittedvalues[1:].rename('fit'),\n    left_index=True,\n    right_index=True,\n    how='left'\n)\nall_ts_logdemand.info()\n\n<class 'pandas.core.frame.DataFrame'>\nDatetimeIndex: 300 entries, 1965-01-31 to 1989-12-31\nFreq: M\nData columns (total 2 columns):\n #   Column     Non-Null Count  Dtype  \n---  ------     --------------  -----  \n 0   sadjusted  300 non-null    float64\n 1   fit        299 non-null    float64\ndtypes: float64(2)\nmemory usage: 7.0 KB\n\n\nPlot the fitted time series.\n\n_gsource = all_ts_logdemand.melt(\n    var_name='log demand',\n    ignore_index=False\n).reset_index(\n)\n\n_g = sns.relplot(\n    data=_gsource,\n    x='month',\n    y='value',\n    hue='log demand',\n    kind='line',\n    aspect=2\n)\nplt.show()\n\n\n\n\nGet the fitted model’s parameters.\n\nfitted.params\n\nx1        0.004498\nar.L1     0.363633\nma.L1    -0.861967\nsigma2    0.001883\ndtype: float64\n\n\n\n\nCheck the model\nTime series of the residuals.\n\n_g = sns.relplot(\n    x=fitted.resid.index[1:],\n    y=fitted.resid[1:],\n    kind='line',\n    aspect=2\n)\nplt.ylabel('residuals')\nplt.show()\n\n\n\n\nPlot the in-sample autocorrelations.\n\n_f, _ax = plt.subplots(figsize=(11.8, 5.5))\ntsaplots.plot_acf(fitted.resid[1:], lags=20, zero=False, ax=_ax)\nplt.xticks(np.arange(1, 21))\nplt.show()\n\n\n\n\nReturn the results of a Ljung-Box test.\n\nsm.stats.acorr_ljungbox(fitted.resid[1:], lags=[20])\n\n\n\n\n\n  \n    \n      \n      lb_stat\n      lb_pvalue\n    \n  \n  \n    \n      20\n      26.009743\n      0.16549\n    \n  \n\n\n\n\nPlot a histogram of the forecasting errors.\n\n_g = sns.displot(\n    x=fitted.resid[1:],\n    kind='hist',\n    kde=True,\n    aspect=2\n)\nplt.show()"
-  },
-  {
-    "objectID": "posts/2022-06-27-arima1_time_series.html#forecasting",
-    "href": "posts/2022-06-27-arima1_time_series.html#forecasting",
-    "title": "Arima Modelling I",
-    "section": "Forecasting",
-    "text": "Forecasting\nPlot forecasts for the next 12 months.\nThe merge is a full outer join4, given the indices of all_ts_logdemand and *_fcast* do not overlap.\nWe initialise a variable to hold reference to the forecasted values, which we use later on to plot the vertial line separating the observed, fitted lines from the forecast line.\nIf you think the separator is unnecessary, then _fcast is not needed and the forecast could be moved directly into the merge function.\n\n_fcast = fitted.forecast(12)\n_gsource = pd.merge(\n    left=all_ts_logdemand,\n    right=_fcast.rename('fcast'),\n    left_index=True,\n    right_index=True,\n    how='outer'\n).rename_axis(\n    'month',\n    axis=0\n).melt(\n    var_name='log demand',\n    ignore_index=False\n).reset_index(\n)\n\n_g = sns.relplot(\n    data=_gsource,\n    x='month',\n    y='value',\n    hue='log demand',\n    kind='line',\n    aspect=2\n)\nplt.axvline(_fcast.index[0], alpha=0.7, ls='--', color='black')\nplt.show()\n\n\n\n\nQuantify a forecast.\n\n_fcast = fitted.forecast(1)[0]\n_std_err = np.sqrt(\n    st.norm().ppf(0.975) * (fitted.sse / fitted.fittedvalues.size)\n)\npd.Series(\n    data=[_fcast, _fcast - _std_err, _fcast + _std_err],\n    index=['pred', 'lpb', 'upb']\n)\n\npred    11.525067\nlpb     10.699765\nupb     12.350370\ndtype: float64"
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_means.html",
-    "href": "posts/2022-07-25-ztest_pop_means.html",
-    "title": "Testing Hypotheses: Z-Tests And Population Means",
-    "section": "",
-    "text": "Perform a one-sample \\(z\\)-test of a population mean and a two-sample \\(z\\)-test of the difference between two population means.\nData on the mean pass rate across all UK test centres during the period from April 2014 to March 2015 was obtained and analysed using an approximate normal model. (Data were taken from the Open University, who did not provide the primary source.)\nTwo two-sided \\(z\\)-tests were performed:\n\nA one-sample \\(z\\)-test of the null hypothesis that the mean total pass rate for the UK practical driving test in 2014/15 was equal to the 2013/2014 mean total pass rate (which was given as 47.1%).1\nA two-sample \\(z\\)-test of the null hypothesis that the mean total pass rate of females for the UK practical driving test in 2014/15 was equal to that of males.2\n\nNormality of the three data were checked using normal probability plots.3\nGeneral workflow:\n\nLoad the data\nDescribe the data\nPlot the data\nGet an interval estimate\nCheck the normality of the data\nPerform the hypothesis test\n\nThese topics were covered in M248, Units 8 and 9."
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_means.html#dependencies",
-    "href": "posts/2022-07-25-ztest_pop_means.html#dependencies",
-    "title": "Testing Hypotheses: Z-Tests And Population Means",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nfrom scipy import stats as st\nfrom statsmodels.stats import weightstats as ws\nfrom matplotlib import pyplot as plt\nimport seaborn as sns\n\n\nsns.set_theme()"
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_means.html#constants",
-    "href": "posts/2022-07-25-ztest_pop_means.html#constants",
-    "title": "Testing Hypotheses: Z-Tests And Population Means",
-    "section": "Constants",
-    "text": "Constants\n\nURL = ('https://raw.githubusercontent.com/ljk233/laughingrook-datasets'\n       + '/main/uk_prac_driving_tests/pass_rates.csv')"
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_means.html#main",
-    "href": "posts/2022-07-25-ztest_pop_means.html#main",
-    "title": "Testing Hypotheses: Z-Tests And Population Means",
-    "section": "Main",
-    "text": "Main\n\nLoad data\n\npass_rates = pd.read_csv(URL)\npass_rates.info()\n\n<class 'pandas.core.frame.DataFrame'>\nRangeIndex: 316 entries, 0 to 315\nData columns (total 4 columns):\n #   Column  Non-Null Count  Dtype  \n---  ------  --------------  -----  \n 0   centre  316 non-null    object \n 1   female  316 non-null    float64\n 2   male    316 non-null    float64\n 3   total   316 non-null    float64\ndtypes: float64(3), object(1)\nmemory usage: 10.0+ KB\n\n\n\n\nTest 1: Was the mean total pass rate in 2014/15 equal to that in 2013/14?\nThis is a test of the hypotheses,\n\\[\nH_{0}: \\mu_{2014} = \\mu_{2013};\n\\hspace{3mm} H_{1}: \\mu_{2014} \\ne \\mu_{2013},\n\\]\nwhere \\(\\mu_{2013}=\\) 47.1%.\nDescribe the total pass rate.\n\npass_rates['total'].describe()\n\ncount    316.000000\nmean      49.630380\nstd        7.165444\nmin       30.300000\n25%       44.975000\n50%       49.650000\n75%       54.500000\nmax       71.300000\nName: total, dtype: float64\n\n\nInititialise an instance of DescrStatsW.\n\nd = ws.DescrStatsW(pass_rates['total'])\n\nPlot the distribution of total pass rates in 2014/15.\n\n_g = sns.displot(\n            x=d.data,\n            kind='hist',\n            kde=True,\n            stat='density',\n            aspect=2\n)\n\n\n\n\nReturn an interval estimate of the mean total pass rate.\n\npd.Series(data=d.zconfint_mean(), index=['lcb', 'ucb']).round(6)\n\nlcb    48.840342\nucb    50.420417\ndtype: float64\n\n\nCheck the normality of the data.\n\n_f, _ax = plt.subplots(figsize=(11.8, 6))\n_res = st.probplot(x=d.data, plot=_ax)\n\n\n\n\nPerform a one-sample \\(z\\)-test.\n\npd.Series(data=d.ztest_mean(value=47.1), index=['zstat', 'pvalue']).round(6)\n\nzstat     6.277492\npvalue    0.000000\ndtype: float64\n\n\n\n\nTest 2: Was the mean pass rate of females equal to that of males?\nThis is a test of the hypotheses,\n\\[\nH_{0}: \\mu_{f} = \\mu_{m};\n\\hspace{3mm} H_{1}: \\mu_{f} \\ne \\mu_{m}.\n\\]\nDescribe the data.\n\npass_rates[['female', 'male']].describe().T\n\n\n\n\n\n  \n    \n      \n      count\n      mean\n      std\n      min\n      25%\n      50%\n      75%\n      max\n    \n  \n  \n    \n      female\n      316.0\n      46.325633\n      7.362729\n      26.2\n      41.500\n      46.20\n      51.025\n      69.6\n    \n    \n      male\n      316.0\n      53.415506\n      7.521000\n      33.3\n      48.175\n      53.05\n      58.125\n      78.3\n    \n  \n\n\n\n\nInitialise instance of CompareMeans.\n\ncm = ws.CompareMeans(\n            d1=ws.DescrStatsW(pass_rates['female']),\n            d2=ws.DescrStatsW(pass_rates['male'])\n)\n\nReturn interval estimates of the mean female and male pass rates.\n\npd.DataFrame(\n    data=[cm.d1.zconfint_mean(), cm.d2.zconfint_mean()],\n    columns=['lcb', 'ucb'],\n    index=['female', 'male']\n)\n\n\n\n\n\n  \n    \n      \n      lcb\n      ucb\n    \n  \n  \n    \n      female\n      45.513843\n      47.137422\n    \n    \n      male\n      52.586267\n      54.244746\n    \n  \n\n\n\n\nPlot the distributions of the pass rates.\n\n_g = sns.displot(\n            data=pass_rates[['female', 'male']].melt(),\n            x='value',\n            kind='hist',\n            #col='variable',\n            hue='variable',\n            alpha=0.4,\n            legend=False,\n            kde=True,\n            stat='density',\n            aspect=2\n)\n\n\n\n\nCheck the normality of both data.\n\n_f, _axs = plt.subplots(1, 2, figsize=(11.8, 6), sharey=True)\nst.probplot(x=cm.d1.data, plot=_axs[0])\nst.probplot(x=cm.d2.data, plot=_axs[1])\n_f.suptitle('Probability Plots', fontsize=16)\n_axs[0].set_title('variable=female')\n_axs[1].set_title('variable=male')\nplt.show()\n\n\n\n\nPerform the two-sample \\(z\\)-test.\n\npd.Series(data=cm.ztest_ind(), index=['zstat', 'pvalue']).round(6)\n\nzstat    -11.974591\npvalue     0.000000\ndtype: float64"
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_proportion.html",
-    "href": "posts/2022-07-25-ztest_pop_proportion.html",
-    "title": "Testing Hypotheses: Z-Tests And Population Proportion",
-    "section": "",
-    "text": "Perform a one-sample, one-sided \\(z\\)-test of a population proportion.\nData on the full time results of all football games in the English premier Leage 2018/19 season were obtained from www.football-data.co.uk.\nWe used a one-sample z-test to test the null hypothesis that there is no home advantage. If there was no home advantage, then we would expect that approximately a third of the games would be won by the home team. (This was the null hypothesis.) Otherwise, if there is a home advantage, then we would expect that the proportion of games won by the ome team would be greater than a third. (This was the alternative hypothesis.)\nMore formally, we tested the hypotheses:\n\\[\nH_{0}: p = \\frac{1}{3};\n\\hspace{3mm} H_{1}: p > \\frac{1}{3},\n\\]\nwhere \\(p\\) is the proportion of games won by the home team.\nGeneral workflow:\n\nLoad the data\nDescribe the data\n\nGiven the data were nominal, we used a frequency table to describe them\n\nPlot the data\nGet an interval estimate1\nPerform the hypothesis test2\n\nThis topic was covered in M248, Units 8 and 9."
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_proportion.html#dependencies",
-    "href": "posts/2022-07-25-ztest_pop_proportion.html#dependencies",
-    "title": "Testing Hypotheses: Z-Tests And Population Proportion",
-    "section": "Dependencies",
-    "text": "Dependencies\n\nimport pandas as pd\nfrom statsmodels.stats import proportion as pr"
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_proportion.html#constants",
-    "href": "posts/2022-07-25-ztest_pop_proportion.html#constants",
-    "title": "Testing Hypotheses: Z-Tests And Population Proportion",
-    "section": "Constants",
-    "text": "Constants\n\nURL = ('https://raw.githubusercontent.com/ljk233/laughingrook-datasets'\n       + '/main/epl_results/season-1819.csv')"
-  },
-  {
-    "objectID": "posts/2022-07-25-ztest_pop_proportion.html#main",
-    "href": "posts/2022-07-25-ztest_pop_proportion.html#main",
-    "title": "Testing Hypotheses: Z-Tests And Population Proportion",
-    "section": "Main",
-    "text": "Main\n\nLoad data\n\nresults = pd.read_csv(URL)\n\n\n\nGet data of interest\n\nftr = results.get(\n    'FTR'\n).rename(\n    'result'\n).replace(\n    {'H': 'home_win', 'A': 'away_win', 'D': 'draw'}\n)\nftr.info()\n\n<class 'pandas.core.series.Series'>\nRangeIndex: 380 entries, 0 to 379\nSeries name: result\nNon-Null Count  Dtype \n--------------  ----- \n380 non-null    object\ndtypes: object(1)\nmemory usage: 3.1+ KB\n\n\n\n\nDescribe the data\n\n_g = ftr.groupby(ftr).size().rename('frequency').to_frame()\n_g['proportion'] = _g['frequency'].transform(lambda x: x / _g.sum())\n_g\n\n\n\n\n\n  \n    \n      \n      frequency\n      proportion\n    \n    \n      result\n      \n      \n    \n  \n  \n    \n      away_win\n      128\n      0.336842\n    \n    \n      draw\n      71\n      0.186842\n    \n    \n      home_win\n      181\n      0.476316\n    \n  \n\n\n\n\n\n\nGet the results\nVariable x is the number of games won by the home team; and variable n is the total number of games in the season.\n\nx = len([r for r in ftr if r == 'home_win'])\nn = ftr.size\n\n181\n\n\n\n\nInterval estimate of the proportion\n\npd.Series(data=pr.proportion_confint(x, n), index=['lcb', 'ucb'])\n\nlcb    0.426100\nucb    0.526531\ndtype: float64\n\n\n\n\nPerform the z-test\n\npd.Series(\n    data=pr.proportions_ztest(x, n, value=1/3, alternative='larger'),\n    index=['zstat', 'pvalue']\n).round(6)\n\nzstat     5.580747\npvalue    0.000000\ndtype: float64"
+    "text": "Functions\n\ndef edge_to_tuple(edge: dict, er: PandasERoad) -> tuple:\n    return (\n        edge[er.u],\n        edge[er.v],\n        {'weight': edge[er.w], er.rn: edge[er.rn], er.wc: edge[er.wc]}\n    )"
   }
 ]

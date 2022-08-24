@@ -1,9 +1,9 @@
 /.drafts/
 /.quarto/
-/_site/*
+/_site/
 /.scipts/
+/.trash/
 /.virtual_documents/
 posts/__cache/
 posts/.ipynb_checkpoints/
 posts/__temp/
-

@@ -2,30 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2022-07-25-ztest_pop_means.html",
-      "/posts/2022-07-25-ztest_pop_proportion.html",
-      "/posts/2022-06-27-arima1_time_series.html",
-      "/posts/2022-06-25-advent_of_code_2015_day7.html",
-      "/posts/2022-06-20-stationary_time_series_differencing.html",
-      "/posts/2022-06-18-advent_of_code_2015_day6.html",
-      "/posts/2022-06-13-holt_winters_exponential_smoothing.html",
-      "/posts/2022-06-11-advent_of_code_2015_day5.html",
-      "/posts/2022-06-09-dijkstra_shortest_path.html",
-      "/posts/2022-06-07-tt_us_avg_tuition.html",
-      "/posts/2022-06-06-holts_exponential_smoothing.html",
-      "/posts/2022-06-04-advent_of_code_2015_day4.html",
-      "/posts/2022-06-02-tsp_backtracking.html",
-      "/posts/2022-05-30-simple_exponential_smoothing.html",
-      "/posts/2022-05-28-advent_of_code_2015_day3.html",
-      "/posts/2022-05-23-decomposing_seasonal.html",
-      "/posts/2022-05-19-advent_of_code_2015_day2.html",
-      "/posts/2022-05-16-decomposing_non_seasonal.html",
-      "/posts/2022-05-12-tsp_bruteforce.html",
-      "/posts/2022-05-09-time_series_pandas.html",
-      "/posts/2022-05-05-advent_of_code_2015_day1.html",
-      "/posts/2022-05-02-stratified_analyses.html",
-      "/posts/2022-04-28-initialise_undirected_graph_networkx.html",
-      "/posts/2022-04-25-cohort_case_control_studies.html"
+      "/posts/2022-08-22-stratified_analyses.html",
+      "/posts/2022-08-20-advent_of_code_2015_day1.html",
+      "/posts/2022-08-18-initialise_undirected_graph_networkx.html",
+      "/posts/2022-08-15-cohort_case_control_studies.html"
     ]
   }
 ]
