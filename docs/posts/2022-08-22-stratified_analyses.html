@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="LaughingRook">
+<meta name="author" content="Liam Kelly">
 <meta name="dcterms.date" content="2022-08-22">
 
 <title>LaughingRook - Stratified Analyses</title>
@@ -198,7 +198,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>LaughingRook </p>
+             <p>Liam Kelly </p>
           </div>
   </div>
     
@@ -269,18 +269,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="constants" class="level2">
 <h2 class="anchored" data-anchor-id="constants">Constants</h2>
 <p>These are the results from the study.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MARRIED <span class="op">=</span> np.array([[<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">5</span>, <span class="dv">103</span>]])</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>NOT_MARRIED <span class="op">=</span> np.array([[<span class="dv">10</span>, <span class="dv">3</span>], [<span class="dv">5</span>, <span class="dv">43</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>MARRIED <span class="op">=</span> np.array([[<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">5</span>, <span class="dv">103</span>]])</span>
+<span id="cb2-2"><a href="#cb2-2"></a>NOT_MARRIED <span class="op">=</span> np.array([[<span class="dv">10</span>, <span class="dv">3</span>], [<span class="dv">5</span>, <span class="dv">43</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="main" class="level2">
@@ -288,8 +288,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="initialise-the-contingency-tables" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-the-contingency-tables">Initialise the contingency tables</h3>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ctables <span class="op">=</span> sm.stats.StratifiedTable([MARRIED, NOT_MARRIED])</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ctables.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>ctables <span class="op">=</span> sm.stats.StratifiedTable([MARRIED, NOT_MARRIED])</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(ctables.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[[  4.  10.]
   [  5.   3.]]
@@ -303,13 +303,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="odds-ratios">Odds ratios</h3>
 <p>Return point and interval estimates of the stratum-specific odds ratios.</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> level, arr <span class="kw">in</span> <span class="bu">zip</span>([<span class="st">'married'</span>, <span class="st">'not married'</span>], [MARRIED, NOT_MARRIED]):</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    ctable <span class="op">=</span> sm.stats.Table2x2(arr)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    res[level] <span class="op">=</span> [ctable.oddsratio,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                  ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                  ctable.oddsratio_confint()[<span class="dv">1</span>]]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>res.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>res <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>])</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="cf">for</span> level, arr <span class="kw">in</span> <span class="bu">zip</span>([<span class="st">'married'</span>, <span class="st">'not married'</span>], [MARRIED, NOT_MARRIED]):</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    ctable <span class="op">=</span> sm.stats.Table2x2(arr)</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    res[level] <span class="op">=</span> [ctable.oddsratio,</span>
+<span id="cb5-5"><a href="#cb5-5"></a>                  ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
+<span id="cb5-6"><a href="#cb5-6"></a>                  ctable.oddsratio_confint()[<span class="dv">1</span>]]</span>
+<span id="cb5-7"><a href="#cb5-7"></a>res.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
@@ -343,14 +343,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Return point and interval estimates of the crude odds ratio.</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ctable <span class="op">=</span> sm.stats.Table2x2(MARRIED <span class="op">+</span> NOT_MARRIED)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[ctable.oddsratio,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>          ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>          ctable.oddsratio_confint()[<span class="dv">1</span>]],</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'odds ratio'</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>ctable <span class="op">=</span> sm.stats.Table2x2(MARRIED <span class="op">+</span> NOT_MARRIED)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>pd.Series(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    data<span class="op">=</span>[ctable.oddsratio,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>          ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
+<span id="cb6-5"><a href="#cb6-5"></a>          ctable.oddsratio_confint()[<span class="dv">1</span>]],</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    name<span class="op">=</span><span class="st">'odds ratio'</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>point    25.550000
 lcb       8.682174
@@ -360,13 +360,13 @@ Name: odds ratio, dtype: float64</code></pre>
 </div>
 <p>Return point and interval estimates of the adjusted (Mantel–Haenszel) odds ratio.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[ctables.oddsratio_pooled,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">0</span>],</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">1</span>]],</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'Mantel-Haeszel odds ratio'</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>pd.Series(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    data<span class="op">=</span>[ctables.oddsratio_pooled,</span>
+<span id="cb8-3"><a href="#cb8-3"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">0</span>],</span>
+<span id="cb8-4"><a href="#cb8-4"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">1</span>]],</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    name<span class="op">=</span><span class="st">'Mantel-Haeszel odds ratio'</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>point    23.000610
 lcb       7.465154
@@ -379,12 +379,12 @@ Name: Mantel-Haeszel odds ratio, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="test-for-no-association">Test for no association</h3>
 <p>This is the Mantel–Haenszel test.</p>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> ctables.test_null_odds(correction<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[res.statistic.<span class="bu">round</span>(<span class="dv">5</span>), res.pvalue.<span class="bu">round</span>(<span class="dv">5</span>)],</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'test for no association'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>res <span class="op">=</span> ctables.test_null_odds(correction<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>pd.Series(</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    data<span class="op">=</span>[res.statistic.<span class="bu">round</span>(<span class="dv">5</span>), res.pvalue.<span class="bu">round</span>(<span class="dv">5</span>)],</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    name<span class="op">=</span><span class="st">'test for no association'</span>,</span>
+<span id="cb10-6"><a href="#cb10-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>statistc    36.604306
 pvalue       0.000000
@@ -396,12 +396,12 @@ Name: test for no association, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="test-for-homogeneity">Test for homogeneity</h3>
 <p>This is Tarone’s test.</p>
 <div class="cell" data-execution_count="25">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> ctables.test_equal_odds(adjust<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[res.statistic.<span class="bu">round</span>(<span class="dv">5</span>), res.pvalue.<span class="bu">round</span>(<span class="dv">5</span>)],</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'test for homogeneity'</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>res <span class="op">=</span> ctables.test_equal_odds(adjust<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>pd.Series(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    data<span class="op">=</span>[res.statistic.<span class="bu">round</span>(<span class="dv">5</span>), res.pvalue.<span class="bu">round</span>(<span class="dv">5</span>)],</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    name<span class="op">=</span><span class="st">'test for homogeneity'</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="25">
 <pre><code>statistc    0.23557
 pvalue      0.62742
@@ -414,7 +414,7 @@ Name: test for homogeneity, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p>McCarroll, J.R. and Haddon Jr, W., 1962. A controlled study of fatal automobile accidents in New York City. Journal of chronic diseases, 15(8), pp.811-826.</p>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>statsmodels: 0.13.2
 numpy      : 1.23.2

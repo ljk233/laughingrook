@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="LaughingRook">
+<meta name="author" content="Liam Kelly">
 <meta name="dcterms.date" content="2022-08-20">
 
 <title>LaughingRook - Advent of Code 2015, Day 1</title>
@@ -194,7 +194,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>LaughingRook </p>
+             <p>Liam Kelly </p>
           </div>
   </div>
     
@@ -217,22 +217,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> accumulate</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laughingrook <span class="im">as</span> lr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> itertools <span class="im">import</span> accumulate</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> laughingrook <span class="im">as</span> lr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> find_first(x, A) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Find the first index i where A[i] = x.</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    Precondtions:</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    - x in A</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    - A is 1-dimensional</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    - A support iteration</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">next</span>(i <span class="cf">for</span> i, a <span class="kw">in</span> <span class="bu">enumerate</span>(A) <span class="cf">if</span> a <span class="op">==</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> find_first(x, A) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"""Find the first index i where A[i] = x.</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">    Precondtions:</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">    - x in A</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">    - A is 1-dimensional</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">    - A support iteration</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">    """</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="cf">return</span> <span class="bu">next</span>(i <span class="cf">for</span> i, a <span class="kw">in</span> <span class="bu">enumerate</span>(A) <span class="cf">if</span> a <span class="op">==</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="main" class="level2">
@@ -240,8 +240,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="load-the-input" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-input">Load the input</h3>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>line <span class="op">=</span> lr.datasets.get_advent_input(<span class="dv">2015</span>, <span class="dv">1</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"line = '</span><span class="sc">{</span>line[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>line <span class="op">=</span> lr.datasets.get_advent_input(<span class="dv">2015</span>, <span class="dv">1</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(<span class="ss">f"line = '</span><span class="sc">{</span>line[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>line = '()((('</code></pre>
 </div>
@@ -250,9 +250,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="transform-the-input" class="level3">
 <h3 class="anchored" data-anchor-id="transform-the-input">Transform the input</h3>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> {<span class="st">'('</span>: <span class="dv">1</span>, <span class="st">')'</span>: <span class="op">-</span><span class="dv">1</span>}</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>directions <span class="op">=</span> [m[bracket] <span class="cf">for</span> bracket <span class="kw">in</span> line]</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"directions = </span><span class="sc">{</span>directions[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>m <span class="op">=</span> {<span class="st">'('</span>: <span class="dv">1</span>, <span class="st">')'</span>: <span class="op">-</span><span class="dv">1</span>}</span>
+<span id="cb5-2"><a href="#cb5-2"></a>directions <span class="op">=</span> [m[bracket] <span class="cf">for</span> bracket <span class="kw">in</span> line]</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="bu">print</span>(<span class="ss">f"directions = </span><span class="sc">{</span>directions[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>directions = [1, -1, 1, 1, 1]</code></pre>
 </div>
@@ -261,7 +261,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="part-1" class="level3">
 <h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span><span class="bu">sum</span>(directions)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span><span class="bu">sum</span>(directions)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Solution = 138</code></pre>
 </div>
@@ -270,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="part-2" class="level3">
 <h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span>find_first(<span class="op">-</span><span class="dv">1</span>, accumulate(directions)) <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span>find_first(<span class="op">-</span><span class="dv">1</span>, accumulate(directions)) <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Solution = 1771</code></pre>
 </div>
@@ -279,10 +279,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="performance" class="level3">
 <h3 class="anchored" data-anchor-id="performance">Performance</h3>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Part 1 ='</span>)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(directions)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Part 2 ='</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit find_first(<span class="op">-</span><span class="dv">1</span>, accumulate(directions)) <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="bu">print</span>(<span class="st">'Part 1 ='</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="op">%</span>timeit <span class="bu">sum</span>(directions)</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="bu">print</span>(<span class="st">'Part 2 ='</span>)</span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="op">%</span>timeit find_first(<span class="op">-</span><span class="dv">1</span>, accumulate(directions)) <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Part 1 =
 62.5 µs ± 1.03 µs per loop (mean ± std. dev. of 7 runs, 10,000 loops each)

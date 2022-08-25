@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="LaughingRook">
+<meta name="author" content="Liam Kelly">
 <meta name="dcterms.date" content="2022-08-18">
 
 <title>LaughingRook - Initialising an Undirected Graph in NetworkX</title>
@@ -196,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>LaughingRook </p>
+             <p>Liam Kelly </p>
           </div>
   </div>
     
@@ -223,56 +223,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="classes" class="level3">
 <h3 class="anchored" data-anchor-id="classes">Classes</h3>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> PandasERoad:</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""A dataclass to help the conversion of the raod network data as a</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">    graph.</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    Stores the remote url and maps the column titles to common graph</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    terminology</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    url: <span class="bu">str</span> <span class="op">=</span> (<span class="st">'https://raw.githubusercontent.com/ljk233'</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>                <span class="op">+</span> <span class="st">'/laughingrook-datasets/main/graphs/eroads_edge_list.csv'</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    u: <span class="bu">str</span> <span class="op">=</span> <span class="st">'origin_reference_place'</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    v: <span class="bu">str</span> <span class="op">=</span> <span class="st">'destination_reference_place'</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    uco: <span class="bu">str</span> <span class="op">=</span> <span class="st">'origin_country_code'</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    vco: <span class="bu">str</span> <span class="op">=</span> <span class="st">'destination_country_code'</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    w: <span class="bu">str</span> <span class="op">=</span> <span class="st">'distance'</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    rn: <span class="bu">str</span> <span class="op">=</span> <span class="st">'road_number'</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    wc: <span class="bu">str</span> <span class="op">=</span> <span class="st">'watercrossing'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="at">@dataclass</span>(frozen<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">class</span> PandasERoad:</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    <span class="co">"""A dataclass to help the conversion of the raod network data as a</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co">    graph.</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">    Stores the remote url and maps the column titles to common graph</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">    terminology</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">    """</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    url: <span class="bu">str</span> <span class="op">=</span> (<span class="st">'https://raw.githubusercontent.com/ljk233'</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>                <span class="op">+</span> <span class="st">'/laughingrook-datasets/main/graphs/eroads_edge_list.csv'</span>)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    u: <span class="bu">str</span> <span class="op">=</span> <span class="st">'origin_reference_place'</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>    v: <span class="bu">str</span> <span class="op">=</span> <span class="st">'destination_reference_place'</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>    uco: <span class="bu">str</span> <span class="op">=</span> <span class="st">'origin_country_code'</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    vco: <span class="bu">str</span> <span class="op">=</span> <span class="st">'destination_country_code'</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    w: <span class="bu">str</span> <span class="op">=</span> <span class="st">'distance'</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>    rn: <span class="bu">str</span> <span class="op">=</span> <span class="st">'road_number'</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>    wc: <span class="bu">str</span> <span class="op">=</span> <span class="st">'watercrossing'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> edge_to_tuple(edge: <span class="bu">dict</span>, er: PandasERoad) <span class="op">-&gt;</span> <span class="bu">tuple</span>:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        edge[er.u],</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>        edge[er.v],</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'weight'</span>: edge[er.w], er.rn: edge[er.rn], er.wc: edge[er.wc]}</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> edge_to_tuple(edge: <span class="bu">dict</span>, er: PandasERoad) <span class="op">-&gt;</span> <span class="bu">tuple</span>:</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="cf">return</span> (</span>
+<span id="cb3-3"><a href="#cb3-3"></a>        edge[er.u],</span>
+<span id="cb3-4"><a href="#cb3-4"></a>        edge[er.v],</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        {<span class="st">'weight'</span>: edge[er.w], er.rn: edge[er.rn], er.wc: edge[er.wc]}</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="main" class="level2">
 <h2 class="anchored" data-anchor-id="main">Main</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>er <span class="op">=</span> PandasERoad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>er <span class="op">=</span> PandasERoad()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="import-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="import-the-data">Import the data</h3>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eroads <span class="op">=</span> pd.read_csv(er.url)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>eroads.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>eroads <span class="op">=</span> pd.read_csv(er.url)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>eroads.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 1250 entries, 0 to 1249
@@ -295,8 +295,8 @@ memory usage: 59.9+ KB</code></pre>
 <h3 class="anchored" data-anchor-id="export-data-to-a-dictionary">Export data to a dictionary</h3>
 <p>Each entry in the list is a dictionary representing a single row, where the keys are the column titles.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>edges <span class="op">=</span> eroads.to_dict(orient<span class="op">=</span><span class="st">'records'</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>edges[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>edges <span class="op">=</span> eroads.to_dict(orient<span class="op">=</span><span class="st">'records'</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>edges[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>{'road_number': 'E01',
  'origin_country_code': 'GB',
@@ -311,17 +311,17 @@ memory usage: 59.9+ KB</code></pre>
 <section id="initalise-and-populate-the-graph" class="level3">
 <h3 class="anchored" data-anchor-id="initalise-and-populate-the-graph">Initalise and populate the graph</h3>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> nx.Graph()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>g <span class="op">=</span> nx.Graph()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Adds the nodes. We perform it on both the source and destination nodes in the <em>edge list</em> to ensure we populate all the cities, given there’s a chance that a city does not appear as a source city in the data.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>g.add_nodes_from((e[er.u], {<span class="st">'country'</span>: e[er.uco]}) <span class="cf">for</span> e <span class="kw">in</span> edges)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>g.add_nodes_from((e[er.v], {<span class="st">'country'</span>: e[er.vco]}) <span class="cf">for</span> e <span class="kw">in</span> edges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>g.add_nodes_from((e[er.u], {<span class="st">'country'</span>: e[er.uco]}) <span class="cf">for</span> e <span class="kw">in</span> edges)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>g.add_nodes_from((e[er.v], {<span class="st">'country'</span>: e[er.vco]}) <span class="cf">for</span> e <span class="kw">in</span> edges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Add the edges. Given this is an undirected graph, there is no need to add the reverse edges <em>V</em> → <em>U</em>.</p>
 <p>Example of output from <code>edge_to_tuple</code></p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>edge_to_tuple(edges[<span class="dv">0</span>], er)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>edge_to_tuple(edges[<span class="dv">0</span>], er)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>('Larne',
  'Belfast',
@@ -330,28 +330,28 @@ memory usage: 59.9+ KB</code></pre>
 </div>
 <p>Populate the edges.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>g.add_edges_from(edge_to_tuple(edge, er) <span class="cf">for</span> edge <span class="kw">in</span> edges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>g.add_edges_from(edge_to_tuple(edge, er) <span class="cf">for</span> edge <span class="kw">in</span> edges)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="inspect-the-graph" class="level3">
 <h3 class="anchored" data-anchor-id="inspect-the-graph">Inspect the graph</h3>
 <p>Get a description of the graph.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="bu">print</span>(g)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Graph with 894 nodes and 1198 edges</code></pre>
 </div>
 </div>
 <p>Get a selection of the nodes.</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>[n <span class="cf">for</span> n <span class="kw">in</span> g][:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>[n <span class="cf">for</span> n <span class="kw">in</span> g][:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>['Larne', 'Belfast', 'Dublin', 'Wexford', 'Rosslare']</code></pre>
 </div>
 </div>
 <p>Output a more descriptive list of nodes by calling the <code>nodes()</code> method.</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>[n <span class="cf">for</span> n <span class="kw">in</span> g.nodes(data<span class="op">=</span><span class="va">True</span>)][:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>[n <span class="cf">for</span> n <span class="kw">in</span> g.nodes(data<span class="op">=</span><span class="va">True</span>)][:<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>[('Larne', {'country': 'GB'}),
  ('Belfast', {'country': 'GB'}),
@@ -362,21 +362,21 @@ memory usage: 59.9+ KB</code></pre>
 </div>
 <p>View the neighbours of the Roma node.</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>[neighbor <span class="cf">for</span> neighbor <span class="kw">in</span> g[<span class="st">'Roma'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>[neighbor <span class="cf">for</span> neighbor <span class="kw">in</span> g[<span class="st">'Roma'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>['Arezzo', 'Grosseto', 'Pescara', 'San Cesareo']</code></pre>
 </div>
 </div>
 <p>We can get a more descriptive output of a node’s neighbours by not using list comprehension.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>g[<span class="st">'Roma'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>g[<span class="st">'Roma'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>AtlasView({'Arezzo': {'weight': 219, 'road_number': 'E35', 'watercrossing': False}, 'Grosseto': {'weight': 182, 'road_number': 'E80', 'watercrossing': False}, 'Pescara': {'weight': 209, 'road_number': 'E80', 'watercrossing': False}, 'San Cesareo': {'weight': 36, 'road_number': 'E821', 'watercrossing': False}})</code></pre>
 </div>
 </div>
 <p>Finally, we can simply output the edges of the Roma node.</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>[e <span class="cf">for</span> e <span class="kw">in</span> g.edges(<span class="st">'Roma'</span>, data<span class="op">=</span><span class="va">True</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>[e <span class="cf">for</span> e <span class="kw">in</span> g.edges(<span class="st">'Roma'</span>, data<span class="op">=</span><span class="va">True</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>[('Roma',
   'Arezzo',
@@ -393,7 +393,7 @@ memory usage: 59.9+ KB</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>pandas  : 1.4.3
 sys     : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]

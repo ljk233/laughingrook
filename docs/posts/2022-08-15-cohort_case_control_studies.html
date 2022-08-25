@@ -6,7 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="LaughingRook">
+<meta name="author" content="Liam Kelly">
 <meta name="dcterms.date" content="2022-08-15">
 
 <title>LaughingRook - Cohort and Case-Control Studies</title>
@@ -195,7 +195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>LaughingRook </p>
+             <p>Liam Kelly </p>
           </div>
   </div>
     
@@ -243,11 +243,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> st</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> st</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The watermark extension is already loaded. To reload it, use:
   %reload_ext watermark</code></pre>
@@ -258,7 +258,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 class="anchored" data-anchor-id="constants">Constants</h2>
 <p>These are the results from the study.</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>OBS <span class="op">=</span> np.array([[<span class="dv">14</span>, <span class="dv">1931</span>], [<span class="dv">4</span>, <span class="dv">1763</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>OBS <span class="op">=</span> np.array([[<span class="dv">14</span>, <span class="dv">1931</span>], [<span class="dv">4</span>, <span class="dv">1763</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="main" class="level2">
@@ -266,8 +266,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="initialise-the-contingency-table" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-the-contingency-table">Initialise the contingency table</h3>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ctable <span class="op">=</span> sm.stats.Table2x2(OBS)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ctable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>ctable <span class="op">=</span> sm.stats.Table2x2(OBS)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(ctable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A 2x2 contingency table with counts:
 [[  14. 1931.]
@@ -279,13 +279,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="measures-of-association">Measures of association</h3>
 <p>Return point and interval estimates of the odds ratio.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[ctable.oddsratio,</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>          ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>          ctable.oddsratio_confint()[<span class="dv">1</span>]],</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'odds ratio'</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>pd.Series(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    data<span class="op">=</span>[ctable.oddsratio,</span>
+<span id="cb6-3"><a href="#cb6-3"></a>          ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
+<span id="cb6-4"><a href="#cb6-4"></a>          ctable.oddsratio_confint()[<span class="dv">1</span>]],</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    name<span class="op">=</span><span class="st">'odds ratio'</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>point    3.195495
 lcb      1.049877
@@ -295,13 +295,13 @@ Name: odds ratio, dtype: float64</code></pre>
 </div>
 <p>Return point and interval estimates for the relative risk.</p>
 <div class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[ctable.riskratio,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>          ctable.riskratio_confint()[<span class="dv">0</span>],</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>          ctable.riskratio_confint()[<span class="dv">1</span>]],</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'relative risk'</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>pd.Series(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    data<span class="op">=</span>[ctable.riskratio,</span>
+<span id="cb8-3"><a href="#cb8-3"></a>          ctable.riskratio_confint()[<span class="dv">0</span>],</span>
+<span id="cb8-4"><a href="#cb8-4"></a>          ctable.riskratio_confint()[<span class="dv">1</span>]],</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    name<span class="op">=</span><span class="st">'relative risk'</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>point    3.179692
 lcb      1.048602
@@ -314,7 +314,7 @@ Name: relative risk, dtype: float64</code></pre>
 <h3 class="anchored" data-anchor-id="chi-squared-test-for-no-association">Chi-squared test for no association</h3>
 <p>Return the expected frequencies under the null hypothesis of no association.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ctable.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>ctable.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>array([[   9.43157328, 1935.56842672],
        [   8.56842672, 1758.43157328]])</code></pre>
@@ -322,7 +322,7 @@ Name: relative risk, dtype: float64</code></pre>
 </div>
 <p>Return the differences between the observed and expected frequencies.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>OBS <span class="op">-</span> ctable.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>OBS <span class="op">-</span> ctable.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>array([[ 4.56842672, -4.56842672],
        [-4.56842672,  4.56842672]])</code></pre>
@@ -330,7 +330,7 @@ Name: relative risk, dtype: float64</code></pre>
 </div>
 <p>Return the contributions to the chi-squared test statistic.</p>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ctable.chi2_contribs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>ctable.chi2_contribs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>array([[2.21283577, 0.01078263],
        [2.43574736, 0.01186883]])</code></pre>
@@ -339,13 +339,13 @@ Name: relative risk, dtype: float64</code></pre>
 <p>Return the results of the chi-squared test.</p>
 <p>We pass the argument <code>dtype=object</code>, so the <code>Series</code> can handle both <code>float</code> and <code>int</code> data types.</p>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> ctable.test_nominal_association()</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[res.statistic, res.pvalue, <span class="bu">int</span>(res.df)],</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>, <span class="st">'df'</span>],</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'chi-squared test'</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    dtype<span class="op">=</span><span class="bu">object</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>res <span class="op">=</span> ctable.test_nominal_association()</span>
+<span id="cb16-2"><a href="#cb16-2"></a>pd.Series(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    data<span class="op">=</span>[res.statistic, res.pvalue, <span class="bu">int</span>(res.df)],</span>
+<span id="cb16-4"><a href="#cb16-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>, <span class="st">'df'</span>],</span>
+<span id="cb16-5"><a href="#cb16-5"></a>    name<span class="op">=</span><span class="st">'chi-squared test'</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    dtype<span class="op">=</span><span class="bu">object</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>statistc    4.671235
 pvalue      0.030672
@@ -357,12 +357,12 @@ Name: chi-squared test, dtype: object</code></pre>
 <section id="fishers-exact-test" class="level3">
 <h3 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s exact test</h3>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>_, pvalue <span class="op">=</span> st.fisher_exact(ctable.table)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>pd.Series(</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span>[pvalue],</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    index<span class="op">=</span>[<span class="st">'pvalue'</span>],</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'fisher''s exact'</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>_, pvalue <span class="op">=</span> st.fisher_exact(ctable.table)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>pd.Series(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    data<span class="op">=</span>[pvalue],</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    index<span class="op">=</span>[<span class="st">'pvalue'</span>],</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    name<span class="op">=</span><span class="st">'fisher''s exact'</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>pvalue    0.033877
 Name: fishers exact, dtype: float64</code></pre>
@@ -374,7 +374,7 @@ Name: fishers exact, dtype: float64</code></pre>
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p>Vera Keefe, Papaarangi Reid, Clint Ormsby, Bridget Robson, Gordon Purdie, Joanne Baxter, Ngäti Kahungunu Iwi Incorporated, Serious health events following involuntary job loss in New Zealand meat processing workers, <em>International Journal of Epidemiology</em>, Volume 31, Issue 6, December 2002, Pages 1155–1161, https://doi.org/10.1093/ije/31.6.1155</p>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>statsmodels: 0.13.2
 scipy      : 1.9.0

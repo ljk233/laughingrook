@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Liam Kelly">
+<meta name="dcterms.date" content="2022-08-30">
+
+<title>LaughingRook - College Tuition Fees in the USA</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LaughingRook</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary-notes" id="toc-summary-notes" class="nav-link active" data-scroll-target="#summary-notes">Summary notes</a>
+  <ul class="collapse">
+  <li><a href="#about" id="toc-about" class="nav-link" data-scroll-target="#about">About</a></li>
+  <li><a href="#data-schemas" id="toc-data-schemas" class="nav-link" data-scroll-target="#data-schemas">Data schemas</a></li>
+  <li><a href="#plan" id="toc-plan" class="nav-link" data-scroll-target="#plan">Plan</a></li>
+  </ul></li>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
+  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants">Constants</a></li>
+  <li><a href="#main" id="toc-main" class="nav-link" data-scroll-target="#main">Main</a>
+  <ul class="collapse">
+  <li><a href="#set-themes" id="toc-set-themes" class="nav-link" data-scroll-target="#set-themes">Set themes</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#prepare-the-data-1" id="toc-prepare-the-data-1" class="nav-link" data-scroll-target="#prepare-the-data-1">Prepare the data</a></li>
+  <li><a href="#visualise-the-data-1" id="toc-visualise-the-data-1" class="nav-link" data-scroll-target="#visualise-the-data-1">Visualise the data</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">College Tuition Fees in the USA</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">TidyTuesday</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Liam Kelly </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 30, 2022</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+</header>
+
+<section id="summary-notes" class="level2">
+<h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
+<p>Visualising the average annual cost of College tuition fees in the USA.</p>
+<section id="about" class="level3">
+<h3 class="anchored" data-anchor-id="about">About</h3>
+<blockquote class="twitter-tweet blockquote">
+<p lang="en" dir="ltr">
+Happy to announce the newest <a href="https://twitter.com/hashtag/R4DS?src=hash&amp;ref_src=twsrc%5Etfw">#R4DS</a> online learning community project! <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&amp;ref_src=twsrc%5Etfw">#TidyTuesday</a> is your weekly <a href="https://twitter.com/hashtag/tidyverse?src=hash&amp;ref_src=twsrc%5Etfw">#tidyverse</a> practice!<br><br>Each week we'll post data and a plot at <a href="https://t.co/8NaXR93uIX">https://t.co/8NaXR93uIX</a> under the datasets link.<br><br>You clean the data and tweak the plot in R!<a href="https://twitter.com/hashtag/rstats?src=hash&amp;ref_src=twsrc%5Etfw">#rstats</a> <a href="https://twitter.com/hashtag/ggplot2?src=hash&amp;ref_src=twsrc%5Etfw">#ggplot2</a> <a href="https://t.co/sDaHsB8uwL">pic.twitter.com/sDaHsB8uwL</a>
+</p>
+— Tom Mock ❤️ Quarto (<span class="citation" data-cites="thomas_mock">@thomas_mock</span>) <a href="https://twitter.com/thomas_mock/status/980921600429252608?ref_src=twsrc%5Etfw">April 2, 2018</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</section>
+<section id="data-schemas" class="level3">
+<h3 class="anchored" data-anchor-id="data-schemas">Data schemas</h3>
+<section id="us_avg_tuition" class="level4">
+<h4 class="anchored" data-anchor-id="us_avg_tuition"><code>us_avg_tuition</code></h4>
+<p>(Source: <a href="http://trends.collegeboard.org">http://trends.collegeboard.org</a>)</p>
+<table class="table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 18%">
+<col style="width: 11%">
+<col style="width: 65%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;"><code>#</code></th>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td>State</td>
+<td><code>str</code></td>
+<td>state’s full name (example <code>'Alabama'</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>2004-05</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2004-05</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td>2005-06</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2005-06</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td>2006-07</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2006-07</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td>2007-08<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></td>
+<td><code>float</code></td>
+<td>average tuition cost in 2007-08</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td>2008-09</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2008-09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td>2009-10</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2009-10</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td>2010-11</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2010-11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">8</td>
+<td>2011-12</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2011-12</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">9</td>
+<td>2012-13</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2012-13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">10</td>
+<td>2013-14</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2013-14</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">11</td>
+<td>2014-15</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2014-15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">12</td>
+<td>2015-16</td>
+<td><code>float</code></td>
+<td>average tuition cost in 2015-16</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="melted_us_avg_tuition" class="level4">
+<h4 class="anchored" data-anchor-id="melted_us_avg_tuition"><code>melted_us_avg_tuition</code></h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><code>#</code></th>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td>state</td>
+<td><code>str</code></td>
+<td>state’s full name (example <code>'Alabama'</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>year</td>
+<td><code>str</code></td>
+<td>calendar year (example <code>2004-05</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td>tuition</td>
+<td><code>float</code></td>
+<td>average annual tuition cost</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ansi" class="level4">
+<h4 class="anchored" data-anchor-id="ansi"><code>ansi</code></h4>
+<p>(Source: <a href="https://www.ansi.org/">American National Standards Institute</a> (ANSI)<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>)</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: right;"><code>#</code></th>
+<th>name</th>
+<th>type</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">0</td>
+<td>STATE</td>
+<td><code>int</code></td>
+<td>unique identifier</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">1</td>
+<td>STUSAB</td>
+<td><code>str</code></td>
+<td>state’s abbreviation (example <code>'AL'</code>)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">2</td>
+<td>STATE_NAME</td>
+<td><code>str</code></td>
+<td>state’s full name (example <code>'Alabama'</code>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">3</td>
+<td>STATENS</td>
+<td><code>int</code></td>
+<td>state population (year unknown)</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="plan" class="level3">
+<h3 class="anchored" data-anchor-id="plan">Plan</h3>
+<section id="prepare-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="prepare-the-data">Prepare the data</h4>
+<p>Both visualisations require us to select specific years,<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> so we melt the <code>LazyFrame</code>. This allows our queries to use the same pattern when selecting the years (<code>FILTER</code>). Otherwise, the two queries would use different patterns to select the data (<code>MELT -&gt; FILTER</code> and <code>SELECT</code>). We removed the white space around the column headers in <code>us_avg_tution</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Make <code>melted_us_avg_tuition</code></p>
+<pre><code>CREATE melted_us_avg_tuition AS (
+    MELT
+        us_avg_tution.*
+    WITH INDEX
+        LOWER(STRIP(State)) AS state
+    EXPAND
+        variables AS year,
+        values    AS tuition
+)</code></pre>
+</section>
+<section id="visualise-the-data" class="level4">
+<h4 class="anchored" data-anchor-id="visualise-the-data">Visualise the data</h4>
+<p><strong>[1]</strong> Percentage change in college tuition costs from 2010 to 2015. (<em>Chloropleth heatmap</em>)</p>
+<pre><code>SELECT
+    m.*,
+    ansi.*,
+    PCT_CHANGE(m.tuition).OVER(m.state) AS pct_change
+FROM
+    melted_us_avg_tuition m,
+    ansi
+WHERE
+    ansi.STATE_NAME = m.state
+    AND m.year IN ( '2010-11', '2015-16' )</code></pre>
+<p><strong>[2]</strong> College tuition costs in the USA in 2015 (<em>vertical bar chart</em>)</p>
+<pre><code>SELECT
+    *
+FROM
+    melted_us_avg_tuition
+WHERE
+    year = '2015-16'</code></pre>
+<p><strong>[3]</strong> Distribution of college tuition costs in the USA in 2015 (<em>horizontal strip plot</em>)</p>
+<pre><code>&lt;See College tuition costs in the USA in 2015&gt;</code></pre>
+</section>
+</section>
+</section>
+<section id="dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="im">from</span> vega_datasets <span class="im">import</span> data <span class="im">as</span> vdata</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="constants" class="level2">
+<h2 class="anchored" data-anchor-id="constants">Constants</h2>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>FEE_URL <span class="op">=</span> (<span class="st">'https://github.com/rfordatascience/tidytuesday/blob/master/'</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>           <span class="op">+</span> <span class="st">'data/2018/2018-04-02/us_avg_tuition.xlsx?raw=true'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>ANSI_URL <span class="op">=</span> <span class="st">'https://www2.census.gov/geo/docs/reference/state.txt'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="main" class="level2">
+<h2 class="anchored" data-anchor-id="main">Main</h2>
+<section id="set-themes" class="level3">
+<h3 class="anchored" data-anchor-id="set-themes">Set themes</h3>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>alt.themes.enable(<span class="st">'latimes'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>sns.set_theme()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>us_avg_tuition <span class="op">=</span> pl.DataFrame(pd.read_excel(FEE_URL)).lazy()</span>
+<span id="cb10-2"><a href="#cb10-2"></a>ansi <span class="op">=</span> pl.DataFrame(pd.read_csv(ANSI_URL, sep<span class="op">=</span><span class="st">'|'</span>)).lazy()</span>
+<span id="cb10-3"><a href="#cb10-3"></a>states <span class="op">=</span> alt.topo_feature(vdata.us_10m.url, <span class="st">'states'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="prepare-the-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-the-data-1">Prepare the data</h3>
+<div class="cell" data-execution_count="7">
+<details>
+<summary>Make melted_us_avg_tuition</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>melted_us_avg_tuition <span class="op">=</span> us_avg_tuition.rename(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    {s: s.strip().lower() <span class="cf">for</span> s <span class="kw">in</span> us_avg_tuition.columns}</span>
+<span id="cb11-3"><a href="#cb11-3"></a>).melt(</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    id_vars<span class="op">=</span><span class="st">'state'</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>    variable_name<span class="op">=</span><span class="st">'year'</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    value_name<span class="op">=</span><span class="st">'tuition'</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="visualise-the-data-1" class="level3">
+<h3 class="anchored" data-anchor-id="visualise-the-data-1">Visualise the data</h3>
+<div class="cell" data-tags="[]" data-execution_count="8">
+<details>
+<summary>Plot percentage change in college annual tuition costs</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>_gq <span class="op">=</span> melted_us_avg_tuition.<span class="bu">filter</span>(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    pl.col(<span class="st">'year'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="kw">in</span> (<span class="st">'2010-11'</span>, <span class="st">'2015-16'</span>,))</span>
+<span id="cb12-3"><a href="#cb12-3"></a>).with_column(</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    pl.col(<span class="st">'tuition'</span>).pct_change().over(<span class="st">'state'</span>).alias(<span class="st">'pr_change'</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a>).with_column(</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    pl.col(<span class="st">'pr_change'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x: x <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>).alias(<span class="st">'pct_change'</span>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a>).<span class="bu">filter</span>(</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    pl.col(<span class="st">'pct_change'</span>).is_not_null()</span>
+<span id="cb12-9"><a href="#cb12-9"></a>).join(</span>
+<span id="cb12-10"><a href="#cb12-10"></a>    other<span class="op">=</span>ansi,</span>
+<span id="cb12-11"><a href="#cb12-11"></a>    left_on<span class="op">=</span><span class="st">'state'</span>,</span>
+<span id="cb12-12"><a href="#cb12-12"></a>    right_on<span class="op">=</span><span class="st">'STATE_NAME'</span>,</span>
+<span id="cb12-13"><a href="#cb12-13"></a>    how<span class="op">=</span><span class="st">'inner'</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>)</span>
+<span id="cb12-15"><a href="#cb12-15"></a></span>
+<span id="cb12-16"><a href="#cb12-16"></a>alt.Chart(_gq.collect().to_pandas()).mark_geoshape(stroke<span class="op">=</span><span class="st">'black'</span>).encode(</span>
+<span id="cb12-17"><a href="#cb12-17"></a>    shape<span class="op">=</span><span class="st">'geo:G'</span>,</span>
+<span id="cb12-18"><a href="#cb12-18"></a>    color<span class="op">=</span>alt.Color(<span class="st">"pct_change"</span>, scale<span class="op">=</span>alt.Scale(scheme<span class="op">=</span><span class="st">"oranges"</span>)),</span>
+<span id="cb12-19"><a href="#cb12-19"></a>    tooltip<span class="op">=</span>[alt.Tooltip(<span class="st">'state'</span>, title<span class="op">=</span><span class="st">'State'</span>),</span>
+<span id="cb12-20"><a href="#cb12-20"></a>             alt.Tooltip(<span class="st">'pct_change'</span>, title<span class="op">=</span><span class="st">'Change (%))'</span>)]</span>
+<span id="cb12-21"><a href="#cb12-21"></a>).transform_lookup(</span>
+<span id="cb12-22"><a href="#cb12-22"></a>    lookup<span class="op">=</span><span class="st">'STATE'</span>,</span>
+<span id="cb12-23"><a href="#cb12-23"></a>    from_<span class="op">=</span>alt.LookupData(data<span class="op">=</span>states, key<span class="op">=</span><span class="st">'id'</span>),</span>
+<span id="cb12-24"><a href="#cb12-24"></a>    as_<span class="op">=</span><span class="st">'geo'</span></span>
+<span id="cb12-25"><a href="#cb12-25"></a>).project(</span>
+<span id="cb12-26"><a href="#cb12-26"></a>    <span class="bu">type</span><span class="op">=</span><span class="st">'albersUsa'</span></span>
+<span id="cb12-27"><a href="#cb12-27"></a>).properties(</span>
+<span id="cb12-28"><a href="#cb12-28"></a>    title<span class="op">=</span><span class="st">'Percentage change in college tuition costs from 2010 to 2015'</span>,</span>
+<span id="cb12-29"><a href="#cb12-29"></a>    width<span class="op">=</span><span class="dv">600</span>,</span>
+<span id="cb12-30"><a href="#cb12-30"></a>    height<span class="op">=</span><span class="dv">400</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div id="altair-viz-1e99722ce8524b54bb0d4987572f2d3c"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-1e99722ce8524b54bb0d4987572f2d3c") {
+      outputDiv = document.getElementById("altair-viz-1e99722ce8524b54bb0d4987572f2d3c");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "latimes"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-0caea4f6a4e7140fb196d48efe5e5d1f"}, "mark": {"type": "geoshape", "stroke": "black"}, "encoding": {"color": {"field": "pct_change", "scale": {"scheme": "oranges"}, "type": "quantitative"}, "shape": {"field": "geo", "type": "geojson"}, "tooltip": [{"field": "state", "title": "State", "type": "nominal"}, {"field": "pct_change", "title": "Change (%))", "type": "quantitative"}]}, "height": 400, "projection": {"type": "albersUsa"}, "title": "Percentage change in college tuition costs from 2010 to 2015", "transform": [{"lookup": "STATE", "as": "geo", "from": {"data": {"url": "https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/us-10m.json", "format": {"feature": "states", "type": "topojson"}}, "key": "id"}}], "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-0caea4f6a4e7140fb196d48efe5e5d1f": [{"state": "Alabama", "year": "2015-16", "tuition": 9751.101349251952, "pr_change": 0.20814518010053887, "pct_change": 20.8, "STATE": 1, "STUSAB": "AL", "STATENS": 1779775}, {"state": "Alaska", "year": "2015-16", "tuition": 6571.340316948697, "pr_change": 0.1410254898352864, "pct_change": 14.1, "STATE": 2, "STUSAB": "AK", "STATENS": 1785533}, {"state": "Arizona", "year": "2015-16", "tuition": 10646.278351749399, "pr_change": 0.20438399336840024, "pct_change": 20.4, "STATE": 4, "STUSAB": "AZ", "STATENS": 1779777}, {"state": "Arkansas", "year": "2015-16", "tuition": 7867.29673593428, "pr_change": 0.14003718138527377, "pct_change": 14.0, "STATE": 5, "STUSAB": "AR", "STATENS": 68085}, {"state": "California", "year": "2015-16", "tuition": 9269.844227224636, "pr_change": 0.13133264936014827, "pct_change": 13.1, "STATE": 6, "STUSAB": "CA", "STATENS": 1779778}, {"state": "Colorado", "year": "2015-16", "tuition": 9748.187715504646, "pr_change": 0.2581227467479503, "pct_change": 25.8, "STATE": 8, "STUSAB": "CO", "STATENS": 1779779}, {"state": "Connecticut", "year": "2015-16", "tuition": 11397.336553140489, "pr_change": 0.15979661472554743, "pct_change": 16.0, "STATE": 9, "STUSAB": "CT", "STATENS": 1779780}, {"state": "Delaware", "year": "2015-16", "tuition": 11676.215597471757, "pr_change": 0.10841222951571186, "pct_change": 10.8, "STATE": 10, "STUSAB": "DE", "STATENS": 1779781}, {"state": "Florida", "year": "2015-16", "tuition": 6360.159309231394, "pr_change": 0.1541558891945086, "pct_change": 15.4, "STATE": 12, "STUSAB": "FL", "STATENS": 294478}, {"state": "Georgia", "year": "2015-16", "tuition": 8446.961426315582, "pr_change": 0.3140871037147777, "pct_change": 31.4, "STATE": 13, "STUSAB": "GA", "STATENS": 1705317}, {"state": "Hawaii", "year": "2015-16", "tuition": 10174.733720305641, "pr_change": 0.24626489640859592, "pct_change": 24.6, "STATE": 15, "STUSAB": "HI", "STATENS": 1779782}, {"state": "Idaho", "year": "2015-16", "tuition": 6818.470343746806, "pr_change": 0.16860956337394542, "pct_change": 16.9, "STATE": 16, "STUSAB": "ID", "STATENS": 1779783}, {"state": "Illinois", "year": "2015-16", "tuition": 13189.100826230002, "pr_change": 0.09839321367553834, "pct_change": 9.8, "STATE": 17, "STUSAB": "IL", "STATENS": 1779784}, {"state": "Indiana", "year": "2015-16", "tuition": 9119.648545884287, "pr_change": 0.04291697123189207, "pct_change": 4.3, "STATE": 18, "STUSAB": "IN", "STATENS": 448508}, {"state": "Iowa", "year": "2015-16", "tuition": 7877.344019168941, "pr_change": 0.005726430290231668, "pct_change": 0.6, "STATE": 19, "STUSAB": "IA", "STATENS": 1779785}, {"state": "Kansas", "year": "2015-16", "tuition": 8530.493830784435, "pr_change": 0.1758905272904568, "pct_change": 17.6, "STATE": 20, "STUSAB": "KS", "STATENS": 481813}, {"state": "Kentucky", "year": "2015-16", "tuition": 9566.67257334121, "pr_change": 0.16227933033984196, "pct_change": 16.2, "STATE": 21, "STUSAB": "KY", "STATENS": 1779786}, {"state": "Louisiana", "year": "2015-16", "tuition": 7870.959722650475, "pr_change": 0.519150758204525, "pct_change": 51.9, "STATE": 22, "STUSAB": "LA", "STATENS": 1629543}, {"state": "Maine", "year": "2015-16", "tuition": 9572.968444568556, "pr_change": -0.022366732447751808, "pct_change": -2.2, "STATE": 23, "STUSAB": "ME", "STATENS": 1779787}, {"state": "Maryland", "year": "2015-16", "tuition": 9163.29158226419, "pr_change": 0.08190368157594316, "pct_change": 8.2, "STATE": 24, "STUSAB": "MD", "STATENS": 1714934}, {"state": "Massachusetts", "year": "2015-16", "tuition": 11588.125344457978, "pr_change": 0.11570196329449647, "pct_change": 11.6, "STATE": 25, "STUSAB": "MA", "STATENS": 606926}, {"state": "Michigan", "year": "2015-16", "tuition": 11990.52822403027, "pr_change": 0.08074753044011806, "pct_change": 8.1, "STATE": 26, "STUSAB": "MI", "STATENS": 1779789}, {"state": "Minnesota", "year": "2015-16", "tuition": 10831.360471619942, "pr_change": 0.05406133011359252, "pct_change": 5.4, "STATE": 27, "STUSAB": "MN", "STATENS": 662849}, {"state": "Mississippi", "year": "2015-16", "tuition": 7147.2712342461355, "pr_change": 0.23329228805031588, "pct_change": 23.3, "STATE": 28, "STUSAB": "MS", "STATENS": 1779790}, {"state": "Missouri", "year": "2015-16", "tuition": 8564.109743438288, "pr_change": 0.07596406835264517, "pct_change": 7.6, "STATE": 29, "STUSAB": "MO", "STATENS": 1779791}, {"state": "Montana", "year": "2015-16", "tuition": 6351.076487252125, "pr_change": 0.03380676525225765, "pct_change": 3.4, "STATE": 30, "STUSAB": "MT", "STATENS": 767982}, {"state": "Nebraska", "year": "2015-16", "tuition": 7607.9658656882075, "pr_change": 0.053014397123001114, "pct_change": 5.3, "STATE": 31, "STUSAB": "NE", "STATENS": 1779792}, {"state": "Nevada", "year": "2015-16", "tuition": 6667.235801581596, "pr_change": 0.14526811896835296, "pct_change": 14.5, "STATE": 32, "STUSAB": "NV", "STATENS": 1779793}, {"state": "New Hampshire", "year": "2015-16", "tuition": 15159.895264116578, "pr_change": 0.1592667499673311, "pct_change": 15.9, "STATE": 33, "STUSAB": "NH", "STATENS": 1779794}, {"state": "New Jersey", "year": "2015-16", "tuition": 13303.419490336193, "pr_change": 0.043240238130750674, "pct_change": 4.3, "STATE": 34, "STUSAB": "NJ", "STATENS": 1779795}, {"state": "New Mexico", "year": "2015-16", "tuition": 6354.521438963855, "pr_change": 0.13199503475559196, "pct_change": 13.2, "STATE": 35, "STUSAB": "NM", "STATENS": 897535}, {"state": "New York", "year": "2015-16", "tuition": 7643.525099747241, "pr_change": 0.20531304443349338, "pct_change": 20.5, "STATE": 36, "STUSAB": "NY", "STATENS": 1779796}, {"state": "North Carolina", "year": "2015-16", "tuition": 6973.066091916937, "pr_change": 0.1966771667518363, "pct_change": 19.7, "STATE": 37, "STUSAB": "NC", "STATENS": 1027616}, {"state": "North Dakota", "year": "2015-16", "tuition": 7687.698216924241, "pr_change": 0.06907150473928414, "pct_change": 6.9, "STATE": 38, "STUSAB": "ND", "STATENS": 1779797}, {"state": "Ohio", "year": "2015-16", "tuition": 10195.895607219012, "pr_change": 0.028486642197690898, "pct_change": 2.8, "STATE": 39, "STUSAB": "OH", "STATENS": 1085497}, {"state": "Oklahoma", "year": "2015-16", "tuition": 7449.698064176078, "pr_change": 0.18353339228892104, "pct_change": 18.4, "STATE": 40, "STUSAB": "OK", "STATENS": 1102857}, {"state": "Oregon", "year": "2015-16", "tuition": 9371.346119665925, "pr_change": 0.15156673420200972, "pct_change": 15.2, "STATE": 41, "STUSAB": "OR", "STATENS": 1155107}, {"state": "Pennsylvania", "year": "2015-16", "tuition": 13394.777550376328, "pr_change": 0.07988362372374108, "pct_change": 8.0, "STATE": 42, "STUSAB": "PA", "STATENS": 1779798}, {"state": "Rhode Island", "year": "2015-16", "tuition": 11390.118397085611, "pr_change": 0.11652542199431888, "pct_change": 11.7, "STATE": 44, "STUSAB": "RI", "STATENS": 1219835}, {"state": "South Carolina", "year": "2015-16", "tuition": 11816.025925316488, "pr_change": 0.07263916860021476, "pct_change": 7.3, "STATE": 45, "STUSAB": "SC", "STATENS": 1779799}, {"state": "South Dakota", "year": "2015-16", "tuition": 8054.912800263244, "pr_change": 0.1646378783008343, "pct_change": 16.5, "STATE": 46, "STUSAB": "SD", "STATENS": 1785534}, {"state": "Tennessee", "year": "2015-16", "tuition": 9263.479110787835, "pr_change": 0.29748701799549365, "pct_change": 29.7, "STATE": 47, "STUSAB": "TN", "STATENS": 1325873}, {"state": "Texas", "year": "2015-16", "tuition": 9116.732642680614, "pr_change": 0.07543350744411828, "pct_change": 7.5, "STATE": 48, "STUSAB": "TX", "STATENS": 1779801}, {"state": "Utah", "year": "2015-16", "tuition": 6362.682377404262, "pr_change": 0.18232822925502987, "pct_change": 18.2, "STATE": 49, "STUSAB": "UT", "STATENS": 1455989}, {"state": "Vermont", "year": "2015-16", "tuition": 14993.026532856751, "pr_change": 0.09797704103385027, "pct_change": 9.8, "STATE": 50, "STUSAB": "VT", "STATENS": 1779802}, {"state": "Virginia", "year": "2015-16", "tuition": 11818.692852673435, "pr_change": 0.2256106479901672, "pct_change": 22.6, "STATE": 51, "STUSAB": "VA", "STATENS": 1779803}, {"state": "Washington", "year": "2015-16", "tuition": 10288.352635518957, "pr_change": 0.1465700559113816, "pct_change": 14.7, "STATE": 53, "STUSAB": "WA", "STATENS": 1779804}, {"state": "West Virginia", "year": "2015-16", "tuition": 7171.450966340447, "pr_change": 0.2535663253078056, "pct_change": 25.4, "STATE": 54, "STUSAB": "WV", "STATENS": 1779805}, {"state": "Wisconsin", "year": "2015-16", "tuition": 8815.260667850567, "pr_change": 0.04432132166290435, "pct_change": 4.4, "STATE": 55, "STUSAB": "WI", "STATENS": 1779806}, {"state": "Wyoming", "year": "2015-16", "tuition": 4890.999758220503, "pr_change": 0.1377489129787328, "pct_change": 13.8, "STATE": 56, "STUSAB": "WY", "STATENS": 1779807}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="9">
+<details>
+<summary>Plot college tuition costs in the USA in 2015</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>_gq <span class="op">=</span> melted_us_avg_tuition.<span class="bu">filter</span>(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    pl.col(<span class="st">'year'</span>) <span class="op">==</span> <span class="st">'2015-16'</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>alt.Chart(_gq.collect().to_pandas()).mark_circle(size<span class="op">=</span><span class="dv">60</span>).encode(</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    x<span class="op">=</span>alt.X(<span class="st">'tuition'</span>, title<span class="op">=</span><span class="st">'Tuition ($)'</span>),</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    y<span class="op">=</span>alt.Y(</span>
+<span id="cb13-8"><a href="#cb13-8"></a>        <span class="st">'state'</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>        sort<span class="op">=</span><span class="st">'-x'</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>        axis<span class="op">=</span>alt.Axis(grid<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb13-11"><a href="#cb13-11"></a>        title<span class="op">=</span><span class="st">'State'</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>    )</span>
+<span id="cb13-13"><a href="#cb13-13"></a>).properties(</span>
+<span id="cb13-14"><a href="#cb13-14"></a>    title<span class="op">=</span><span class="st">'College tuition costs in the USA in 2015-16'</span>,</span>
+<span id="cb13-15"><a href="#cb13-15"></a>    width<span class="op">=</span><span class="dv">400</span>,</span>
+<span id="cb13-16"><a href="#cb13-16"></a>    height<span class="op">=</span><span class="dv">600</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+
+<div id="altair-viz-9354ac595a9a4689bae61daa47aa5549"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "altair-viz-9354ac595a9a4689bae61daa47aa5549") {
+      outputDiv = document.getElementById("altair-viz-9354ac595a9a4689bae61daa47aa5549");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm//vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm//vega-lite@4.17.0?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm//vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "4.17.0"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"usermeta": {"embedOptions": {"theme": "latimes"}}, "config": {"view": {"continuousWidth": 400, "continuousHeight": 300}}, "data": {"name": "data-988eb6b07282f382396e50ec644507d1"}, "mark": {"type": "circle", "size": 60}, "encoding": {"x": {"field": "tuition", "title": "Tuition ($)", "type": "quantitative"}, "y": {"axis": {"grid": true}, "field": "state", "sort": "-x", "title": "State", "type": "nominal"}}, "height": 600, "title": "College tuition costs in the USA in 2015-16", "width": 400, "$schema": "https://vega.github.io/schema/vega-lite/v4.17.0.json", "datasets": {"data-988eb6b07282f382396e50ec644507d1": [{"state": "Alabama", "year": "2015-16", "tuition": 9751.101349251952}, {"state": "Alaska", "year": "2015-16", "tuition": 6571.340316948697}, {"state": "Arizona", "year": "2015-16", "tuition": 10646.278351749399}, {"state": "Arkansas", "year": "2015-16", "tuition": 7867.29673593428}, {"state": "California", "year": "2015-16", "tuition": 9269.844227224636}, {"state": "Colorado", "year": "2015-16", "tuition": 9748.187715504646}, {"state": "Connecticut", "year": "2015-16", "tuition": 11397.336553140489}, {"state": "Delaware", "year": "2015-16", "tuition": 11676.215597471757}, {"state": "Florida", "year": "2015-16", "tuition": 6360.159309231394}, {"state": "Georgia", "year": "2015-16", "tuition": 8446.961426315582}, {"state": "Hawaii", "year": "2015-16", "tuition": 10174.733720305641}, {"state": "Idaho", "year": "2015-16", "tuition": 6818.470343746806}, {"state": "Illinois", "year": "2015-16", "tuition": 13189.100826230002}, {"state": "Indiana", "year": "2015-16", "tuition": 9119.648545884287}, {"state": "Iowa", "year": "2015-16", "tuition": 7877.344019168941}, {"state": "Kansas", "year": "2015-16", "tuition": 8530.493830784435}, {"state": "Kentucky", "year": "2015-16", "tuition": 9566.67257334121}, {"state": "Louisiana", "year": "2015-16", "tuition": 7870.959722650475}, {"state": "Maine", "year": "2015-16", "tuition": 9572.968444568556}, {"state": "Maryland", "year": "2015-16", "tuition": 9163.29158226419}, {"state": "Massachusetts", "year": "2015-16", "tuition": 11588.125344457978}, {"state": "Michigan", "year": "2015-16", "tuition": 11990.52822403027}, {"state": "Minnesota", "year": "2015-16", "tuition": 10831.360471619942}, {"state": "Mississippi", "year": "2015-16", "tuition": 7147.2712342461355}, {"state": "Missouri", "year": "2015-16", "tuition": 8564.109743438288}, {"state": "Montana", "year": "2015-16", "tuition": 6351.076487252125}, {"state": "Nebraska", "year": "2015-16", "tuition": 7607.9658656882075}, {"state": "Nevada", "year": "2015-16", "tuition": 6667.235801581596}, {"state": "New Hampshire", "year": "2015-16", "tuition": 15159.895264116578}, {"state": "New Jersey", "year": "2015-16", "tuition": 13303.419490336193}, {"state": "New Mexico", "year": "2015-16", "tuition": 6354.521438963855}, {"state": "New York", "year": "2015-16", "tuition": 7643.525099747241}, {"state": "North Carolina", "year": "2015-16", "tuition": 6973.066091916937}, {"state": "North Dakota", "year": "2015-16", "tuition": 7687.698216924241}, {"state": "Ohio", "year": "2015-16", "tuition": 10195.895607219012}, {"state": "Oklahoma", "year": "2015-16", "tuition": 7449.698064176078}, {"state": "Oregon", "year": "2015-16", "tuition": 9371.346119665925}, {"state": "Pennsylvania", "year": "2015-16", "tuition": 13394.777550376328}, {"state": "Rhode Island", "year": "2015-16", "tuition": 11390.118397085611}, {"state": "South Carolina", "year": "2015-16", "tuition": 11816.025925316488}, {"state": "South Dakota", "year": "2015-16", "tuition": 8054.912800263244}, {"state": "Tennessee", "year": "2015-16", "tuition": 9263.479110787835}, {"state": "Texas", "year": "2015-16", "tuition": 9116.732642680614}, {"state": "Utah", "year": "2015-16", "tuition": 6362.682377404262}, {"state": "Vermont", "year": "2015-16", "tuition": 14993.026532856751}, {"state": "Virginia", "year": "2015-16", "tuition": 11818.692852673435}, {"state": "Washington", "year": "2015-16", "tuition": 10288.352635518957}, {"state": "West Virginia", "year": "2015-16", "tuition": 7171.450966340447}, {"state": "Wisconsin", "year": "2015-16", "tuition": 8815.260667850567}, {"state": "Wyoming", "year": "2015-16", "tuition": 4890.999758220503}]}}, {"mode": "vega-lite"});
+</script>
+</div>
+</div>
+<div class="cell" data-tags="[]" data-execution_count="10">
+<details>
+<summary>Plot the distribution of college tuition costs in the USA in 2015</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>_gq <span class="op">=</span> melted_us_avg_tuition.<span class="bu">filter</span>(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    pl.col(<span class="st">'year'</span>) <span class="op">==</span> <span class="st">'2015-16'</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a>_g <span class="op">=</span> sns.catplot(</span>
+<span id="cb14-6"><a href="#cb14-6"></a>            data<span class="op">=</span>_gq.collect().to_pandas(),</span>
+<span id="cb14-7"><a href="#cb14-7"></a>            x<span class="op">=</span><span class="st">'tuition'</span>,</span>
+<span id="cb14-8"><a href="#cb14-8"></a>            kind<span class="op">=</span><span class="st">'strip'</span>,</span>
+<span id="cb14-9"><a href="#cb14-9"></a>            height<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb14-10"><a href="#cb14-10"></a>            aspect<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>)</span>
+<span id="cb14-12"><a href="#cb14-12"></a>plt.title(</span>
+<span id="cb14-13"><a href="#cb14-13"></a>    <span class="st">'Distribution of college tuition costs in the USA in 2015-16'</span>,</span>
+<span id="cb14-14"><a href="#cb14-14"></a>    loc<span class="op">=</span><span class="st">'left'</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>)</span>
+<span id="cb14-16"><a href="#cb14-16"></a>plt.xlabel(<span class="st">'Tuition ($)'</span>)</span>
+<span id="cb14-17"><a href="#cb14-17"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display">
+<p><img src="2022-08-30-tt_y2018_w01_us_avg_tuition_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>matplotlib: 3.5.3
+sys       : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
+pandas    : 1.4.3
+seaborn   : 0.11.2
+altair    : 4.2.0
+polars    : 0.14.5
+</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1" role="doc-endnote"><p>Actual column name <code>'  2007-08 '</code><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2" role="doc-endnote"><p>This was used to bring in the state ID, which we needed for mapping the data to a chloropleth map.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3" role="doc-endnote"><p>2010-11 and 2015-16 in the first, and just 2015-16 in the second.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4" role="doc-endnote"><p>See <code>'  2007-08 '</code><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,9 +1,10 @@
 
 # README
 
-Quarto render command
+## Quarto commands
 
-    quarto render --output-dir docs --use-freezer
+    quarto render
+    quarto preview
 
 ## Virtual environments
 
@@ -22,12 +23,17 @@ Quarto render command
 
     created: 2022-08-23
     py: 3.10.6
-    pkg: [ipykernel==6.15.1,
+    pkg: [altair==4.2.0,
+          ipykernel==6.15.1,
           matplotlib==3.5.3,
           numpy==1.23.2,
+          openpyxl==3.0.10,
           pandas==1.4.3,
+          polars==0.14.5,
+          pyarrow==9.0.0,
           scipy==1.9.0,
           seaborn==0.11.2,
           sklearn==1.1.2,
           statsmodels==0.13.2,
+          vega_datasets==0.9.0,
           watermark==2.3.1]

@@ -2,6 +2,7 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2022-08-25-tsp_bruteforce.html",
       "/posts/2022-08-22-stratified_analyses.html",
       "/posts/2022-08-20-advent_of_code_2015_day1.html",
       "/posts/2022-08-18-initialise_undirected_graph_networkx.html",

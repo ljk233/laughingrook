@@ -6,3 +6,8 @@ freeze: true
 
 # Enable banner style title blocks
 title-block-banner: false
+
+author: "Liam Kelly"
+code-fold: false
+code-tools: true
+code-line-numbers: true

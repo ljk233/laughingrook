@@ -6,8 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="LaughingRook">
-<meta name="dcterms.date" content="2022-05-19">
+<meta name="author" content="Liam Kelly">
+<meta name="dcterms.date" content="2022-08-27">
 
 <title>LaughingRook - Advent of Code 2015, Day 2</title>
 <style>
@@ -194,14 +194,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Author</div>
     <div class="quarto-title-meta-contents">
-             <p>LaughingRook </p>
+             <p>Liam Kelly </p>
           </div>
   </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 19, 2022</p>
+      <p class="date">August 27, 2022</p>
     </div>
   </div>
     
@@ -217,25 +217,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> laughingrook <span class="im">as</span> lr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> laughingrook <span class="im">as</span> lr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> paper_needed(length: <span class="bu">int</span>, width: <span class="bu">int</span>, height: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the wrapping paper needed for a present with dims (l, w, h).</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    planes <span class="op">=</span> [(length <span class="op">*</span> width), (width <span class="op">*</span> height), (height <span class="op">*</span> length)]</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="bu">min</span>(planes) <span class="op">+</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(planes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> paper_needed(length: <span class="bu">int</span>, width: <span class="bu">int</span>, height: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"""Return the wrapping paper needed for a present with dims (l, w, h).</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">    """</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>    planes <span class="op">=</span> [(length <span class="op">*</span> width), (width <span class="op">*</span> height), (height <span class="op">*</span> length)]</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">return</span> <span class="bu">min</span>(planes) <span class="op">+</span> (<span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(planes))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ribbon_needed(length: <span class="bu">int</span>, width: <span class="bu">int</span>, height: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return the ribbon needed to cover a present with dims (l, w, h).</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    bow <span class="op">=</span> length <span class="op">*</span> width <span class="op">*</span> height</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    ribbon <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(<span class="bu">sorted</span>([length, width, height])[:<span class="dv">2</span>])</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> bow <span class="op">+</span> ribbon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> ribbon_needed(length: <span class="bu">int</span>, width: <span class="bu">int</span>, height: <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="co">"""Return the ribbon needed to cover a present with dims (l, w, h).</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">    """</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    bow <span class="op">=</span> length <span class="op">*</span> width <span class="op">*</span> height</span>
+<span id="cb3-5"><a href="#cb3-5"></a>    ribbon <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> <span class="bu">sum</span>(<span class="bu">sorted</span>([length, width, height])[:<span class="dv">2</span>])</span>
+<span id="cb3-6"><a href="#cb3-6"></a>    <span class="cf">return</span> bow <span class="op">+</span> ribbon</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="main" class="level2">
@@ -243,8 +243,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="load-the-input" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-input">Load the input</h3>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> lr.datasets.get_advent_input(<span class="dv">2015</span>, <span class="dv">2</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"lines = </span><span class="sc">{</span>lines[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>lines <span class="op">=</span> lr.datasets.get_advent_input(<span class="dv">2015</span>, <span class="dv">2</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(<span class="ss">f"lines = </span><span class="sc">{</span>lines[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>file was cached.
 lines = ['4x23x21', '22x29x19', '11x4x11', '8x10x5', '24x18x16']</code></pre>
@@ -254,9 +254,9 @@ lines = ['4x23x21', '22x29x19', '11x4x11', '8x10x5', '24x18x16']</code></pre>
 <section id="transform-the-input" class="level3">
 <h3 class="anchored" data-anchor-id="transform-the-input">Transform the input</h3>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>llines <span class="op">=</span> (line.split(<span class="st">'x'</span>) <span class="cf">for</span> line <span class="kw">in</span> lines)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>pdims <span class="op">=</span> [[<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> lline] <span class="cf">for</span> lline <span class="kw">in</span> llines]</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"pdims = </span><span class="sc">{</span>pdims[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>llines <span class="op">=</span> (line.split(<span class="st">'x'</span>) <span class="cf">for</span> line <span class="kw">in</span> lines)</span>
+<span id="cb6-2"><a href="#cb6-2"></a>pdims <span class="op">=</span> [[<span class="bu">int</span>(x) <span class="cf">for</span> x <span class="kw">in</span> lline] <span class="cf">for</span> lline <span class="kw">in</span> llines]</span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="bu">print</span>(<span class="ss">f"pdims = </span><span class="sc">{</span>pdims[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>pdims = [[4, 23, 21], [22, 29, 19], [11, 4, 11], [8, 10, 5], [24, 18, 16]]</code></pre>
 </div>
@@ -265,7 +265,7 @@ lines = ['4x23x21', '22x29x19', '11x4x11', '8x10x5', '24x18x16']</code></pre>
 <section id="part-1" class="level3">
 <h3 class="anchored" data-anchor-id="part-1">Part 1</h3>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span><span class="bu">sum</span>(paper_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span><span class="bu">sum</span>(paper_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Solution = 1598415</code></pre>
 </div>
@@ -274,7 +274,7 @@ lines = ['4x23x21', '22x29x19', '11x4x11', '8x10x5', '24x18x16']</code></pre>
 <section id="part-2" class="level3">
 <h3 class="anchored" data-anchor-id="part-2">Part 2</h3>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span><span class="bu">sum</span>(ribbon_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="bu">print</span>(<span class="ss">f"Solution = </span><span class="sc">{</span><span class="bu">sum</span>(ribbon_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Solution = 3812909</code></pre>
 </div>
@@ -283,10 +283,10 @@ lines = ['4x23x21', '22x29x19', '11x4x11', '8x10x5', '24x18x16']</code></pre>
 <section id="performance" class="level3">
 <h3 class="anchored" data-anchor-id="performance">Performance</h3>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Part 1 ='</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(paper_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Part 2 ='</span>)</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="op">%</span>timeit <span class="bu">sum</span>(ribbon_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="bu">print</span>(<span class="st">'Part 1 ='</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="op">%</span>timeit <span class="bu">sum</span>(paper_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="bu">print</span>(<span class="st">'Part 2 ='</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="op">%</span>timeit <span class="bu">sum</span>(ribbon_needed(l, w, h) <span class="cf">for</span> (l, w, h) <span class="kw">in</span> pdims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Part 1 =
 433 µs ± 2.7 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
