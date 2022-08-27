@@ -371,13 +371,13 @@ Name: odds ratio, dtype: float64</code></pre>
 <span id="cb8-3"><a href="#cb8-3"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">0</span>],</span>
 <span id="cb8-4"><a href="#cb8-4"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">1</span>]],</span>
 <span id="cb8-5"><a href="#cb8-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    name<span class="op">=</span><span class="st">'Mantel-Haeszel odds ratio'</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    name<span class="op">=</span><span class="st">'adjusted odds ratio'</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>point    23.000610
 lcb       7.465154
 ucb      70.866332
-Name: Mantel-Haeszel odds ratio, dtype: float64</code></pre>
+Name: adjusted odds ratio, dtype: float64</code></pre>
 </div>
 </div>
 </section>
@@ -387,10 +387,12 @@ Name: Mantel-Haeszel odds ratio, dtype: float64</code></pre>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>res <span class="op">=</span> ctables.test_null_odds(correction<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb10-2"><a href="#cb10-2"></a>pd.Series(</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    data<span class="op">=</span>[res.statistic.<span class="bu">round</span>(<span class="dv">5</span>), res.pvalue.<span class="bu">round</span>(<span class="dv">5</span>)],</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    data<span class="op">=</span>[res.statistic, res.pvalue],</span>
 <span id="cb10-4"><a href="#cb10-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
 <span id="cb10-5"><a href="#cb10-5"></a>    name<span class="op">=</span><span class="st">'test for no association'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a href="#cb10-6"></a>).<span class="bu">round</span>(</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    <span class="dv">5</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>statistc    36.60431
 pvalue       0.00000
@@ -404,10 +406,12 @@ Name: test for no association, dtype: float64</code></pre>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>res <span class="op">=</span> ctables.test_equal_odds(adjust<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb12-2"><a href="#cb12-2"></a>pd.Series(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    data<span class="op">=</span>[res.statistic.<span class="bu">round</span>(<span class="dv">5</span>), res.pvalue.<span class="bu">round</span>(<span class="dv">5</span>)],</span>
+<span id="cb12-3"><a href="#cb12-3"></a>    data<span class="op">=</span>[res.statistic, res.pvalue],</span>
 <span id="cb12-4"><a href="#cb12-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
 <span id="cb12-5"><a href="#cb12-5"></a>    name<span class="op">=</span><span class="st">'test for homogeneity'</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a href="#cb12-6"></a>).<span class="bu">round</span>(</span>
+<span id="cb12-7"><a href="#cb12-7"></a>    <span class="dv">5</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>statistc    0.23557
 pvalue      0.62742
@@ -423,10 +427,10 @@ Name: test for homogeneity, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="op">%</span>load_ext watermark</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>pandas     : 1.4.3
-statsmodels: 0.13.2
+<pre><code>sys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
 numpy      : 1.23.2
-sys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
+pandas     : 1.4.3
+statsmodels: 0.13.2
 </code></pre>
 </div>
 </div>
