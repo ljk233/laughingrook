@@ -176,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#example-use" id="toc-example-use" class="nav-link" data-scroll-target="#example-use">Example use</a></li>
   </ul></li>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
-  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#function" id="toc-function" class="nav-link" data-scroll-target="#function">Function</a></li>
   <li><a href="#main" id="toc-main" class="nav-link" data-scroll-target="#main">Main</a>
   <ul class="collapse">
   <li><a href="#testing" id="toc-testing" class="nav-link" data-scroll-target="#testing">Testing</a></li>
@@ -236,9 +236,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="stack-adt">Stack ADT</h3>
 <table class="table">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 54%">
-<col style="width: 34%">
+<col style="width: 12%">
+<col style="width: 55%">
+<col style="width: 32%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -251,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tr class="odd">
 <td><em>new</em></td>
 <td>Initialise an empty stack</td>
-<td><code>s = deque()</code></td>
+<td><code>s = deque()</code> <em>or</em> <code>s = []</code></td>
 </tr>
 <tr class="even">
 <td><em>is empty</em></td>
@@ -278,9 +278,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="example-use" class="level3">
 <h3 class="anchored" data-anchor-id="example-use">Example use</h3>
-<p>We showed one (classic) example of how a <em>Stack</em> can be used: How we can use a <em>Stack</em> to check if a given expression has balanced brackets<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<p>We took the following approach: Iterate over the <em>expression</em>. For each <em>char</em> in the <em>expression</em>, if it is a left opening bracket, then push it in the stack. Otherwise if it is a right closing bracket, then we check if it is the expected closing bracket, given the top item of the stack. If it is not the expected closing bracket, then we return false.</p>
-<p>After the iteration is complete, we perfrom a final check that the stack is empty. If is empty, then the expression is <em>balanced</em> and we return true. Otherwise, the expression is <em>unbalanced</em> and we return false.</p>
+<p>We showed one (classic) example of how a <em>Stack</em> can be used: How we can use a <em>Stack</em> to check if a given expression has balanced brackets.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>We took the following approach: Let <em>stack</em> be an empty stack. Iterate over <em>expression</em>. For each <em>char</em> in <em>expression</em>, if it is a left opening bracket, then push it in <em>stack</em>. Otherwise if it is a right closing bracket, then we check if it is the expected closing bracket, given the top of <em>stack</em>. If it is not the expected closing bracket, then <em>expression</em> is unbalanced. Otherwise, pop from <em>stack</em>.</p>
+<p>After the iteration is complete, we perfrom a final check that <em>stack</em> is empty. If <em>stack</em> is empty, then <em>expression</em> is balanced. Otherwise, <em>expression</em> is unbalanced.</p>
 <p>Below is the algorithm we used to implement the approach.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <ol type="1">
 <li>Let <em>stack</em> be an empty <code>stack</code></li>
@@ -316,8 +316,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> collections <span class="im">import</span> deque</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="functions" class="level2">
-<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<section id="function" class="level2">
+<h2 class="anchored" data-anchor-id="function">Function</h2>
+<p>We used a <code>deque</code> for the <em>Stack</em> in this implementation of <code>has_balanced_brackets</code>.</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> has_balanced_brackets(expression: <span class="bu">str</span>) <span class="op">-&gt;</span> <span class="bu">bool</span>:</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"""Return true if the given expression has balanced brackets.</span></span>
@@ -373,13 +374,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-6"><a href="#cb5-6"></a>    <span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">5000</span> has_balanced_brackets(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Test 1 (n=100) =
-20.9 µs ± 165 ns per loop (mean ± std. dev. of 3 runs, 5,000 loops each)
+21.8 µs ± 917 ns per loop (mean ± std. dev. of 3 runs, 5,000 loops each)
 Test 2 (n=200) =
-41.2 µs ± 673 ns per loop (mean ± std. dev. of 3 runs, 5,000 loops each)
+41.7 µs ± 166 ns per loop (mean ± std. dev. of 3 runs, 5,000 loops each)
 Test 3 (n=400) =
-80.8 µs ± 1.3 µs per loop (mean ± std. dev. of 3 runs, 5,000 loops each)
+84 µs ± 795 ns per loop (mean ± std. dev. of 3 runs, 5,000 loops each)
 Test 4 (n=800) =
-157 µs ± 2.11 µs per loop (mean ± std. dev. of 3 runs, 5,000 loops each)</code></pre>
+158 µs ± 996 ns per loop (mean ± std. dev. of 3 runs, 5,000 loops each)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="5">
