@@ -8,6 +8,8 @@ freeze: true
 title-block-banner: false
 
 author: "Liam Kelly"
-code-fold: false
-code-tools: true
-code-line-numbers: true
+format:
+  html: 
+    code-tools: true
+    code-fold: false
+    code-line-numbers: true

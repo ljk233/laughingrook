@@ -174,13 +174,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#summary-notes" id="toc-summary-notes" class="nav-link active" data-scroll-target="#summary-notes">Summary notes</a></li>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
-  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants">Constants</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
   <li><a href="#main" id="toc-main" class="nav-link" data-scroll-target="#main">Main</a>
   <ul class="collapse">
+  <li><a href="#initialise-the-labels" id="toc-initialise-the-labels" class="nav-link" data-scroll-target="#initialise-the-labels">Initialise the labels</a></li>
+  <li><a href="#cache-the-data" id="toc-cache-the-data" class="nav-link" data-scroll-target="#cache-the-data">Cache the data</a></li>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data">Prepare the data</a></li>
   <li><a href="#initialise-the-contingency-tables" id="toc-initialise-the-contingency-tables" class="nav-link" data-scroll-target="#initialise-the-contingency-tables">Initialise the contingency tables</a></li>
   <li><a href="#odds-ratios" id="toc-odds-ratios" class="nav-link" data-scroll-target="#odds-ratios">Odds ratios</a></li>
-  <li><a href="#test-for-no-association" id="toc-test-for-no-association" class="nav-link" data-scroll-target="#test-for-no-association">Test for no association</a></li>
-  <li><a href="#test-for-homogeneity" id="toc-test-for-homogeneity" class="nav-link" data-scroll-target="#test-for-homogeneity">Test for homogeneity</a></li>
+  <li><a href="#hypothesis-testing" id="toc-hypothesis-testing" class="nav-link" data-scroll-target="#hypothesis-testing">Hypothesis testing</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -224,78 +227,401 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="summary-notes" class="level2">
 <h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
 <p>Perform a stratified analyses on the results of a stratified case-control study.</p>
-<p>Data was taken from investigating the possible association between alcohol consumption and fatal car accidents in New York (J.R. McCarroll and W. Haddon Jr, 1962). The data was stratified by marital status, which was believed to be a possible confounder. The exposure was blood alcohol level of 100mg% or greater. Cases were drivers who were killed in car accidents for which they were considered to be responsible, and controls were selected drivers passing the locations where the accidents of the cases occurred, at the same time of day and on the same day of the week.</p>
+<p>Data were taken from investigating the possible association between alcohol consumption and fatal car accidents in New York (J.R. McCarroll and W. Haddon Jr, 1962). The data were stratified by marital status, which was believed to be a possible confounder. The <em>exposure</em> was blood alcohol level of 100mg% or greater; <em>Cases</em> were drivers who were killed in car accidents for which they were considered to be responsible; and <em>controls</em> were selected drivers passing the locations where the accidents of the cases occurred, at the same time of day and on the same day of the week.</p>
 <p>The results were as follows.</p>
-<p><strong>Stratum 1</strong></p>
+<p>Level: <em>Married</em></p>
 <table class="table">
 <thead>
 <tr class="header">
-<th>Married</th>
-<th style="text-align: right;">cases (+)</th>
-<th style="text-align: right;">controls (-)</th>
+<th></th>
+<th style="text-align: right;">fatality (+)</th>
+<th style="text-align: right;">no fatality (-)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>exposed (+)</strong></td>
+<td><strong>over 100mg% (+)</strong></td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">5</td>
 </tr>
 <tr class="even">
-<td><strong>not exposed (-)</strong></td>
+<td><strong>under 100mg% (-)</strong></td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">103</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Stratum 2</strong></p>
+<p>Level: <em>Not married</em></p>
 <table class="table">
 <thead>
 <tr class="header">
-<th>Not married</th>
-<th style="text-align: right;">cases (+)</th>
-<th style="text-align: right;">controls (-)</th>
+<th></th>
+<th style="text-align: right;">fatality (+)</th>
+<th style="text-align: right;">no fatality (-)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>exposed (+)</strong></td>
+<td><strong>over 100mg% (+)</strong></td>
 <td style="text-align: right;">10</td>
 <td style="text-align: right;">3</td>
 </tr>
 <tr class="even">
-<td><strong>not exposed (-)</strong></td>
+<td><strong>under 100mg% (-)</strong></td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">43</td>
 </tr>
 </tbody>
 </table>
-<p>The results were initialised as two NumPy <code>NDArrays</code>, one for each stratum/level. The analysis was performed using two classes from StatsModels: <code>StratifiedTable</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> and <code>Table2x2</code>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> The results were outputted to either a Pandas <code>Series</code> or <code>DataFrame</code>, depending on the dimensionality of the result. (This is optional, and done so to provide a standardised output.)</p>
+<p>The analysis was undertaken using StatsModels.</p>
+<p>The data was stored on remotely, so we defined a function <code>cache_file</code> to handle the retrieval of the file.</p>
+<p>The main difficulty with a stratified analysis is that we need to deal with the data in many different shapes, so we defined two functions that return the data in the needed shapes. Two further functions were defined to handle a pieces of analysis.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>The level, exposure, and case-control labels were stored as three <code>list</code>s, with variables named <em>levels</em>,<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <em>exposures</em>, and <em>casecons</em>. The order of the elements in <em>exposures</em> and <em>diseases</em> lists is important: <code>Table2x2</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> requires the data to be some sequence with shape <code>(2, 2)</code>:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">disease (+)</th>
+<th style="text-align: right;">no diease (-)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>exposed (+)</strong></td>
+<td style="text-align: right;"><em>a</em></td>
+<td style="text-align: right;"><em>b</em></td>
+</tr>
+<tr class="even">
+<td><strong>not exposed (-)</strong></td>
+<td style="text-align: right;"><em>c</em></td>
+<td style="text-align: right;"><em>d</em></td>
+</tr>
+</tbody>
+</table>
+<p>And <code>StratifiedTable</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> requires the data to be some sequence with shape <code>(2, 2, 2)</code>:</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>level</th>
+<th>exposure</th>
+<th style="text-align: right;">disease (+)</th>
+<th style="text-align: right;">no diease (-)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>one</strong></td>
+<td><strong>exposed (+)</strong></td>
+<td style="text-align: right;"><em>a</em></td>
+<td style="text-align: right;"><em>b</em></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>not exposed (-)</strong></td>
+<td style="text-align: right;"><em>c</em></td>
+<td style="text-align: right;"><em>d</em></td>
+</tr>
+<tr class="odd">
+<td><strong>two</strong></td>
+<td><strong>exposed (+)</strong></td>
+<td style="text-align: right;"><em>e</em></td>
+<td style="text-align: right;"><em>f</em></td>
+</tr>
+<tr class="even">
+<td></td>
+<td><strong>not exposed (-)</strong></td>
+<td style="text-align: right;"><em>g</em></td>
+<td style="text-align: right;"><em>h</em></td>
+</tr>
+</tbody>
+</table>
+<p>As such, the labels should be ordered:</p>
+<ul>
+<li><em>exposures</em> = (<em>exposed</em>, <em>not exposed</em>)</li>
+<li><em>casecons</em> = (<em>case</em>, <em>control</em>)</li>
+</ul>
+<p>The data were cached and used to a initialise a Pandas <code>DataFrame</code>.</p>
+<p>The main difficulty with a stratified analysis is that we need to deal with the data in many different shapes. Three variables were initialised to hold the different views of the data. These were:</p>
+<ul>
+<li><em>level_tables</em>, a collection of <code>Table2x2</code> instances, where each instance represents a contingency table for a specific level</li>
+<li><em>aggregated_table</em>, an instance of <code>Table2x2</code> using the aggregated data
+<ul>
+<li>Aggregated by <em>exposure</em>, <em>casecon</em></li>
+</ul></li>
+<li><em>strat_table</em>, an instance of <code>StratifiedTable</code></li>
+</ul>
+<p>Measures of association were calculated:</p>
+<ul>
+<li>Level-specific odds ratios</li>
+<li>Unadjusted odds ratios<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li>Adjusted odds ratios<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
+</ul>
+<p>And two hypothesis tets were performed:</p>
+<ul>
+<li>Test of no association</li>
+<li>Test of homogeneity</li>
+</ul>
 <p>These topics are covered in M249, Book 1, Part 2.</p>
 </section>
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> os</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> requests</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="constants" class="level2">
-<h2 class="anchored" data-anchor-id="constants">Constants</h2>
-<p>These are the results from the study.</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>MARRIED <span class="op">=</span> np.array([[<span class="dv">4</span>, <span class="dv">5</span>], [<span class="dv">5</span>, <span class="dv">103</span>]])</span>
-<span id="cb2-2"><a href="#cb2-2"></a>NOT_MARRIED <span class="op">=</span> np.array([[<span class="dv">10</span>, <span class="dv">3</span>], [<span class="dv">5</span>, <span class="dv">43</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> cache_file(url: <span class="bu">str</span>, fname: <span class="bu">str</span>, dir_: <span class="bu">str</span> <span class="op">=</span> <span class="st">'./__cache'</span>) <span class="op">-&gt;</span> <span class="bu">str</span>:</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"""Cache the file at given url in the given dir_ with the given</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co">    fname and return the local path.</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co">    Preconditions:</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">    - dir_ exists</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">    """</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>    local_path <span class="op">=</span> <span class="ss">f'</span><span class="sc">{</span>dir_<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>fname<span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>    <span class="cf">if</span> fname <span class="kw">not</span> <span class="kw">in</span> os.listdir(dir_):</span>
+<span id="cb2-10"><a href="#cb2-10"></a>        r <span class="op">=</span> requests.get(url, allow_redirects<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a>        <span class="bu">open</span>(local_path, <span class="st">'wb'</span>).write(r.content)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    <span class="cf">return</span> local_path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="main" class="level2">
 <h2 class="anchored" data-anchor-id="main">Main</h2>
+<section id="initialise-the-labels" class="level3">
+<h3 class="anchored" data-anchor-id="initialise-the-labels">Initialise the labels</h3>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>levels <span class="op">=</span> np.array([<span class="st">'married'</span>, <span class="st">'not married'</span>])</span>
+<span id="cb3-2"><a href="#cb3-2"></a>exposures <span class="op">=</span> np.array([<span class="st">'over 100mg'</span>, <span class="st">'under 100mg'</span>])</span>
+<span id="cb3-3"><a href="#cb3-3"></a>casecons <span class="op">=</span> np.array([<span class="st">'fatality'</span>, <span class="st">'no fatality'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="cache-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="cache-the-data">Cache the data</h3>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>path <span class="op">=</span> cache_file(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>        url<span class="op">=</span>(<span class="st">'https://raw.githubusercontent.com/ljk233/laughingrook-datasets'</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>             <span class="op">+</span> <span class="st">'/main/m249/medical/drinkdriving.csv'</span>),</span>
+<span id="cb4-4"><a href="#cb4-4"></a>        fname<span class="op">=</span><span class="st">'drinkdriving.csv'</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="load-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
+<p>Use the cached file to initialise a <code>DataFrame</code>.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>data <span class="op">=</span> pd.read_csv(path)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 8 entries, 0 to 7
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype 
+---  ------    --------------  ----- 
+ 0   n         8 non-null      int64 
+ 1   level     8 non-null      object
+ 2   exposure  8 non-null      object
+ 3   casecon   8 non-null      object
+dtypes: int64(1), object(3)
+memory usage: 384.0+ bytes</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>n</th>
+      <th>level</th>
+      <th>exposure</th>
+      <th>casecon</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>4</td>
+      <td>married</td>
+      <td>over 100mg</td>
+      <td>fatality</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>5</td>
+      <td>married</td>
+      <td>over 100mg</td>
+      <td>no fatality</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>married</td>
+      <td>under 100mg</td>
+      <td>fatality</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>103</td>
+      <td>married</td>
+      <td>under 100mg</td>
+      <td>no fatality</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10</td>
+      <td>not married</td>
+      <td>over 100mg</td>
+      <td>fatality</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>3</td>
+      <td>not married</td>
+      <td>over 100mg</td>
+      <td>no fatality</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>5</td>
+      <td>not married</td>
+      <td>under 100mg</td>
+      <td>fatality</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>43</td>
+      <td>not married</td>
+      <td>under 100mg</td>
+      <td>no fatality</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="prepare-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="prepare-the-data">Prepare the data</h3>
+<p>Initialise a new <code>DataFrame</code> using <em>data</em>, with the columns <em>level</em>, <em>exposure</em>, <em>disease</em> as ordered <code>Categorical</code> variables to ensure that the data will be sorted as expected.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>cat_data <span class="op">=</span> pd.DataFrame().assign(</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    n<span class="op">=</span>data[<span class="st">'n'</span>].to_numpy(),</span>
+<span id="cb8-3"><a href="#cb8-3"></a>    level<span class="op">=</span>pd.Categorical(data[<span class="st">'level'</span>], levels, ordered<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    exposure<span class="op">=</span>pd.Categorical(data[<span class="st">'exposure'</span>], exposures, ordered<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>    casecon<span class="op">=</span>pd.Categorical(data[<span class="st">'casecon'</span>], casecons, ordered<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-6"><a href="#cb8-6"></a>).sort_values(</span>
+<span id="cb8-7"><a href="#cb8-7"></a>    by<span class="op">=</span>[<span class="st">'level'</span>, <span class="st">'exposure'</span>, <span class="st">'casecon'</span>]</span>
+<span id="cb8-8"><a href="#cb8-8"></a>)</span>
+<span id="cb8-9"><a href="#cb8-9"></a>cat_data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Int64Index: 8 entries, 0 to 7
+Data columns (total 4 columns):
+ #   Column    Non-Null Count  Dtype   
+---  ------    --------------  -----   
+ 0   n         8 non-null      int64   
+ 1   level     8 non-null      category
+ 2   exposure  8 non-null      category
+ 3   casecon   8 non-null      category
+dtypes: category(3), int64(1)
+memory usage: 524.0 bytes</code></pre>
+</div>
+</div>
+<p>Output pivot tables with marginal totals.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="cf">for</span> level <span class="kw">in</span> levels:</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="bu">print</span>(</span>
+<span id="cb10-3"><a href="#cb10-3"></a>        cat_data.query(</span>
+<span id="cb10-4"><a href="#cb10-4"></a>            <span class="st">'level == @level'</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>        ).pivot_table(</span>
+<span id="cb10-6"><a href="#cb10-6"></a>            values<span class="op">=</span><span class="st">'n'</span>,</span>
+<span id="cb10-7"><a href="#cb10-7"></a>            index<span class="op">=</span>[<span class="st">'level'</span>, <span class="st">'exposure'</span>],</span>
+<span id="cb10-8"><a href="#cb10-8"></a>            columns<span class="op">=</span><span class="st">'casecon'</span>,</span>
+<span id="cb10-9"><a href="#cb10-9"></a>            aggfunc<span class="op">=</span><span class="st">'sum'</span>,</span>
+<span id="cb10-10"><a href="#cb10-10"></a>            margins<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb10-11"><a href="#cb10-11"></a>            margins_name<span class="op">=</span><span class="st">'subtotal'</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>        ).query(</span>
+<span id="cb10-13"><a href="#cb10-13"></a>            <span class="st">"level in [@level, 'subtotal']"</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>        ),</span>
+<span id="cb10-15"><a href="#cb10-15"></a>        <span class="st">'</span><span class="ch">\n</span><span class="st">'</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>casecon               fatality  no fatality  subtotal
+level    exposure                                    
+married  over 100mg          4            5       9.0
+         under 100mg         5          103     108.0
+subtotal                     9          108     117.0 
+
+casecon                  fatality  no fatality  subtotal
+level       exposure                                    
+not married over 100mg         10            3      13.0
+            under 100mg         5           43      48.0
+subtotal                       15           46      61.0 
+</code></pre>
+</div>
+</div>
+</section>
 <section id="initialise-the-contingency-tables" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-the-contingency-tables">Initialise the contingency tables</h3>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>ctables <span class="op">=</span> sm.stats.StratifiedTable([MARRIED, NOT_MARRIED])</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(ctables.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Initialise contingency tables for different views of the data.</p>
+<p>Variable <em>level_tables</em> is collection of level-specific 2x2 contingency tables.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>_get_table <span class="op">=</span> <span class="kw">lambda</span> df, level: (</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    sm.stats.Table2x2(</span>
+<span id="cb12-3"><a href="#cb12-3"></a>        df.query(<span class="st">'level == @level'</span>)[<span class="st">'n'</span>].to_numpy().reshape((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    )</span>
+<span id="cb12-5"><a href="#cb12-5"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>level_tables <span class="op">=</span> [_get_table(cat_data, level) <span class="cf">for</span> level <span class="kw">in</span> levels]</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="cf">for</span> table, level <span class="kw">in</span> <span class="bu">zip</span>(level_tables, levels):</span>
+<span id="cb12-8"><a href="#cb12-8"></a>    <span class="bu">print</span>(<span class="ss">f'level=</span><span class="sc">{</span>level<span class="sc">}</span><span class="ch">\n</span><span class="sc">{</span>table<span class="sc">}</span><span class="ch">\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>level=married
+A 2x2 contingency table with counts:
+[[  4.   5.]
+ [  5. 103.]]
+
+level=not married
+A 2x2 contingency table with counts:
+[[10.  3.]
+ [ 5. 43.]]
+</code></pre>
+</div>
+</div>
+<p>Variable <em>aggregated_table</em> is a 2x2 contingency table of the aggregated data.</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>aggregated_table <span class="op">=</span> sm.stats.Table2x2(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    cat_data.groupby([<span class="st">'exposure'</span>, <span class="st">'casecon'</span>])</span>
+<span id="cb14-3"><a href="#cb14-3"></a>            .<span class="bu">sum</span>()</span>
+<span id="cb14-4"><a href="#cb14-4"></a>            .to_numpy()</span>
+<span id="cb14-5"><a href="#cb14-5"></a>            .reshape((<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb14-6"><a href="#cb14-6"></a>)</span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="bu">print</span>(aggregated_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A 2x2 contingency table with counts:
+[[ 14.   8.]
+ [ 10. 146.]]</code></pre>
+</div>
+</div>
+<p>Variable <em>strat_table</em> is a 2x2x2 contingency table that is stratified by level.</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>strat_table <span class="op">=</span> (</span>
+<span id="cb16-2"><a href="#cb16-2"></a>    sm.stats.StratifiedTable(</span>
+<span id="cb16-3"><a href="#cb16-3"></a>                data.sort_values(by<span class="op">=</span>[<span class="st">'exposure'</span>, <span class="st">'casecon'</span>, <span class="st">'level'</span>])[<span class="st">'n'</span>]</span>
+<span id="cb16-4"><a href="#cb16-4"></a>                    .to_numpy()</span>
+<span id="cb16-5"><a href="#cb16-5"></a>                    .reshape((<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    )</span>
+<span id="cb16-7"><a href="#cb16-7"></a>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a><span class="bu">print</span>(strat_table.table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[[  4.  10.]
   [  5.   3.]]
@@ -307,16 +633,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="odds-ratios" class="level3">
 <h3 class="anchored" data-anchor-id="odds-ratios">Odds ratios</h3>
-<p>Return point and interval estimates of the stratum-specific odds ratios.</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>res <span class="op">=</span> pd.DataFrame(index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>])</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="cf">for</span> level, arr <span class="kw">in</span> <span class="bu">zip</span>([<span class="st">'married'</span>, <span class="st">'not married'</span>], [MARRIED, NOT_MARRIED]):</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    ctable <span class="op">=</span> sm.stats.Table2x2(arr)</span>
-<span id="cb5-4"><a href="#cb5-4"></a>    res[level] <span class="op">=</span> [ctable.oddsratio,</span>
-<span id="cb5-5"><a href="#cb5-5"></a>                  ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
-<span id="cb5-6"><a href="#cb5-6"></a>                  ctable.oddsratio_confint()[<span class="dv">1</span>]]</span>
-<span id="cb5-7"><a href="#cb5-7"></a>res.T</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
+<p>Return point and interval estimates of the level-specific, unadjusted, and adjusted odds ratios.</p>
+<p>Return the level-specific odds ratios.</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>_get_measure <span class="op">=</span> <span class="kw">lambda</span> table: (</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    np.array([table.oddsratio,</span>
+<span id="cb18-3"><a href="#cb18-3"></a>              table.oddsratio_confint()[<span class="dv">0</span>],</span>
+<span id="cb18-4"><a href="#cb18-4"></a>              table.oddsratio_confint()[<span class="dv">1</span>]]</span>
+<span id="cb18-5"><a href="#cb18-5"></a>    )</span>
+<span id="cb18-6"><a href="#cb18-6"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7"></a>pd.DataFrame(</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    data<span class="op">=</span>[_get_measure(table).<span class="bu">round</span>(<span class="dv">5</span>) <span class="cf">for</span> table <span class="kw">in</span> level_tables],</span>
+<span id="cb18-9"><a href="#cb18-9"></a>    columns<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb18-10"><a href="#cb18-10"></a>    index<span class="op">=</span>pd.Index(levels, name<span class="op">=</span><span class="st">'level'</span>)</span>
+<span id="cb18-11"><a href="#cb18-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
 
 <div>
 
@@ -328,94 +659,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <th>lcb</th>
       <th>ucb</th>
     </tr>
+    <tr>
+      <th>level</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
   </thead>
   <tbody>
     <tr>
       <th>married</th>
-      <td>16.480000</td>
-      <td>3.354211</td>
-      <td>80.969975</td>
+      <td>16.48000</td>
+      <td>3.35421</td>
+      <td>80.96998</td>
     </tr>
     <tr>
       <th>not married</th>
-      <td>28.666667</td>
-      <td>5.856619</td>
-      <td>140.316070</td>
+      <td>28.66667</td>
+      <td>5.85662</td>
+      <td>140.31607</td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Return point and interval estimates of the crude odds ratio.</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>ctable <span class="op">=</span> sm.stats.Table2x2(MARRIED <span class="op">+</span> NOT_MARRIED)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>pd.Series(</span>
-<span id="cb6-3"><a href="#cb6-3"></a>    data<span class="op">=</span>[ctable.oddsratio,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>          ctable.oddsratio_confint()[<span class="dv">0</span>],</span>
-<span id="cb6-5"><a href="#cb6-5"></a>          ctable.oddsratio_confint()[<span class="dv">1</span>]],</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    name<span class="op">=</span><span class="st">'odds ratio'</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>point    25.550000
-lcb       8.682174
-ucb      75.188827
-Name: odds ratio, dtype: float64</code></pre>
+<p>Return the unadjusted odds ratio.</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>pd.Series(</span>
+<span id="cb19-2"><a href="#cb19-2"></a>    data<span class="op">=</span>[aggregated_table.oddsratio,</span>
+<span id="cb19-3"><a href="#cb19-3"></a>          aggregated_table.oddsratio_confint()[<span class="dv">0</span>],</span>
+<span id="cb19-4"><a href="#cb19-4"></a>          aggregated_table.oddsratio_confint()[<span class="dv">1</span>]],</span>
+<span id="cb19-5"><a href="#cb19-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb19-6"><a href="#cb19-6"></a>    name<span class="op">=</span><span class="st">'unadjusted odds ratio'</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>).<span class="bu">round</span>(</span>
+<span id="cb19-8"><a href="#cb19-8"></a>    <span class="dv">5</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+<pre><code>point    25.55000
+lcb       8.68217
+ucb      75.18883
+Name: unadjusted odds ratio, dtype: float64</code></pre>
 </div>
 </div>
-<p>Return point and interval estimates of the adjusted (Mantel–Haenszel) odds ratio.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>pd.Series(</span>
-<span id="cb8-2"><a href="#cb8-2"></a>    data<span class="op">=</span>[ctables.oddsratio_pooled,</span>
-<span id="cb8-3"><a href="#cb8-3"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">0</span>],</span>
-<span id="cb8-4"><a href="#cb8-4"></a>          ctables.oddsratio_pooled_confint()[<span class="dv">1</span>]],</span>
-<span id="cb8-5"><a href="#cb8-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
-<span id="cb8-6"><a href="#cb8-6"></a>    name<span class="op">=</span><span class="st">'adjusted odds ratio'</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>point    23.000610
-lcb       7.465154
-ucb      70.866332
+<p>Return the adjusted odds ratio.</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>pd.Series(</span>
+<span id="cb21-2"><a href="#cb21-2"></a>    data<span class="op">=</span>[strat_table.oddsratio_pooled,</span>
+<span id="cb21-3"><a href="#cb21-3"></a>           strat_table.oddsratio_pooled_confint()[<span class="dv">0</span>],</span>
+<span id="cb21-4"><a href="#cb21-4"></a>           strat_table.oddsratio_pooled_confint()[<span class="dv">1</span>]],</span>
+<span id="cb21-5"><a href="#cb21-5"></a>    index<span class="op">=</span>[<span class="st">'point'</span>, <span class="st">'lcb'</span>, <span class="st">'ucb'</span>],</span>
+<span id="cb21-6"><a href="#cb21-6"></a>    name<span class="op">=</span><span class="st">'adjusted odds ratio'</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>).<span class="bu">round</span>(</span>
+<span id="cb21-8"><a href="#cb21-8"></a>    <span class="dv">3</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>point    23.001
+lcb       7.465
+ucb      70.866
 Name: adjusted odds ratio, dtype: float64</code></pre>
 </div>
 </div>
 </section>
-<section id="test-for-no-association" class="level3">
-<h3 class="anchored" data-anchor-id="test-for-no-association">Test for no association</h3>
-<p>This is the Mantel–Haenszel test.</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>res <span class="op">=</span> ctables.test_null_odds(correction<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb10-2"><a href="#cb10-2"></a>pd.Series(</span>
-<span id="cb10-3"><a href="#cb10-3"></a>    data<span class="op">=</span>[res.statistic, res.pvalue],</span>
-<span id="cb10-4"><a href="#cb10-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
-<span id="cb10-5"><a href="#cb10-5"></a>    name<span class="op">=</span><span class="st">'test for no association'</span>,</span>
-<span id="cb10-6"><a href="#cb10-6"></a>).<span class="bu">round</span>(</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    <span class="dv">5</span></span>
-<span id="cb10-8"><a href="#cb10-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>statistc    36.60431
-pvalue       0.00000
-Name: test for no association, dtype: float64</code></pre>
+<section id="hypothesis-testing" class="level3">
+<h3 class="anchored" data-anchor-id="hypothesis-testing">Hypothesis testing</h3>
+<p>Return the results of a test of no association and test of homogeneity.</p>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>_r <span class="op">=</span> strat_table.test_null_odds(correction<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb23-2"><a href="#cb23-2"></a>pd.Series(</span>
+<span id="cb23-3"><a href="#cb23-3"></a>    data<span class="op">=</span>[_r.statistic, _r.pvalue],</span>
+<span id="cb23-4"><a href="#cb23-4"></a>    index<span class="op">=</span>[<span class="st">'statistic'</span>, <span class="st">'pvalue'</span>],</span>
+<span id="cb23-5"><a href="#cb23-5"></a>    name<span class="op">=</span><span class="st">'test of no association'</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>).<span class="bu">round</span>(</span>
+<span id="cb23-7"><a href="#cb23-7"></a>    <span class="dv">3</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>statistic    36.604
+pvalue        0.000
+Name: test of no association, dtype: float64</code></pre>
 </div>
 </div>
-</section>
-<section id="test-for-homogeneity" class="level3">
-<h3 class="anchored" data-anchor-id="test-for-homogeneity">Test for homogeneity</h3>
-<p>This is Tarone’s test.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>res <span class="op">=</span> ctables.test_equal_odds(adjust<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb12-2"><a href="#cb12-2"></a>pd.Series(</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    data<span class="op">=</span>[res.statistic, res.pvalue],</span>
-<span id="cb12-4"><a href="#cb12-4"></a>    index<span class="op">=</span>[<span class="st">'statistc'</span>, <span class="st">'pvalue'</span>],</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    name<span class="op">=</span><span class="st">'test for homogeneity'</span></span>
-<span id="cb12-6"><a href="#cb12-6"></a>).<span class="bu">round</span>(</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    <span class="dv">5</span></span>
-<span id="cb12-8"><a href="#cb12-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>statistc    0.23557
-pvalue      0.62742
-Name: test for homogeneity, dtype: float64</code></pre>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>_r <span class="op">=</span> strat_table.test_equal_odds(adjust<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a>pd.Series(</span>
+<span id="cb25-3"><a href="#cb25-3"></a>    data<span class="op">=</span>[_r.statistic, _r.pvalue],</span>
+<span id="cb25-4"><a href="#cb25-4"></a>    index<span class="op">=</span>[<span class="st">'statistic'</span>, <span class="st">'pvalue'</span>],</span>
+<span id="cb25-5"><a href="#cb25-5"></a>    name<span class="op">=</span><span class="st">'test of homogeneity'</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>).<span class="bu">round</span>(</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="dv">3</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+<pre><code>statistic    0.236
+pvalue       0.627
+Name: test of homogeneity, dtype: float64</code></pre>
 </div>
 </div>
 </section>
@@ -423,14 +759,17 @@ Name: test for homogeneity, dtype: float64</code></pre>
 <section id="references" class="level2">
 <h2 class="anchored" data-anchor-id="references">References</h2>
 <p>McCarroll, J.R. and Haddon Jr, W., 1962. A controlled study of fatal automobile accidents in New York City. Journal of chronic diseases, 15(8), pp.811-826.</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="op">%</span>load_ext watermark</span>
-<span id="cb14-2"><a href="#cb14-2"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="op">%</span>load_ext watermark</span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>sys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
+<pre><code>The watermark extension is already loaded. To reload it, use:
+  %reload_ext watermark
+sys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
+requests   : 2.28.1
+statsmodels: 0.13.2
 numpy      : 1.23.2
 pandas     : 1.4.3
-statsmodels: 0.13.2
 </code></pre>
 </div>
 </div>
@@ -442,8 +781,12 @@ statsmodels: 0.13.2
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>See <a href="https://www.statsmodels.org/v0.13.0/generated/statsmodels.stats.contingency_tables.StratifiedTable.html#statsmodels.stats.contingency_tables.StratifiedTable">statsmodels.stats.contingency_tables.StratifiedTable</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>See <a href="https://www.statsmodels.org/v0.13.0/generated/statsmodels.stats.contingency_tables.Table2x2.html#statsmodels.stats.contingency_tables.Table2x2">statsmodels.stats.contingency_tables.Table2x2</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>These are convenience functions to prevent repetition of complicated <code>DataFrame</code> constructions<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The order of the levels array is not particularly important, but we left it here to be consistent throughout<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>See <a href="https://www.statsmodels.org/v0.13.0/generated/statsmodels.stats.contingency_tables.Table2x2.html">statsmodels.stats.contingency_tables.Table2x2</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>See <a href="https://www.statsmodels.org/v0.13.0/generated/statsmodels.stats.contingency_tables.StratifiedTable.html">statsmodels.stats.contingency_tables.StratifiedTable</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>This is the crude odds ratio<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>This is the Mantel-Haenszel odds ratio<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
