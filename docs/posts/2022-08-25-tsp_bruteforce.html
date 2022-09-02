@@ -234,8 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> random <span class="im">as</span> rand</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> math</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> itertools <span class="im">as</span> it</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="op">%</span>load_ext watermark</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="function" class="level2">
@@ -284,7 +283,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="bu">print</span>(<span class="ss">f"Shortest path from the origin = </span><span class="sc">{</span>bruteforce_tsp(g, <span class="st">'origin'</span>)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Shortest path from the origin = 22</code></pre>
+<pre><code>Shortest path from the origin = 27</code></pre>
 </div>
 </div>
 </section>
@@ -298,21 +297,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-5"><a href="#cb7-5"></a>    <span class="op">%</span>timeit bruteforce_tsp(g, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>|nodes(g)| = 4
-8 µs ± 40.4 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
+8.19 µs ± 61.5 ns per loop (mean ± std. dev. of 7 runs, 100,000 loops each)
 |nodes(g)| = 6
-202 µs ± 532 ns per loop (mean ± std. dev. of 7 runs, 10,000 loops each)
+206 µs ± 1.51 µs per loop (mean ± std. dev. of 7 runs, 1,000 loops each)
 |nodes(g)| = 8
-10.9 ms ± 38.2 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+11.1 ms ± 84.6 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 |nodes(g)| = 10
-960 ms ± 7.42 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
+969 ms ± 6.09 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="bu">print</span>(<span class="st">'kernel</span><span class="ch">\t</span><span class="st">: lr_compsci'</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a><span class="op">%</span>watermark <span class="op">--</span>iversions</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="op">%</span>load_ext watermark</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>kernel  : lr_compsci
-sys     : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
+<pre><code>sys     : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
 networkx: 2.8.6
 </code></pre>
 </div>
