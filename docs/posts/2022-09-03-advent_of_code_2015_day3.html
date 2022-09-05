@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liam Kelly">
-<meta name="dcterms.date" content="2022-05-28">
+<meta name="dcterms.date" content="2022-09-03">
 
 <title>LaughingRook - Advent of Code 2015, Day 3</title>
 <style>
@@ -207,7 +207,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 28, 2022</p>
+      <p class="date">September 3, 2022</p>
     </div>
   </div>
     
@@ -264,8 +264,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>line <span class="op">=</span> lr.datasets.get_advent_input(<span class="dv">2015</span>, <span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(<span class="ss">f"line = '</span><span class="sc">{</span>line[:<span class="dv">5</span>]<span class="sc">}</span><span class="ss">'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>file was cached.
-line = '^^&lt;&lt;v'</code></pre>
+<pre><code>line = '^^&lt;&lt;v'</code></pre>
 </div>
 </div>
 </section>
@@ -298,9 +297,9 @@ line = '^^&lt;&lt;v'</code></pre>
 <span id="cb10-4"><a href="#cb10-4"></a><span class="op">%</span>timeit <span class="bu">len</span>(deliver_presents(line[::<span class="dv">2</span>]).union(deliver_presents(line[<span class="dv">1</span>::<span class="dv">2</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Part 1 =
-2.11 ms ± 28.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
+2.09 ms ± 38 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 Part 2 =
-2.2 ms ± 17.4 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
+2.16 ms ± 12.8 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)</code></pre>
 </div>
 </div>
 

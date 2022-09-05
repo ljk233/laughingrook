@@ -182,8 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#cache-the-data" id="toc-cache-the-data" class="nav-link" data-scroll-target="#cache-the-data">Cache the data</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
   <li><a href="#prepare-the-data" id="toc-prepare-the-data" class="nav-link" data-scroll-target="#prepare-the-data">Prepare the data</a></li>
-  <li><a href="#dose-specific-odds-and-odds-ratio" id="toc-dose-specific-odds-and-odds-ratio" class="nav-link" data-scroll-target="#dose-specific-odds-and-odds-ratio">Dose-specific odds and odds ratio</a></li>
-  <li><a href="#plot-the-dose-specific-odds" id="toc-plot-the-dose-specific-odds" class="nav-link" data-scroll-target="#plot-the-dose-specific-odds">Plot the dose-specific odds</a></li>
+  <li><a href="#dose-specific-odds-and-odds-ratios" id="toc-dose-specific-odds-and-odds-ratios" class="nav-link" data-scroll-target="#dose-specific-odds-and-odds-ratios">Dose-specific odds and odds ratios</a></li>
   <li><a href="#test-for-no-linear-trend" id="toc-test-for-no-linear-trend" class="nav-link" data-scroll-target="#test-for-no-linear-trend">Test for no linear trend</a></li>
   </ul></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
@@ -238,7 +237,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> st</span>
 <span id="cb1-6"><a href="#cb1-6"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="im">from</span> numpy.typing <span class="im">import</span> ArrayLike</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="functions" class="level2">
@@ -257,38 +257,60 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-11"><a href="#cb2-11"></a>        <span class="bu">open</span>(local_path, <span class="st">'wb'</span>).write(r.content)</span>
 <span id="cb2-12"><a href="#cb2-12"></a>    <span class="cf">return</span> local_path</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">def</span> get_odds_arr(df: pd.DataFrame) <span class="op">-&gt;</span> ArrayLike:</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="co">"""Return the dose-specific odds.</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">    Pre-conditions:</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">    - (dose, n_cases, n_controls) is a permutation of columns(df)</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">    """</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>    <span class="cf">return</span> df[<span class="st">'n_cases'</span>].div(df[<span class="st">'n_controls'</span>]).to_numpy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> get_dose_odds_ratios_arr(df: pd.DataFrame, ref_dose: <span class="bu">str</span>) <span class="op">-&gt;</span> ArrayLike:</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    <span class="co">"""Return the dose-specific odds ratios.</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">    Pre-conditions:</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">    - (dose, n_cases, n_controls) is a permutation of columns(df)</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">    - ref_dose in df(dose)</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">    """</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>    odds_arr <span class="op">=</span> df.pipe(get_odds_arr)</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    idx_ref_odds <span class="op">=</span> np.where(df[<span class="st">'dose'</span>].to_numpy() <span class="op">==</span> ref_dose)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    ref_odds <span class="op">=</span> odds_arr[idx_ref_odds]</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    <span class="cf">return</span> odds_arr <span class="op">/</span> ref_odds</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="main" class="level2">
 <h2 class="anchored" data-anchor-id="main">Main</h2>
 <section id="set-theme" class="level3">
 <h3 class="anchored" data-anchor-id="set-theme">Set theme</h3>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>sns.set_theme()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>sns.set_theme()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="initialise-the-labels" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-the-labels">Initialise the labels</h3>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>doses <span class="op">=</span> [<span class="st">'minimal'</span>, <span class="st">'moderate'</span>, <span class="st">'high'</span>, <span class="st">'severe'</span>, <span class="st">'very severe'</span>, <span class="st">'extreme'</span>]</span>
-<span id="cb4-2"><a href="#cb4-2"></a>ref_dose <span class="op">=</span> <span class="st">'minimal'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>doses <span class="op">=</span> [<span class="st">'minimal'</span>, <span class="st">'moderate'</span>, <span class="st">'high'</span>, <span class="st">'severe'</span>, <span class="st">'very severe'</span>, <span class="st">'extreme'</span>]</span>
+<span id="cb6-2"><a href="#cb6-2"></a>ref_dose <span class="op">=</span> <span class="st">'minimal'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="cache-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="cache-the-data">Cache the data</h3>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>local_path <span class="op">=</span> cache_file(</span>
-<span id="cb5-2"><a href="#cb5-2"></a>        url<span class="op">=</span>(<span class="st">'https://raw.githubusercontent.com/ljk233/laughingrook-datasets'</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>             <span class="op">+</span> <span class="st">'/main/m249/medical/ptsd.csv'</span>),</span>
-<span id="cb5-4"><a href="#cb5-4"></a>        fname<span class="op">=</span><span class="st">'ptsd.csv'</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>local_path <span class="op">=</span> cache_file(</span>
+<span id="cb7-2"><a href="#cb7-2"></a>        url<span class="op">=</span>(<span class="st">'https://raw.githubusercontent.com/ljk233/laughingrook-datasets'</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>             <span class="op">+</span> <span class="st">'/main/m249/medical/ptsd.csv'</span>),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        fname<span class="op">=</span><span class="st">'ptsd.csv'</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="load-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="load-the-data">Load the data</h3>
 <p>Use the cached file to initialise a <code>DataFrame</code>.</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>data <span class="op">=</span> pd.read_csv(local_path)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>data <span class="op">=</span> pd.read_csv(local_path)</span>
+<span id="cb8-2"><a href="#cb8-2"></a>data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
 RangeIndex: 6 entries, 0 to 5
@@ -302,9 +324,9 @@ dtypes: int64(2), object(1)
 memory usage: 272.0+ bytes</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 
 <div>
 
@@ -363,99 +385,43 @@ memory usage: 272.0+ bytes</code></pre>
 <section id="prepare-the-data" class="level3">
 <h3 class="anchored" data-anchor-id="prepare-the-data">Prepare the data</h3>
 <p>Initialise a new <code>DataFrame</code> using <em>data</em>, with the column <em>dose</em> as an ordered <code>Categorical</code> index to ensure that the data will be sorted as expected.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>cat_data <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb9-2"><a href="#cb9-2"></a>    index<span class="op">=</span>pd.Index(</span>
-<span id="cb9-3"><a href="#cb9-3"></a>        pd.Categorical(data[<span class="st">'dose'</span>], doses, ordered<span class="op">=</span><span class="va">True</span>),</span>
-<span id="cb9-4"><a href="#cb9-4"></a>        name<span class="op">=</span><span class="st">'dose'</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>    )</span>
-<span id="cb9-6"><a href="#cb9-6"></a>).assign(</span>
-<span id="cb9-7"><a href="#cb9-7"></a>    n_cases<span class="op">=</span>data[<span class="st">'n_cases'</span>].to_numpy(),</span>
-<span id="cb9-8"><a href="#cb9-8"></a>    n_controls<span class="op">=</span>data[<span class="st">'n_controls'</span>].to_numpy()</span>
-<span id="cb9-9"><a href="#cb9-9"></a>).sort_values(</span>
-<span id="cb9-10"><a href="#cb9-10"></a>    by<span class="op">=</span>[<span class="st">'dose'</span>],</span>
-<span id="cb9-11"><a href="#cb9-11"></a>    ascending<span class="op">=</span><span class="va">False</span></span>
-<span id="cb9-12"><a href="#cb9-12"></a>)</span>
-<span id="cb9-13"><a href="#cb9-13"></a>cat_data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>cat_data <span class="op">=</span> pd.DataFrame().assign(</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    dose<span class="op">=</span>pd.Categorical(data[<span class="st">'dose'</span>], doses, ordered<span class="op">=</span><span class="va">True</span>),</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    n_cases<span class="op">=</span>data[<span class="st">'n_cases'</span>].to_numpy(),</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    n_controls<span class="op">=</span>data[<span class="st">'n_controls'</span>].to_numpy()</span>
+<span id="cb11-5"><a href="#cb11-5"></a>).sort_values(</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    by<span class="op">=</span>[<span class="st">'dose'</span>],</span>
+<span id="cb11-7"><a href="#cb11-7"></a>    ascending<span class="op">=</span><span class="va">False</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>)</span>
+<span id="cb11-9"><a href="#cb11-9"></a>cat_data.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
-CategoricalIndex: 6 entries, extreme to minimal
-Data columns (total 2 columns):
- #   Column      Non-Null Count  Dtype
----  ------      --------------  -----
- 0   n_cases     6 non-null      int64
- 1   n_controls  6 non-null      int64
-dtypes: int64(2)
-memory usage: 322.0 bytes</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>cat_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>n_cases</th>
-      <th>n_controls</th>
-    </tr>
-    <tr>
-      <th>dose</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>extreme</th>
-      <td>174</td>
-      <td>595</td>
-    </tr>
-    <tr>
-      <th>very severe</th>
-      <td>260</td>
-      <td>1155</td>
-    </tr>
-    <tr>
-      <th>severe</th>
-      <td>362</td>
-      <td>2688</td>
-    </tr>
-    <tr>
-      <th>high</th>
-      <td>97</td>
-      <td>1286</td>
-    </tr>
-    <tr>
-      <th>moderate</th>
-      <td>180</td>
-      <td>2783</td>
-    </tr>
-    <tr>
-      <th>minimal</th>
-      <td>95</td>
-      <td>2749</td>
-    </tr>
-  </tbody>
-</table>
-</div>
+Int64Index: 6 entries, 0 to 5
+Data columns (total 3 columns):
+ #   Column      Non-Null Count  Dtype   
+---  ------      --------------  -----   
+ 0   dose        6 non-null      category
+ 1   n_cases     6 non-null      int64   
+ 2   n_controls  6 non-null      int64   
+dtypes: category(1), int64(2)
+memory usage: 370.0 bytes</code></pre>
 </div>
 </div>
 <p>Output data with marginal subtotals.</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>pd.pivot_table(</span>
-<span id="cb12-2"><a href="#cb12-2"></a>    data<span class="op">=</span>cat_data.reset_index().melt(id_vars<span class="op">=</span><span class="st">'dose'</span>, var_name<span class="op">=</span><span class="st">'n_casecons'</span>),</span>
-<span id="cb12-3"><a href="#cb12-3"></a>    index<span class="op">=</span><span class="st">'dose'</span>,</span>
-<span id="cb12-4"><a href="#cb12-4"></a>    columns<span class="op">=</span><span class="st">'n_casecons'</span>,</span>
-<span id="cb12-5"><a href="#cb12-5"></a>    values<span class="op">=</span><span class="st">'value'</span>,</span>
-<span id="cb12-6"><a href="#cb12-6"></a>    aggfunc<span class="op">=</span><span class="st">'sum'</span>,</span>
-<span id="cb12-7"><a href="#cb12-7"></a>    margins<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb12-8"><a href="#cb12-8"></a>    margins_name<span class="op">=</span><span class="st">'subtotal'</span></span>
-<span id="cb12-9"><a href="#cb12-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>cat_data.melt(</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    id_vars<span class="op">=</span><span class="st">'dose'</span>,</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    var_name<span class="op">=</span><span class="st">'n_casecons'</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>).pivot_table(</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    index<span class="op">=</span><span class="st">'dose'</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    columns<span class="op">=</span><span class="st">'n_casecons'</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>    values<span class="op">=</span><span class="st">'value'</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>    aggfunc<span class="op">=</span><span class="st">'sum'</span>,</span>
+<span id="cb13-9"><a href="#cb13-9"></a>    margins<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>    margins_name<span class="op">=</span><span class="st">'subtotal'</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
 
@@ -523,95 +489,15 @@ memory usage: 322.0 bytes</code></pre>
 </div>
 </div>
 </section>
-<section id="dose-specific-odds-and-odds-ratio" class="level3">
-<h3 class="anchored" data-anchor-id="dose-specific-odds-and-odds-ratio">Dose-specific odds and odds ratio</h3>
-<p>Get data with the odds and log(odds) of disease.</p>
-<div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> with_odds(df: pd.DataFrame) <span class="op">-&gt;</span> pd.DataFrame:</span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="cf">return</span> df.assign(</span>
-<span id="cb13-3"><a href="#cb13-3"></a>        odds<span class="op">=</span>df[<span class="st">'n_cases'</span>].div(df[<span class="st">'n_controls'</span>]),</span>
-<span id="cb13-4"><a href="#cb13-4"></a>        log_odds<span class="op">=</span>np.log(df[<span class="st">'n_cases'</span>].div(df[<span class="st">'n_controls'</span>]))</span>
-<span id="cb13-5"><a href="#cb13-5"></a>    )</span>
-<span id="cb13-6"><a href="#cb13-6"></a></span>
-<span id="cb13-7"><a href="#cb13-7"></a>cat_data.pipe(with_odds)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="11">
-
-<div>
-
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>n_cases</th>
-      <th>n_controls</th>
-      <th>odds</th>
-      <th>log_odds</th>
-    </tr>
-    <tr>
-      <th>dose</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>extreme</th>
-      <td>174</td>
-      <td>595</td>
-      <td>0.292437</td>
-      <td>-1.229506</td>
-    </tr>
-    <tr>
-      <th>very severe</th>
-      <td>260</td>
-      <td>1155</td>
-      <td>0.225108</td>
-      <td>-1.491174</td>
-    </tr>
-    <tr>
-      <th>severe</th>
-      <td>362</td>
-      <td>2688</td>
-      <td>0.134673</td>
-      <td>-2.004908</td>
-    </tr>
-    <tr>
-      <th>high</th>
-      <td>97</td>
-      <td>1286</td>
-      <td>0.075428</td>
-      <td>-2.584581</td>
-    </tr>
-    <tr>
-      <th>moderate</th>
-      <td>180</td>
-      <td>2783</td>
-      <td>0.064678</td>
-      <td>-2.738328</td>
-    </tr>
-    <tr>
-      <th>minimal</th>
-      <td>95</td>
-      <td>2749</td>
-      <td>0.034558</td>
-      <td>-3.365116</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Get data with the odds ratios.</p>
+<section id="dose-specific-odds-and-odds-ratios" class="level3">
+<h3 class="anchored" data-anchor-id="dose-specific-odds-and-odds-ratios">Dose-specific odds and odds ratios</h3>
+<p>Get data with the dose-specific odds, log(odds), and odds ratios.</p>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> with_odds_ratio(df: pd.DataFrame, ref_dose: <span class="bu">str</span>) <span class="op">-&gt;</span> pd.DataFrame:</span>
-<span id="cb14-2"><a href="#cb14-2"></a>    <span class="cf">return</span> df.assign(</span>
-<span id="cb14-3"><a href="#cb14-3"></a>        odds_ratio<span class="op">=</span>(df[<span class="st">'odds'</span>].to_numpy()</span>
-<span id="cb14-4"><a href="#cb14-4"></a>                    <span class="op">/</span> <span class="bu">float</span>(df.query(<span class="st">'dose == @ref_dose'</span>)[<span class="st">'odds'</span>]))</span>
-<span id="cb14-5"><a href="#cb14-5"></a>    )</span>
-<span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a>cat_data.pipe(with_odds).pipe(with_odds_ratio, ref_dose)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>cat_data.assign(</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    odds<span class="op">=</span>cat_data.pipe(get_odds_arr),</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    log_odds<span class="op">=</span>np.log(cat_data.pipe(get_odds_arr)),</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    odds_ratio<span class="op">=</span>cat_data.pipe(get_dose_odds_ratios_arr, ref_dose)</span>
+<span id="cb14-5"><a href="#cb14-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 
 <div>
@@ -620,24 +506,18 @@ memory usage: 322.0 bytes</code></pre>
   <thead>
     <tr>
       <th></th>
+      <th>dose</th>
       <th>n_cases</th>
       <th>n_controls</th>
       <th>odds</th>
       <th>log_odds</th>
       <th>odds_ratio</th>
     </tr>
-    <tr>
-      <th>dose</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
   </thead>
   <tbody>
     <tr>
-      <th>extreme</th>
+      <th>0</th>
+      <td>extreme</td>
       <td>174</td>
       <td>595</td>
       <td>0.292437</td>
@@ -645,7 +525,8 @@ memory usage: 322.0 bytes</code></pre>
       <td>8.462203</td>
     </tr>
     <tr>
-      <th>very severe</th>
+      <th>1</th>
+      <td>very severe</td>
       <td>260</td>
       <td>1155</td>
       <td>0.225108</td>
@@ -653,7 +534,8 @@ memory usage: 322.0 bytes</code></pre>
       <td>6.513921</td>
     </tr>
     <tr>
-      <th>severe</th>
+      <th>2</th>
+      <td>severe</td>
       <td>362</td>
       <td>2688</td>
       <td>0.134673</td>
@@ -661,7 +543,8 @@ memory usage: 322.0 bytes</code></pre>
       <td>3.897000</td>
     </tr>
     <tr>
-      <th>high</th>
+      <th>3</th>
+      <td>high</td>
       <td>97</td>
       <td>1286</td>
       <td>0.075428</td>
@@ -669,7 +552,8 @@ memory usage: 322.0 bytes</code></pre>
       <td>2.182639</td>
     </tr>
     <tr>
-      <th>moderate</th>
+      <th>4</th>
+      <td>moderate</td>
       <td>180</td>
       <td>2783</td>
       <td>0.064678</td>
@@ -677,7 +561,8 @@ memory usage: 322.0 bytes</code></pre>
       <td>1.871589</td>
     </tr>
     <tr>
-      <th>minimal</th>
+      <th>5</th>
+      <td>minimal</td>
       <td>95</td>
       <td>2749</td>
       <td>0.034558</td>
@@ -690,39 +575,42 @@ memory usage: 322.0 bytes</code></pre>
 </div>
 </div>
 </section>
-<section id="plot-the-dose-specific-odds" class="level3">
-<h3 class="anchored" data-anchor-id="plot-the-dose-specific-odds">Plot the dose-specific odds</h3>
-<div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>sns.relplot(</span>
-<span id="cb15-2"><a href="#cb15-2"></a>        data<span class="op">=</span>cat_data.pipe(with_odds),</span>
-<span id="cb15-3"><a href="#cb15-3"></a>        x<span class="op">=</span><span class="st">'dose'</span>,</span>
-<span id="cb15-4"><a href="#cb15-4"></a>        y<span class="op">=</span><span class="st">'log_odds'</span>,</span>
-<span id="cb15-5"><a href="#cb15-5"></a>        kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
-<span id="cb15-6"><a href="#cb15-6"></a>        height<span class="op">=</span><span class="dv">4</span>,</span>
-<span id="cb15-7"><a href="#cb15-7"></a>        aspect<span class="op">=</span><span class="fl">1.5</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a>)</span>
-<span id="cb15-9"><a href="#cb15-9"></a>plt.ylabel(<span class="st">'log(odds)'</span>)</span>
-<span id="cb15-10"><a href="#cb15-10"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<p><img src="2022-09-05-m249_b1p2_dose_response_analysis_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
-</div>
-</div>
-</section>
 <section id="test-for-no-linear-trend" class="level3">
 <h3 class="anchored" data-anchor-id="test-for-no-linear-trend">Test for no linear trend</h3>
+<p>Get the dose-specific log(odds).</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>log_odds <span class="op">=</span> np.log(cat_data.pipe(get_odds_arr))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Plot the dose-specific log(odds).</p>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>_r <span class="op">=</span> st.linregress(</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    x<span class="op">=</span>cat_data.pipe(with_odds)[<span class="st">'log_odds'</span>].to_numpy(),</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    y<span class="op">=</span>np.arange(<span class="dv">1</span>, cat_data.shape[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb16-4"><a href="#cb16-4"></a>)</span>
-<span id="cb16-5"><a href="#cb16-5"></a>pd.Series(</span>
-<span id="cb16-6"><a href="#cb16-6"></a>    data<span class="op">=</span>_r.pvalue.<span class="bu">round</span>(<span class="dv">6</span>),</span>
-<span id="cb16-7"><a href="#cb16-7"></a>    index<span class="op">=</span>[<span class="st">'pvalue'</span>],</span>
-<span id="cb16-8"><a href="#cb16-8"></a>    name<span class="op">=</span><span class="st">'test of no linear trend'</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>sns.relplot(</span>
+<span id="cb16-2"><a href="#cb16-2"></a>        x<span class="op">=</span>cat_data[<span class="st">'dose'</span>],</span>
+<span id="cb16-3"><a href="#cb16-3"></a>        y<span class="op">=</span>log_odds,</span>
+<span id="cb16-4"><a href="#cb16-4"></a>        kind<span class="op">=</span><span class="st">'scatter'</span>,</span>
+<span id="cb16-5"><a href="#cb16-5"></a>        height<span class="op">=</span><span class="dv">4</span>,</span>
+<span id="cb16-6"><a href="#cb16-6"></a>        aspect<span class="op">=</span><span class="fl">1.5</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a>plt.ylabel(<span class="st">'log(odds)'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="2022-09-12-m249_b1p2iii_dose_response_analysis_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>_r <span class="op">=</span> st.linregress(</span>
+<span id="cb17-2"><a href="#cb17-2"></a>    x<span class="op">=</span>log_odds,</span>
+<span id="cb17-3"><a href="#cb17-3"></a>    y<span class="op">=</span>np.arange(log_odds.shape[<span class="dv">0</span>])</span>
+<span id="cb17-4"><a href="#cb17-4"></a>)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>pd.Series(</span>
+<span id="cb17-6"><a href="#cb17-6"></a>    data<span class="op">=</span>_r.pvalue,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>    index<span class="op">=</span>[<span class="st">'pvalue'</span>],</span>
+<span id="cb17-8"><a href="#cb17-8"></a>    name<span class="op">=</span><span class="st">'test for no linear trend'</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>).<span class="bu">round</span>(</span>
+<span id="cb17-10"><a href="#cb17-10"></a>    <span class="dv">6</span></span>
+<span id="cb17-11"><a href="#cb17-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>pvalue    0.000111
-Name: test of no linear trend, dtype: float64</code></pre>
+Name: test for no linear trend, dtype: float64</code></pre>
 </div>
 </div>
 </section>

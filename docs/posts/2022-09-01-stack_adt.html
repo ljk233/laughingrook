@@ -169,12 +169,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summary-notes" id="toc-summary-notes" class="nav-link active" data-scroll-target="#summary-notes">Summary notes</a>
-  <ul class="collapse">
-  <li><a href="#what-is-a-stack" id="toc-what-is-a-stack" class="nav-link" data-scroll-target="#what-is-a-stack">What is a stack?</a></li>
-  <li><a href="#stack-adt" id="toc-stack-adt" class="nav-link" data-scroll-target="#stack-adt">Stack ADT</a></li>
+  <li><a href="#stack-adt" id="toc-stack-adt" class="nav-link active" data-scroll-target="#stack-adt">Stack ADT</a></li>
   <li><a href="#example-use" id="toc-example-use" class="nav-link" data-scroll-target="#example-use">Example use</a></li>
-  </ul></li>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
   <li><a href="#function" id="toc-function" class="nav-link" data-scroll-target="#function">Function</a></li>
   <li><a href="#main" id="toc-main" class="nav-link" data-scroll-target="#main">Main</a>
@@ -220,20 +216,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="summary-notes" class="level2">
-<h2 class="anchored" data-anchor-id="summary-notes">Summary notes</h2>
-<p>Implementation of the Stack ADT using a <code>deque</code>.</p>
-<section id="what-is-a-stack" class="level3">
-<h3 class="anchored" data-anchor-id="what-is-a-stack">What is a stack?</h3>
-<p>A stack is….</p>
+<p>Using Python’s <code>collections.deque</code>[^3] class as an implementation of the Stack ADT. A stack is:</p>
 <blockquote class="blockquote">
 <p>[A]n ordered collection of items where the addition of new items and the removal of existing items always takes place at the same end. This end is commonly referred to as the “top.” The end opposite the top is known as the “base.”</p>
-<p>The base of the stack is significant since items stored in the stack that are closer to the base represent those that have been in the stack the longest. The most recently added item is the one that is in position to be removed first. This ordering principle is sometimes called LIFO, last-in first-out. It provides an ordering based on length of time in the collection. Newer items are near the top, while older items are near the base.</p>
+<p>The base of the stack is significant since items stored in the stack that are closer to the base represent those that have been in the stack the longest. The most recently added item is the one that is in position to be removed first. This ordering principle is sometimes called <strong>LIFO, last-in first-out.</strong> It provides an ordering based on length of time in the collection. Newer items are near the top, while older items are near the base.</p>
 <p><a href="https://runestone.academy/ns/books/published/pythonds/BasicDS/WhatisaStack.html">What is a Stack?</a> (Problem Solving with Algorithms and Data Structures using Python)</p>
 </blockquote>
-</section>
 <section id="stack-adt" class="level3">
 <h3 class="anchored" data-anchor-id="stack-adt">Stack ADT</h3>
+<p>The table below shows the common operations of a stack. We take the left-hand side of the <code>deque</code> as the <em>base</em> of the stack, and the right-hand side as the <em>top</em>. We did this so that if a Python <code>list</code> is used rather than a <code>deque</code>, then the Python code would remain the same.</p>
 <table class="table">
 <colgroup>
 <col style="width: 12%">
@@ -254,19 +245,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td><code>s = deque()</code> <em>or</em> <code>s = []</code></td>
 </tr>
 <tr class="even">
+<td><em>size</em></td>
+<td>Return the number of items in the stack</td>
+<td><code>len(s)</code></td>
+</tr>
+<tr class="odd">
 <td><em>is empty</em></td>
 <td>Return true if the stack contains no items</td>
 <td><code>len(s) == 0</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><em>push</em></td>
 <td>Add <code>x</code> to the top of the stack</td>
 <td><code>s.append(x)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><em>peek</em></td>
 <td>Return the top item of the stack</td>
 <td><code>s[-1]</code></td>
+</tr>
+<tr class="even">
+<td><em>base</em></td>
+<td>Return the base item of the stack</td>
+<td><code>s[0]</code></td>
 </tr>
 <tr class="odd">
 <td><em>pop</em></td>
@@ -278,10 +279,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="example-use" class="level3">
 <h3 class="anchored" data-anchor-id="example-use">Example use</h3>
-<p>We showed one (classic) example of how a <em>Stack</em> can be used: How we can use a <em>Stack</em> to check if a given expression has balanced brackets.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>We took the following approach: Let <em>stack</em> be an empty stack. Iterate over <em>expression</em>. For each <em>char</em> in <em>expression</em>, if it is a left opening bracket, then push it in <em>stack</em>. Otherwise if it is a right closing bracket, then we check if it is the expected closing bracket, given the top of <em>stack</em>. If it is not the expected closing bracket, then <em>expression</em> is unbalanced. Otherwise, pop from <em>stack</em>.</p>
-<p>After the iteration is complete, we perfrom a final check that <em>stack</em> is empty. If <em>stack</em> is empty, then <em>expression</em> is balanced. Otherwise, <em>expression</em> is unbalanced.</p>
-<p>Below is the algorithm we used to implement the approach.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<p>We showed one (classic) example of how a <em>Stack</em> can be used: How to use a <em>Stack</em> to check if a given expression has balanced brackets.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>We took the following approach: Let <em>stack</em> be an empty stack. Iterate over <em>expression</em>. For each <em>char</em> in <em>expression</em>, if it is a left opening bracket, then push it in <em>stack</em>. Otherwise if it is a right closing bracket, then we check if it is the expected closing bracket, given the top of <em>stack</em>. If it is not the expected closing bracket, then <em>expression</em> is unbalanced. Otherwise, pop from <em>stack</em>. After the iteration is complete, check that <em>stack</em> is empty: If <em>stack</em> is empty, then <em>expression</em> is balanced. Otherwise, <em>expression</em> is unbalanced.</p>
+<p>Below is the algorithm we used to implement the approach. Stack operations are <strong>emphasised,</strong> so they can be easily identified.</p>
 <ol type="1">
 <li>Let <em>stack</em> be an empty <code>stack</code></li>
 <li>Let <em>matching</em> be an empty <code>map</code></li>
@@ -308,7 +308,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol></li>
 <li>Let <em>is_balanced</em> = <strong>is_empty</strong>(<em>stack</em>)</li>
 </ol>
-</section>
 </section>
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
@@ -400,8 +399,7 @@ Test 4 (n=800) =
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>See <a href="https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-python/">Check for balanced parentheses in Python</a> (GeeksForGeeks).<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>All <em>Stack</em> operations are <strong>bolded</strong>, so they are easily picked out.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>See <a href="https://www.geeksforgeeks.org/check-for-balanced-parentheses-in-python/">Check for balanced parentheses in Python</a> (GeeksForGeeks)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -325,7 +325,7 @@ Welcome to Week 2 of <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&a
 <h3 class="anchored" data-anchor-id="visualise-the-data">Visualise the data</h3>
 <div class="cell" data-tags="[]" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>_ch <span class="op">=</span> alt.Chart(</span>
-<span id="cb8-2"><a href="#cb8-2"></a>            lazy_query.collect().to_pandas()</span>
+<span id="cb8-2"><a href="#cb8-2"></a>        lazy_query.collect().to_pandas()</span>
 <span id="cb8-3"><a href="#cb8-3"></a>).properties(</span>
 <span id="cb8-4"><a href="#cb8-4"></a>    width<span class="op">=</span><span class="dv">110</span>,</span>
 <span id="cb8-5"><a href="#cb8-5"></a>    height<span class="op">=</span><span class="dv">200</span></span>
@@ -352,13 +352,13 @@ Welcome to Week 2 of <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&a
 <span id="cb8-26"><a href="#cb8-26"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 
-<div id="altair-viz-2e24263c93464b68a634540348b548bd"></div>
+<div id="altair-viz-77bb1f79276746eb9ec0a2da2f4c37cf"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-2e24263c93464b68a634540348b548bd") {
-      outputDiv = document.getElementById("altair-viz-2e24263c93464b68a634540348b548bd");
+    if (outputDiv.id !== "altair-viz-77bb1f79276746eb9ec0a2da2f4c37cf") {
+      outputDiv = document.getElementById("altair-viz-77bb1f79276746eb9ec0a2da2f4c37cf");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -424,7 +424,7 @@ Welcome to Week 2 of <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&a
 <span id="cb9-13"><a href="#cb9-13"></a>)</span>
 <span id="cb9-14"><a href="#cb9-14"></a></span>
 <span id="cb9-15"><a href="#cb9-15"></a>_ch <span class="op">=</span> alt.Chart(</span>
-<span id="cb9-16"><a href="#cb9-16"></a>            _gsource.collect().to_pandas()</span>
+<span id="cb9-16"><a href="#cb9-16"></a>        _gsource.collect().to_pandas()</span>
 <span id="cb9-17"><a href="#cb9-17"></a>).properties(</span>
 <span id="cb9-18"><a href="#cb9-18"></a>    width<span class="op">=</span><span class="dv">600</span>,</span>
 <span id="cb9-19"><a href="#cb9-19"></a>    height<span class="op">=</span><span class="dv">400</span>,</span>
@@ -449,13 +449,13 @@ Welcome to Week 2 of <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&a
 <span id="cb9-38"><a href="#cb9-38"></a>_scatter <span class="op">+</span> _line</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 
-<div id="altair-viz-1a99c817325546df8be451540cf93f63"></div>
+<div id="altair-viz-ca6a65e1cc974bcbb7363abe7e4d2534"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1a99c817325546df8be451540cf93f63") {
-      outputDiv = document.getElementById("altair-viz-1a99c817325546df8be451540cf93f63");
+    if (outputDiv.id !== "altair-viz-ca6a65e1cc974bcbb7363abe7e4d2534") {
+      outputDiv = document.getElementById("altair-viz-ca6a65e1cc974bcbb7363abe7e4d2534");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm//vega@5?noext",
@@ -510,12 +510,12 @@ Welcome to Week 2 of <a href="https://twitter.com/hashtag/TidyTuesday?src=hash&a
 <span id="cb10-2"><a href="#cb10-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>sys       : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
-altair    : 4.2.0
+pandas    : 1.4.3
 seaborn   : 0.11.2
+altair    : 4.2.0
+polars    : 0.14.6
 matplotlib: 3.5.3
 requests  : 2.28.1
-pandas    : 1.4.3
-polars    : 0.14.6
 </code></pre>
 </div>
 </div>
