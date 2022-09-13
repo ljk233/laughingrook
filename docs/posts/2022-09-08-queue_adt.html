@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liam Kelly">
-<meta name="dcterms.date" content="2022-05-16">
+<meta name="dcterms.date" content="2022-09-08">
 
 <title>LaughingRook - Queue ADT</title>
 <style>
@@ -206,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 16, 2022</p>
+      <p class="date">September 8, 2022</p>
     </div>
   </div>
     
@@ -276,8 +276,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>The example we used is how a queue can be used to perform a breadth-first traversal of a <strong>binary tree.</strong></p>
-<p>We took the following approach:</p>
+<p>We showed one example of how a <em>Queue</em> can be used: Perform a level-first traversal of a <strong>binary tree.</strong>[^1]</p>
+<p>The function <code>collect_by_level</code> returns the values of the nodes of a binary tree as a level-order <code>list</code>.</p>
+<p>Below is the algorithm we used to implement the level-first traveral. Queue operations are <strong>emphasised</strong> so they can be easily identified.</p>
+<ol type="1">
+<li>let <em>q</em> be a <strong>new</strong> queue</li>
+<li>let <em>collection</em> be an empty <code>list</code></li>
+<li>enqueue(<em>q</em>, <em>tree</em>)</li>
+<li>while not <strong>is empty</strong>(<em>q</em>)
+<ol type="1">
+<li>let <em>node</em> = <strong>front</strong>(<em>q</em>)</li>
+<li>if <em>node</em> is not an empty node:
+<ol type="1">
+<li>append <strong>value</strong>(<em>node</em>) to <em>collection</em></li>
+<li>enqueue(<em>q</em>, left(<em>node</em>))</li>
+<li>enqueue(<em>q</em>, right(<em>node</em>))</li>
+</ol></li>
+<li><strong>dequeue</strong>(<em>q</em>)</li>
+</ol></li>
+</ol>
 </section>
 <section id="dependencies" class="level2">
 <h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
@@ -288,14 +305,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="functions" class="level2">
 <h2 class="anchored" data-anchor-id="functions">Functions</h2>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">def</span> collect_by_level(tree: bt.Node) <span class="op">-&gt;</span> <span class="bu">list</span>:</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="co">"""Return root and its descendant nodes as a list in a level-first</span></span>
 <span id="cb2-3"><a href="#cb2-3"></a><span class="co">    order.</span></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co">    """</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a>    q <span class="op">=</span> deque()</span>
-<span id="cb2-6"><a href="#cb2-6"></a>    q.append(tree)</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    collection <span class="op">=</span> []</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    collection <span class="op">=</span> []</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    q.append(tree)</span>
 <span id="cb2-8"><a href="#cb2-8"></a>    <span class="cf">while</span> <span class="bu">len</span>(q) <span class="op">&gt;=</span> <span class="dv">1</span>:</span>
 <span id="cb2-9"><a href="#cb2-9"></a>        node <span class="op">=</span> q[<span class="dv">0</span>]</span>
 <span id="cb2-10"><a href="#cb2-10"></a>        <span class="cf">if</span> node <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:</span>
@@ -316,16 +333,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-2"><a href="#cb3-2"></a>arange <span class="op">=</span> <span class="kw">lambda</span> n: [x <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="cf">assert</span> <span class="bu">all</span>(</span>
 <span id="cb3-4"><a href="#cb3-4"></a>    collect_by_level(bt.build2(<span class="bu">list</span>(<span class="bu">range</span>(n)))) <span class="op">==</span> <span class="bu">list</span>(<span class="bu">range</span>(n))</span>
-<span id="cb3-5"><a href="#cb3-5"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>)</span>
-<span id="cb3-6"><a href="#cb3-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a href="#cb3-5"></a>    <span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(N)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="bu">print</span>(<span class="st">'Testing complete'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Testing complete</code></pre>
+</div>
 </div>
 </section>
 <section id="example-use" class="level3">
 <h3 class="anchored" data-anchor-id="example-use">Example use</h3>
-<p>Populate a <code>binary tree</code> with letters from A to G.</p>
+<p>Populate a <code>binary tree</code> with letters ‘a’ through ‘g’.</p>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>letter_tree <span class="op">=</span> bt.build2([<span class="bu">chr</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">97</span>, <span class="dv">104</span>)])</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="bu">print</span>(letter_tree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>letter_tree <span class="op">=</span> bt.build2([<span class="bu">chr</span>(x) <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">97</span>, <span class="dv">104</span>)])</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="bu">print</span>(letter_tree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     __a__
@@ -338,7 +359,7 @@ d   e   f   g
 </div>
 <p>Print <em>letter_tree</em> in level-first order.</p>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>collect_by_level(letter_tree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>collect_by_level(letter_tree)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>['a', 'b', 'c', 'd', 'e', 'f', 'g']</code></pre>
 </div>
@@ -346,22 +367,31 @@ d   e   f   g
 </section>
 <section id="performance" class="level3">
 <h3 class="anchored" data-anchor-id="performance">Performance</h3>
-<p>The performance tests show a doubling in <code>collect_by_level</code>’s time-to-run, as the |<em>root</em>| doubles. It has a linear complexity.</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>sizes <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
-<span id="cb8-2"><a href="#cb8-2"></a><span class="cf">for</span> i, n <span class="kw">in</span> <span class="bu">enumerate</span>(sizes):</span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="bu">print</span>(<span class="ss">f'Test </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> (n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">) ='</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a>    root <span class="op">=</span> bt.build2(<span class="bu">list</span>(<span class="bu">range</span>(n)))</span>
-<span id="cb8-5"><a href="#cb8-5"></a>    <span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">3000</span> collect_by_level(root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The performance tests show a doubling in <code>collect_by_level</code>’s time-to-run, as the |<em>tree</em>| doubles. It has a linear complexity.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>sizes <span class="op">=</span> [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">400</span>, <span class="dv">800</span>]</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="cf">for</span> i, n <span class="kw">in</span> <span class="bu">enumerate</span>(sizes):</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="bu">print</span>(<span class="ss">f'Test </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss"> (n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">) ='</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    root <span class="op">=</span> bt.build2(<span class="bu">list</span>(<span class="bu">range</span>(n)))</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="op">%</span>timeit <span class="op">-</span>r <span class="dv">3</span> <span class="op">-</span>n <span class="dv">3000</span> collect_by_level(root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Test 1 (n=100) =
-29.5 µs ± 1.06 µs per loop (mean ± std. dev. of 3 runs, 3,000 loops each)
+30.7 µs ± 524 ns per loop (mean ± std. dev. of 3 runs, 3,000 loops each)
 Test 2 (n=200) =
-56.5 µs ± 1.04 µs per loop (mean ± std. dev. of 3 runs, 3,000 loops each)
+58.6 µs ± 564 ns per loop (mean ± std. dev. of 3 runs, 3,000 loops each)
 Test 3 (n=400) =
-115 µs ± 1.44 µs per loop (mean ± std. dev. of 3 runs, 3,000 loops each)
+120 µs ± 707 ns per loop (mean ± std. dev. of 3 runs, 3,000 loops each)
 Test 4 (n=800) =
-232 µs ± 1.12 µs per loop (mean ± std. dev. of 3 runs, 3,000 loops each)</code></pre>
+231 µs ± 1.16 µs per loop (mean ± std. dev. of 3 runs, 3,000 loops each)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="op">%</span>load_ext watermark</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>binarytree: 6.5.1
+sys       : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
+</code></pre>
 </div>
 </div>
 

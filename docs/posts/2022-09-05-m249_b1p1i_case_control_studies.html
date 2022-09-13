@@ -175,6 +175,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#summary-notes" id="toc-summary-notes" class="nav-link active" data-scroll-target="#summary-notes">Summary notes</a>
   <ul class="collapse">
   <li><a href="#about-the-study" id="toc-about-the-study" class="nav-link" data-scroll-target="#about-the-study">About the study</a></li>
+  <li><a href="#about-the-data" id="toc-about-the-data" class="nav-link" data-scroll-target="#about-the-data">About the data</a></li>
   <li><a href="#method" id="toc-method" class="nav-link" data-scroll-target="#method">Method</a></li>
   </ul></li>
   <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
@@ -259,10 +260,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </section>
-<section id="method" class="level3">
-<h3 class="anchored" data-anchor-id="method">Method</h3>
-<p>The analysis was undertaken using StatsModels and SciPy.</p>
-<p>The data were stored remotely, so we defined a function <code>cache_file</code> to handle their retrieval. The datay were stored in a CSV file with schema:</p>
+<section id="about-the-data" class="level3">
+<h3 class="anchored" data-anchor-id="about-the-data">About the data</h3>
+<p>The data were stored remotely as a CSV file in a tidy manner with the schema:</p>
 <table class="table">
 <colgroup>
 <col style="width: 13%">
@@ -294,37 +294,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>The exposure and case-controls labels were stored as two <code>list</code>s, with variables named <em>exposures</em> and <em>casecons</em>.</p>
-<p>Note, the orders of the <code>list</code>s are important given <code>Table2x2</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> requires the data to be some sequence with shape <code>(2, 2)</code>:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th></th>
-<th style="text-align: right;">case (+)</th>
-<th style="text-align: right;">control (-)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>exposed (+)</strong></td>
-<td style="text-align: right;"><em>a</em></td>
-<td style="text-align: right;"><em>b</em></td>
-</tr>
-<tr class="even">
-<td><strong>not exposed (-)</strong></td>
-<td style="text-align: right;"><em>c</em></td>
-<td style="text-align: right;"><em>d</em></td>
-</tr>
-</tbody>
-</table>
-<p>As such, the labels should be ordered:</p>
+</section>
+<section id="method" class="level3">
+<h3 class="anchored" data-anchor-id="method">Method</h3>
+<p>The analysis was undertaken using StatsModels and SciPy.</p>
+<p>We defined a function <code>cache_file</code> to handle the retrieval of the data.</p>
+<p>The exposure and case-controls labels were stored as two <code>list</code>s with variables named <em>exposures</em>, <em>casecons</em>.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that the orders of the two <code>list</code>s are important, and should correspond with:</p>
 <ul>
 <li><em>exposures</em> = (<em>exposed</em>, <em>not exposed</em>)</li>
 <li><em>casecons</em> = (<em>case</em>, <em>control</em>)</li>
 </ul>
-<p>The data were cached and used to a initialise <em>data</em>, a Pandas <code>DataFrame</code>.</p>
-<p>A new <code>DataFrame</code> <em>cat_data</em> was initialised from <em>data</em>, with the <em>exposure</em>, <em>case</em> columns as ordered <code>Categorical</code> data. They were ordered to ensure the data would be reshaped as expected.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>The <code>DataFrame</code> <em>cat_data</em> was taken as a Numpy <code>NDArray</code> with shape <code>(2, 2)</code> with name <em>data_arr</em>, and used to initialise an instance of <code>Table2x2</code> named <em>ctable</em>.</p>
+</div>
+</div>
+<p>The data were cached and used to initialise <em>data</em>, a Pandas <code>DataFrame</code>.</p>
+<p>A new <code>DataFrame</code> <em>cat_data</em> was initialised from <em>data</em>, with the <em>exposure</em>, <em>casecon</em> columns as ordered <code>Categorical</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> data types, and was sorted by (<em>exposure</em>, <em>disease</em>).</p>
+<p>We took column <em>cat_data</em>[<em>n</em>] as <em>data_arr</em>, a Numpy <code>NDArray</code> with shape <code>(2, 2)</code>, and used it to initialise <em>ctable</em>, an instance of <code>Table2x2</code>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <p>The odds ratio was calculated, including confidence interval estimates. A chi-squared test of no association was used to test the strength of evidence of an association. We rounded-off the analysis by performing Fisher’s exact test.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 </section>
 </section>
@@ -474,9 +469,9 @@ memory usage: 320.0 bytes</code></pre>
 <span id="cb10-4"><a href="#cb10-4"></a>    columns<span class="op">=</span><span class="st">'casecon'</span>,</span>
 <span id="cb10-5"><a href="#cb10-5"></a>    aggfunc<span class="op">=</span><span class="st">'sum'</span>,</span>
 <span id="cb10-6"><a href="#cb10-6"></a>    margins<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb10-7"><a href="#cb10-7"></a>    margins_name<span class="op">=</span><span class="st">'subtotal'</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>    margins_name<span class="op">=</span><span class="st">'total'</span></span>
 <span id="cb10-8"><a href="#cb10-8"></a>).drop(</span>
-<span id="cb10-9"><a href="#cb10-9"></a>    columns<span class="op">=</span><span class="st">'subtotal'</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>    columns<span class="op">=</span><span class="st">'total'</span></span>
 <span id="cb10-10"><a href="#cb10-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 
@@ -507,7 +502,7 @@ memory usage: 320.0 bytes</code></pre>
       <td>83</td>
     </tr>
     <tr>
-      <th>subtotal</th>
+      <th>total</th>
       <td>35</td>
       <td>85</td>
     </tr>
@@ -519,7 +514,7 @@ memory usage: 320.0 bytes</code></pre>
 </section>
 <section id="initialise-the-contingency-table" class="level3">
 <h3 class="anchored" data-anchor-id="initialise-the-contingency-table">Initialise the contingency table</h3>
-<p>Get the data as a NumPy <code>ndarray</code> with shape <code>(2, 2)</code>.</p>
+<p>Get <em>cat_data</em>[<em>n</em>] as a NumPy <code>NDArray</code> with shape <code>(2, 2)</code>.</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>data_arr <span class="op">=</span> cat_data[<span class="st">'n'</span>].to_numpy().reshape(<span class="dv">2</span>, <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -620,12 +615,12 @@ Name: fishers exact, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a><span class="op">%</span>load_ext watermark</span>
 <span id="cb26-2"><a href="#cb26-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>sys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
-requests   : 2.28.1
+<pre><code>scipy      : 1.9.0
+sys        : 3.10.6 (tags/v3.10.6:9c7b4bd, Aug  1 2022, 21:53:49) [MSC v.1932 64 bit (AMD64)]
 statsmodels: 0.13.2
-numpy      : 1.23.2
 pandas     : 1.4.3
-scipy      : 1.9.0
+numpy      : 1.23.2
+requests   : 2.28.1
 </code></pre>
 </div>
 </div>
@@ -637,8 +632,8 @@ scipy      : 1.9.0
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.contingency_tables.Table2x2.html">statsmodels.stats.contingency_tables.Table2x2</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>See <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html">pandas.Categorical</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>See <a href="https://pandas.pydata.org/docs/reference/api/pandas.Categorical.html">pandas.Categorical</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See <a href="https://www.statsmodels.org/stable/generated/statsmodels.stats.contingency_tables.Table2x2.html">statsmodels.stats.contingency_tables.Table2x2</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Technically this is not needed, given all expected values are greater than five, but we include it for completeness<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>There is no version of Fisher’s exact test in StatsModels, so we use SciPy instead. See <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisher_exact.html">scipy.stats.fisher_exact</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>We pass the argument <code>dtype=object</code>, so the <code>Series</code> can handle both <code>float</code> and <code>int</code> data types<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

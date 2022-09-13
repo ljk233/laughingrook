@@ -281,32 +281,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 class="anchored" data-anchor-id="example-use">Example use</h3>
 <p>We showed one (classic) example of how a <em>Stack</em> can be used: How to use a <em>Stack</em> to check if a given expression has balanced brackets.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>We took the following approach: Let <em>stack</em> be an empty stack. Iterate over <em>expression</em>. For each <em>char</em> in <em>expression</em>, if it is a left opening bracket, then push it in <em>stack</em>. Otherwise if it is a right closing bracket, then we check if it is the expected closing bracket, given the top of <em>stack</em>. If it is not the expected closing bracket, then <em>expression</em> is unbalanced. Otherwise, pop from <em>stack</em>. After the iteration is complete, check that <em>stack</em> is empty: If <em>stack</em> is empty, then <em>expression</em> is balanced. Otherwise, <em>expression</em> is unbalanced.</p>
-<p>Below is the algorithm we used to implement the approach. Stack operations are <strong>emphasised,</strong> so they can be easily identified.</p>
+<p>Below is the algorithm we used to implement the approach. Stack operations are <strong>emphasised</strong> so they can be easily identified.</p>
 <ol type="1">
-<li>Let <em>stack</em> be an empty <code>stack</code></li>
-<li>Let <em>matching</em> be an empty <code>map</code></li>
-<li>Populate <em>matching</em>, associating each right closing bracket with its partner left opening bracket
+<li>let <em>stack</em> be a <strong>new</strong> stack</li>
+<li>let <em>matching</em> be an empty <code>map</code></li>
+<li>populate <em>matching</em>, associating each right closing bracket with its partner left opening bracket
 <ul>
-<li>Example <em>matching</em>(&gt;) = &lt;</li>
+<li>example, <em>matching</em>(&gt;) = &lt;</li>
 </ul></li>
-<li>Let <em>left</em> be values(<em>matching</em>) as a <code>set</code></li>
-<li>Let <em>right</em> be keys(<em>matching</em>)</li>
-<li>For <em>char</em> ∈ <em>expression</em>
+<li>let <em>left</em> be values(<em>matching</em>) as a <code>set</code></li>
+<li>let <em>right</em> be keys(<em>matching</em>)</li>
+<li>for <em>char</em> ∈ <em>expression</em>
 <ol type="1">
-<li>If <em>char</em> ∈ <em>left</em>
+<li>if <em>char</em> ∈ <em>left</em>
 <ol type="1">
 <li><strong>push</strong>(<em>stack</em>, <em>char</em>)</li>
 </ol></li>
-<li>Otherwise if <em>char</em> ∈ <em>right</em>
+<li>otherwise if <em>char</em> ∈ <em>right</em>
 <ol type="1">
-<li>If <strong>is_empty</strong>(<em>stack</em>) or <strong>peek</strong>(<em>stack</em>) ≠ <em>matching</em>(<em>char</em>)
+<li>if <strong>is_empty</strong>(<em>stack</em>) or <strong>peek</strong>(<em>stack</em>) ≠ <em>matching</em>(<em>char</em>)
 <ol type="1">
-<li>Let <em>is_balanced</em> = false</li>
+<li>let <em>is_balanced</em> = false</li>
 </ol></li>
 <li><strong>pop</strong>(<em>stack</em>)</li>
 </ol></li>
 </ol></li>
-<li>Let <em>is_balanced</em> = <strong>is_empty</strong>(<em>stack</em>)</li>
+<li>let <em>is_balanced</em> = <strong>is_empty</strong>(<em>stack</em>)</li>
 </ol>
 </section>
 <section id="dependencies" class="level2">

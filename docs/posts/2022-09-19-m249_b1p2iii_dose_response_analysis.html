@@ -324,6 +324,7 @@ dtypes: int64(2), object(1)
 memory usage: 272.0+ bytes</code></pre>
 </div>
 </div>
+<p>Output a view of <em>data</em>.</p>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -593,9 +594,10 @@ memory usage: 370.0 bytes</code></pre>
 <span id="cb16-8"><a href="#cb16-8"></a>plt.ylabel(<span class="st">'log(odds)'</span>)</span>
 <span id="cb16-9"><a href="#cb16-9"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="2022-09-12-m249_b1p2iii_dose_response_analysis_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+<p><img src="2022-09-19-m249_b1p2iii_dose_response_analysis_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
+<p>Return the result of a test of no linear trend.</p>
 <div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>_r <span class="op">=</span> st.linregress(</span>
 <span id="cb17-2"><a href="#cb17-2"></a>    x<span class="op">=</span>log_odds,</span>

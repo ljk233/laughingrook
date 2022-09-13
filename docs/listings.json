@@ -2,6 +2,10 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/2022-09-13-tt_y2018_w03_global_mortality.html",
+      "/posts/2022-09-10-advent_of_code_2015_day4.html",
+      "/posts/2022-09-08-queue_adt.html",
+      "/posts/2022-09-06-tt_y2018_w02_nfl_salary.html",
       "/posts/2022-09-05-m249_b1p1i_case_control_studies.html",
       "/posts/2022-09-03-advent_of_code_2015_day3.html",
       "/posts/2022-09-01-stack_adt.html",
