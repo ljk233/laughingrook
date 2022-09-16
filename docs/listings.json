@@ -3,20 +3,20 @@
     "listing": "/index.html",
     "items": [
       "/posts/2022-09-13-tt_y2018_w03_global_mortality.html",
+      "/posts/2022-09-12-m249_b2p1i_time_series_pandas.html",
       "/posts/2022-09-10-advent_of_code_2015_day4.html",
       "/posts/2022-09-08-queue_adt.html",
       "/posts/2022-09-06-tt_y2018_w02_nfl_salary.html",
-      "/posts/2022-09-05-m249_b1p1i_case_control_studies.html",
       "/posts/2022-09-03-advent_of_code_2015_day3.html",
       "/posts/2022-09-01-stack_adt.html",
       "/posts/2022-08-30-tt_y2018_w01_us_avg_tuition.html",
-      "/posts/2022-08-29-m249_b1p2ii_matched_case_control.html",
+      "/posts/2022-08-29-m249_b1p1iii_cohort_studies_n_exposures.html",
       "/posts/2022-08-27-advent_of_code_2015_day2.html",
       "/posts/2022-08-25-tsp_bruteforce.html",
-      "/posts/2022-08-22-m249_b1p2i_stratified_analyses.html",
+      "/posts/2022-08-22-m249_b1p1ii_case_control_studies_two_exposures.html",
       "/posts/2022-08-20-advent_of_code_2015_day1.html",
       "/posts/2022-08-18-initialise_undirected_graph_networkx.html",
-      "/posts/2022-08-15-m249_b1p1i_cohort_studies.html"
+      "/posts/2022-08-15-m249_b1p1i_cohort_studies_two_exposures.html"
     ]
   }
 ]
