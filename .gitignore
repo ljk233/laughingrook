@@ -1,9 +1,13 @@
 /.drafts/
+/_drafts/
+/.ipynb_checkpoints/
 /.quarto/
 /_site/
 /.scipts/
 /.trash/
 /.virtual_documents/
-posts/__cache/
-posts/.ipynb_checkpoints/
-posts/__temp/
+/.lr_datavis/
+/posts/__cache/
+/posts/.ipynb_checkpoints/
+/posts/__temp/
+/.venv/

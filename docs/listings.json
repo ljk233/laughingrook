@@ -2,21 +2,18 @@
   {
     "listing": "/index.html",
     "items": [
-      "/posts/2022-09-13-tt_y2018_w03_global_mortality.html",
-      "/posts/2022-09-12-m249_b2p1i_time_series_pandas.html",
-      "/posts/2022-09-10-advent_of_code_2015_day4.html",
-      "/posts/2022-09-08-queue_adt.html",
-      "/posts/2022-09-06-tt_y2018_w02_nfl_salary.html",
-      "/posts/2022-09-03-advent_of_code_2015_day3.html",
-      "/posts/2022-09-01-stack_adt.html",
-      "/posts/2022-08-30-tt_y2018_w01_us_avg_tuition.html",
-      "/posts/2022-08-29-m249_b1p1iii_cohort_studies_n_exposures.html",
-      "/posts/2022-08-27-advent_of_code_2015_day2.html",
-      "/posts/2022-08-25-tsp_bruteforce.html",
-      "/posts/2022-08-22-m249_b1p1ii_case_control_studies_two_exposures.html",
-      "/posts/2022-08-20-advent_of_code_2015_day1.html",
-      "/posts/2022-08-18-initialise_undirected_graph_networkx.html",
-      "/posts/2022-08-15-m249_b1p1i_cohort_studies_two_exposures.html"
+      "/posts/20221012-advent_of_code_2018_d3.html",
+      "/posts/20221011-advent_of_code_2018_d1.html",
+      "/posts/20221012-advent_of_code_2018_d2.html",
+      "/posts/20220830-tt_y2018_w01_us_avg_tuition.html",
+      "/posts/20221007-conjugatepriors.html",
+      "/posts/20221008-cache_file.html",
+      "/posts/20221008-tt_problempicker.html",
+      "/posts/20221008-write_csv_to_sqlite3_table.html",
+      "/posts/20221007-m343_b2p1ii_poiss_proc.html",
+      "/posts/20221006-m343_b1ii_continuous_rv.html",
+      "/posts/20221005-m343_b1i_discrete_rv.html",
+      "/posts/20221007-m343_b2p1i_bernoulli_proc.html"
     ]
   }
 ]
