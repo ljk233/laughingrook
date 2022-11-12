@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Liam Kelly">
+<meta name="dcterms.date" content="2022-10-30">
+
+<title>LaughingRook - Great British Bakeoff</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LaughingRook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link active" data-scroll-target="#dependencies">Dependencies</a></li>
+  <li><a href="#cache-and-load-the-data" id="toc-cache-and-load-the-data" class="nav-link" data-scroll-target="#cache-and-load-the-data">Cache and load the data</a></li>
+  <li><a href="#how-has-the-viewership-changed" id="toc-how-has-the-viewership-changed" class="nav-link" data-scroll-target="#how-has-the-viewership-changed">How has the viewership changed?</a>
+  <ul class="collapse">
+  <li><a href="#series8_decline" id="toc-series8_decline" class="nav-link" data-scroll-target="#series8_decline"><code>series8_decline</code></a></li>
+  <li><a href="#continuous-bar-chart" id="toc-continuous-bar-chart" class="nav-link" data-scroll-target="#continuous-bar-chart">Continuous bar chart</a></li>
+  <li><a href="#faceted-line-chart" id="toc-faceted-line-chart" class="nav-link" data-scroll-target="#faceted-line-chart">Faceted line chart</a></li>
+  </ul></li>
+  <li><a href="#premieres-vs.-finales" id="toc-premieres-vs.-finales" class="nav-link" data-scroll-target="#premieres-vs.-finales">Premieres vs.&nbsp;Finales</a>
+  <ul class="collapse">
+  <li><a href="#first_last" id="toc-first_last" class="nav-link" data-scroll-target="#first_last"><code>first_last</code></a></li>
+  <li><a href="#finale_pct_bump" id="toc-finale_pct_bump" class="nav-link" data-scroll-target="#finale_pct_bump"><code>finale_pct_bump</code></a></li>
+  <li><a href="#dumbbell-plot" id="toc-dumbbell-plot" class="nav-link" data-scroll-target="#dumbbell-plot">Dumbbell plot</a></li>
+  <li><a href="#slope-graph" id="toc-slope-graph" class="nav-link" data-scroll-target="#slope-graph">Slope graph</a></li>
+  <li><a href="#bar-chart-with-median-line" id="toc-bar-chart-with-median-line" class="nav-link" data-scroll-target="#bar-chart-with-median-line">Bar chart with median line</a></li>
+  <li><a href="#lollipop-chart-with-median-line" id="toc-lollipop-chart-with-median-line" class="nav-link" data-scroll-target="#lollipop-chart-with-median-line">Lollipop chart with median line</a></li>
+  <li><a href="#pop-out-scatterplot" id="toc-pop-out-scatterplot" class="nav-link" data-scroll-target="#pop-out-scatterplot">Pop-Out Scatterplot</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Great British Bakeoff</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">TidyTuesday</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Liam Kelly </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 30, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Visualising the Great British Bakeoff with <a href="https://twitter.com/hashtag/TidyTuesday">#TidyTuesday</a> | <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-10-25/https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-10-25/">source</a>.</p>
+<p>We follow the examples given in <a href="https://alison.netlify.app/uo-tidy-bakeoff/#1">Data Visualization in the Tidyverse - The Great Tidy Plot Off</a> by Alison Hill.</p>
+<section id="dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> seaborn <span class="im">import</span> objects <span class="im">as</span> so</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> matplotlib <span class="im">import</span> style</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">import</span> lrdataio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">%</span>load_ext watermark</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="op">%</span>watermark <span class="op">-</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>seaborn   : 0.12.1
+pandas    : 1.4.4
+lrdataio  : 0.3.0
+matplotlib: 3.6.0
+</code></pre>
+</div>
+</div>
+</section>
+<section id="cache-and-load-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="cache-and-load-the-data">Cache and load the data</h2>
+<div class="cell" data-tags="[]" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>ratings_df <span class="op">=</span> pd.read_csv(lrdataio.cache_url(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-10-25/ratings.csv'</span>))  <span class="co"># noqa</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>ratings_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 94 entries, 0 to 93
+Data columns (total 11 columns):
+ #   Column                Non-Null Count  Dtype  
+---  ------                --------------  -----  
+ 0   series                94 non-null     int64  
+ 1   episode               94 non-null     int64  
+ 2   uk_airdate            94 non-null     object 
+ 3   viewers_7day          94 non-null     float64
+ 4   viewers_28day         93 non-null     float64
+ 5   network_rank          70 non-null     float64
+ 6   channels_rank         50 non-null     float64
+ 7   bbc_iplayer_requests  20 non-null     float64
+ 8   episode_count         94 non-null     int64  
+ 9   us_season             50 non-null     float64
+ 10  us_airdate            45 non-null     object 
+dtypes: float64(6), int64(3), object(2)
+memory usage: 8.2+ KB</code></pre>
+</div>
+</div>
+</section>
+<section id="how-has-the-viewership-changed" class="level2">
+<h2 class="anchored" data-anchor-id="how-has-the-viewership-changed">How has the viewership changed?</h2>
+<section id="series8_decline" class="level3">
+<h3 class="anchored" data-anchor-id="series8_decline"><code>series8_decline</code></h3>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>series8_decline <span class="op">=</span> (</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    ratings_df</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    .query(<span class="st">'1 &lt;= series &lt;= 8'</span>)</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    .assign(series<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">'series'</span>].astype(<span class="bu">str</span>))</span>
+<span id="cb6-5"><a href="#cb6-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="continuous-bar-chart" class="level3">
+<h3 class="anchored" data-anchor-id="continuous-bar-chart">Continuous bar chart</h3>
+<div class="cell" data-tags="[]" data-execution_count="5">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> _plot_cts_bar_chart(df: pd.DataFrame) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    series_text <span class="op">=</span> (</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        pd.DataFrame()</span>
+<span id="cb7-4"><a href="#cb7-4"></a>        .assign(</span>
+<span id="cb7-5"><a href="#cb7-5"></a>            episode_count<span class="op">=</span>df.groupby(<span class="st">'series'</span>)[<span class="st">'episode_count'</span>].mean(),</span>
+<span id="cb7-6"><a href="#cb7-6"></a>            viewers_7day<span class="op">=</span>df.groupby(<span class="st">'series'</span>)[<span class="st">'viewers_7day'</span>].median()</span>
+<span id="cb7-7"><a href="#cb7-7"></a>        )</span>
+<span id="cb7-8"><a href="#cb7-8"></a>        .reset_index()</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    )</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    <span class="cf">return</span> (</span>
+<span id="cb7-11"><a href="#cb7-11"></a>        so.Plot(df,</span>
+<span id="cb7-12"><a href="#cb7-12"></a>                x<span class="op">=</span><span class="st">'episode_count'</span>,</span>
+<span id="cb7-13"><a href="#cb7-13"></a>                y<span class="op">=</span><span class="st">'viewers_7day'</span>,</span>
+<span id="cb7-14"><a href="#cb7-14"></a>                color<span class="op">=</span><span class="st">'series'</span>,</span>
+<span id="cb7-15"><a href="#cb7-15"></a>                text<span class="op">=</span><span class="st">'series'</span>)</span>
+<span id="cb7-16"><a href="#cb7-16"></a>        .add(so.Bars(), legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>        .add(so.Text(color<span class="op">=</span><span class="st">'black'</span>,</span>
+<span id="cb7-18"><a href="#cb7-18"></a>                     valign<span class="op">=</span><span class="st">'bottom'</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>                     offset<span class="op">=</span><span class="dv">10</span>),</span>
+<span id="cb7-20"><a href="#cb7-20"></a>             data<span class="op">=</span>series_text)</span>
+<span id="cb7-21"><a href="#cb7-21"></a>        .scale(x<span class="op">=</span>so.Continuous().label(like<span class="op">=</span><span class="kw">lambda</span> _, __: <span class="st">''</span>), color<span class="op">=</span><span class="st">'muted'</span>)</span>
+<span id="cb7-22"><a href="#cb7-22"></a>        .label(x<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb7-23"><a href="#cb7-23"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb7-24"><a href="#cb7-24"></a>    )</span>
+<span id="cb7-25"><a href="#cb7-25"></a></span>
+<span id="cb7-26"><a href="#cb7-26"></a></span>
+<span id="cb7-27"><a href="#cb7-27"></a>series8_decline.pipe(_plot_cts_bar_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-6-output-1.png" width="593" height="440"></p>
+</div>
+</div>
+</section>
+<section id="faceted-line-chart" class="level3">
+<h3 class="anchored" data-anchor-id="faceted-line-chart">Faceted line chart</h3>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="6">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> _plot_faceted_line_chart(df: pd.DataFrame) <span class="op">-&gt;</span> <span class="va">None</span>:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="cf">return</span> (</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        so.Plot(df,</span>
+<span id="cb8-4"><a href="#cb8-4"></a>                x<span class="op">=</span><span class="st">'episode'</span>,</span>
+<span id="cb8-5"><a href="#cb8-5"></a>                y<span class="op">=</span><span class="st">'viewers_7day'</span>,</span>
+<span id="cb8-6"><a href="#cb8-6"></a>                color<span class="op">=</span><span class="st">'series'</span>)</span>
+<span id="cb8-7"><a href="#cb8-7"></a>        .add(so.Line(), legend<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb8-8"><a href="#cb8-8"></a>        .scale(x<span class="op">=</span>so.Continuous().label(like<span class="op">=</span><span class="kw">lambda</span> _, __: <span class="st">''</span>),</span>
+<span id="cb8-9"><a href="#cb8-9"></a>               color<span class="op">=</span><span class="st">'muted'</span>)</span>
+<span id="cb8-10"><a href="#cb8-10"></a>        .facet(col<span class="op">=</span><span class="st">'series'</span>, wrap<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb8-11"><a href="#cb8-11"></a>        .label(x<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb8-12"><a href="#cb8-12"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb8-13"><a href="#cb8-13"></a>    )</span>
+<span id="cb8-14"><a href="#cb8-14"></a></span>
+<span id="cb8-15"><a href="#cb8-15"></a></span>
+<span id="cb8-16"><a href="#cb8-16"></a>series8_decline.pipe(_plot_faceted_line_chart)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-7-output-1.png" width="593" height="440"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="premieres-vs.-finales" class="level2">
+<h2 class="anchored" data-anchor-id="premieres-vs.-finales">Premieres vs.&nbsp;Finales</h2>
+<section id="first_last" class="level3">
+<h3 class="anchored" data-anchor-id="first_last"><code>first_last</code></h3>
+<div class="cell" data-tags="[]" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>first <span class="op">=</span> ratings_df.query(<span class="st">'episode == 1 and (1 &lt;= series &lt;= 8)'</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>last <span class="op">=</span> (</span>
+<span id="cb9-3"><a href="#cb9-3"></a>    ratings_df</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    .query(<span class="st">'1 &lt;= series &lt;= 8'</span>)</span>
+<span id="cb9-5"><a href="#cb9-5"></a>    .sort_values(by<span class="op">=</span>[<span class="st">'episode'</span>, <span class="st">'series'</span>],</span>
+<span id="cb9-6"><a href="#cb9-6"></a>                 ascending<span class="op">=</span>[<span class="va">False</span>, <span class="va">True</span>])</span>
+<span id="cb9-7"><a href="#cb9-7"></a>    .drop_duplicates(<span class="st">'series'</span>)</span>
+<span id="cb9-8"><a href="#cb9-8"></a>)</span>
+<span id="cb9-9"><a href="#cb9-9"></a>first_last <span class="op">=</span> (</span>
+<span id="cb9-10"><a href="#cb9-10"></a>    pd.concat([first, last])</span>
+<span id="cb9-11"><a href="#cb9-11"></a>    .assign(episode<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">'episode'</span>].<span class="bu">apply</span>(</span>
+<span id="cb9-12"><a href="#cb9-12"></a>                <span class="kw">lambda</span> s: (<span class="st">'first'</span> <span class="cf">if</span> s <span class="op">==</span> <span class="dv">1</span> <span class="cf">else</span> <span class="st">'last'</span>)),</span>
+<span id="cb9-13"><a href="#cb9-13"></a>            series<span class="op">=</span><span class="kw">lambda</span> x: x[<span class="st">'series'</span>].astype(<span class="bu">str</span>))</span>
+<span id="cb9-14"><a href="#cb9-14"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="finale_pct_bump" class="level3">
+<h3 class="anchored" data-anchor-id="finale_pct_bump"><code>finale_pct_bump</code></h3>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>finale_pct_bump <span class="op">=</span> (</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    first_last</span>
+<span id="cb10-3"><a href="#cb10-3"></a>    .set_index(<span class="st">'series'</span>)</span>
+<span id="cb10-4"><a href="#cb10-4"></a>    .groupby(<span class="st">'series'</span>)[<span class="st">'viewers_7day'</span>].pct_change()</span>
+<span id="cb10-5"><a href="#cb10-5"></a>    .rename(<span class="st">'prop_bump'</span>)</span>
+<span id="cb10-6"><a href="#cb10-6"></a>    .dropna()</span>
+<span id="cb10-7"><a href="#cb10-7"></a>    .to_frame()</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    .assign(pct_bump<span class="op">=</span><span class="kw">lambda</span> x: (x[<span class="st">'prop_bump'</span>] <span class="op">*</span> <span class="dv">100</span>).<span class="bu">round</span>(<span class="dv">1</span>))</span>
+<span id="cb10-9"><a href="#cb10-9"></a>    .sort_index(ascending<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb10-10"><a href="#cb10-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="dumbbell-plot" class="level3">
+<h3 class="anchored" data-anchor-id="dumbbell-plot">Dumbbell plot</h3>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="9">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">def</span> _plot_dumbbell(df) <span class="op">-&gt;</span> so.Plot:</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="cf">return</span> (</span>
+<span id="cb11-3"><a href="#cb11-3"></a>        so.Plot(df,</span>
+<span id="cb11-4"><a href="#cb11-4"></a>                x<span class="op">=</span><span class="st">'viewers_7day'</span>,</span>
+<span id="cb11-5"><a href="#cb11-5"></a>                y<span class="op">=</span><span class="st">'series'</span>,</span>
+<span id="cb11-6"><a href="#cb11-6"></a>                group<span class="op">=</span><span class="st">'series'</span>,</span>
+<span id="cb11-7"><a href="#cb11-7"></a>                text<span class="op">=</span><span class="st">'series'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>        .add(so.Line(), legend<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb11-9"><a href="#cb11-9"></a>        .add(so.Line(linewidth<span class="op">=</span><span class="dv">0</span>, marker<span class="op">=</span><span class="st">'o'</span>, pointsize<span class="op">=</span><span class="dv">8</span>),</span>
+<span id="cb11-10"><a href="#cb11-10"></a>             color<span class="op">=</span><span class="st">'episode'</span>,</span>
+<span id="cb11-11"><a href="#cb11-11"></a>             data<span class="op">=</span>df)</span>
+<span id="cb11-12"><a href="#cb11-12"></a>        .scale(color<span class="op">=</span><span class="st">'tab10'</span>)</span>
+<span id="cb11-13"><a href="#cb11-13"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb11-14"><a href="#cb11-14"></a>    )</span>
+<span id="cb11-15"><a href="#cb11-15"></a></span>
+<span id="cb11-16"><a href="#cb11-16"></a></span>
+<span id="cb11-17"><a href="#cb11-17"></a>first_last.pipe(_plot_dumbbell)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-10-output-1.png" width="685" height="440"></p>
+</div>
+</div>
+</section>
+<section id="slope-graph" class="level3">
+<h3 class="anchored" data-anchor-id="slope-graph">Slope graph</h3>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="10">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">def</span> _plot_slope(df) <span class="op">-&gt;</span> so.Plot:</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    <span class="cf">return</span> (</span>
+<span id="cb12-3"><a href="#cb12-3"></a>        so.Plot(df,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                x<span class="op">=</span><span class="st">'episode'</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                y<span class="op">=</span><span class="st">'viewers_7day'</span>,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>                color<span class="op">=</span><span class="st">'series'</span>,</span>
+<span id="cb12-7"><a href="#cb12-7"></a>                text<span class="op">=</span><span class="st">'series'</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a>        .add(so.Line(marker<span class="op">=</span><span class="st">'o'</span>,</span>
+<span id="cb12-9"><a href="#cb12-9"></a>                     pointsize<span class="op">=</span><span class="dv">8</span>),</span>
+<span id="cb12-10"><a href="#cb12-10"></a>             legend<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb12-11"><a href="#cb12-11"></a>        .add(so.Text(halign<span class="op">=</span><span class="st">"left"</span>,</span>
+<span id="cb12-12"><a href="#cb12-12"></a>                     offset<span class="op">=</span><span class="dv">20</span>),</span>
+<span id="cb12-13"><a href="#cb12-13"></a>             data<span class="op">=</span>df.query(<span class="st">'episode == "last"'</span>))</span>
+<span id="cb12-14"><a href="#cb12-14"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb12-15"><a href="#cb12-15"></a>    )</span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a></span>
+<span id="cb12-18"><a href="#cb12-18"></a>first_last.pipe(_plot_slope)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-11-output-1.png" width="593" height="440"></p>
+</div>
+</div>
+</section>
+<section id="bar-chart-with-median-line" class="level3">
+<h3 class="anchored" data-anchor-id="bar-chart-with-median-line">Bar chart with median line</h3>
+<div class="cell" data-jupyter="{&quot;source_hidden&quot;:true}" data-tags="[]" data-execution_count="11">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">def</span> _plot_bar_hax_line(df) <span class="op">-&gt;</span> so.Plot:</span>
+<span id="cb13-2"><a href="#cb13-2"></a>    med_line <span class="op">=</span> df.assign(pct_bump<span class="op">=</span>[df[<span class="st">'pct_bump'</span>].median()] <span class="op">*</span> <span class="dv">8</span>)</span>
+<span id="cb13-3"><a href="#cb13-3"></a>    <span class="cf">return</span> (</span>
+<span id="cb13-4"><a href="#cb13-4"></a>        so.Plot(df, x<span class="op">=</span><span class="st">'pct_bump'</span>, y<span class="op">=</span><span class="st">'series'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5"></a>        .add(so.Bar(),</span>
+<span id="cb13-6"><a href="#cb13-6"></a>             orient<span class="op">=</span><span class="st">'h'</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>        .add(so.Line(color<span class="op">=</span><span class="st">'r'</span>,</span>
+<span id="cb13-8"><a href="#cb13-8"></a>                     linestyle<span class="op">=</span><span class="st">'dashed'</span>),</span>
+<span id="cb13-9"><a href="#cb13-9"></a>             data<span class="op">=</span>med_line,</span>
+<span id="cb13-10"><a href="#cb13-10"></a>             orient<span class="op">=</span><span class="st">'h'</span>)</span>
+<span id="cb13-11"><a href="#cb13-11"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb13-12"><a href="#cb13-12"></a>    )</span>
+<span id="cb13-13"><a href="#cb13-13"></a></span>
+<span id="cb13-14"><a href="#cb13-14"></a></span>
+<span id="cb13-15"><a href="#cb13-15"></a>finale_pct_bump.pipe(_plot_bar_hax_line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-12-output-1.png" width="593" height="440"></p>
+</div>
+</div>
+</section>
+<section id="lollipop-chart-with-median-line" class="level3">
+<h3 class="anchored" data-anchor-id="lollipop-chart-with-median-line">Lollipop chart with median line</h3>
+<div class="cell" data-execution_count="12">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> _plot_lollipop_hax_line(df) <span class="op">-&gt;</span> so.Plot:</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    df <span class="op">=</span> df.sort_index()</span>
+<span id="cb14-3"><a href="#cb14-3"></a>    med_line <span class="op">=</span> df.assign(pct_bump<span class="op">=</span>[df[<span class="st">'pct_bump'</span>].median()] <span class="op">*</span> <span class="dv">8</span>)</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="cf">return</span> (</span>
+<span id="cb14-5"><a href="#cb14-5"></a>        so.Plot(df,</span>
+<span id="cb14-6"><a href="#cb14-6"></a>                x<span class="op">=</span><span class="st">'series'</span>,</span>
+<span id="cb14-7"><a href="#cb14-7"></a>                y<span class="op">=</span><span class="st">'pct_bump'</span>)</span>
+<span id="cb14-8"><a href="#cb14-8"></a>        .add(so.Bars(width<span class="op">=</span><span class="fl">0.05</span>))</span>
+<span id="cb14-9"><a href="#cb14-9"></a>        .add(so.Dot(pointsize<span class="op">=</span><span class="dv">8</span>))</span>
+<span id="cb14-10"><a href="#cb14-10"></a>        .add(so.Line(color<span class="op">=</span><span class="st">'r'</span>,</span>
+<span id="cb14-11"><a href="#cb14-11"></a>                     linestyle<span class="op">=</span><span class="st">'dashed'</span>),</span>
+<span id="cb14-12"><a href="#cb14-12"></a>             data<span class="op">=</span>med_line)</span>
+<span id="cb14-13"><a href="#cb14-13"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb14-14"><a href="#cb14-14"></a>    )</span>
+<span id="cb14-15"><a href="#cb14-15"></a></span>
+<span id="cb14-16"><a href="#cb14-16"></a></span>
+<span id="cb14-17"><a href="#cb14-17"></a>finale_pct_bump.pipe(_plot_lollipop_hax_line)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-13-output-1.png" width="593" height="440"></p>
+</div>
+</div>
+</section>
+<section id="pop-out-scatterplot" class="level3">
+<h3 class="anchored" data-anchor-id="pop-out-scatterplot">Pop-Out Scatterplot</h3>
+<div class="cell" data-execution_count="13">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> _plot_scatter_pop_out(df) <span class="op">-&gt;</span> so.Plot:</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    df <span class="op">=</span> (</span>
+<span id="cb15-3"><a href="#cb15-3"></a>        df</span>
+<span id="cb15-4"><a href="#cb15-4"></a>        .pivot(index<span class="op">=</span><span class="st">'series'</span>,</span>
+<span id="cb15-5"><a href="#cb15-5"></a>               columns<span class="op">=</span><span class="st">'episode'</span>,</span>
+<span id="cb15-6"><a href="#cb15-6"></a>               values<span class="op">=</span><span class="st">'viewers_7day'</span>)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>        .reset_index()</span>
+<span id="cb15-8"><a href="#cb15-8"></a>    )</span>
+<span id="cb15-9"><a href="#cb15-9"></a>    <span class="cf">return</span> (</span>
+<span id="cb15-10"><a href="#cb15-10"></a>        so.Plot(df,</span>
+<span id="cb15-11"><a href="#cb15-11"></a>                x<span class="op">=</span><span class="st">'first'</span>,</span>
+<span id="cb15-12"><a href="#cb15-12"></a>                y<span class="op">=</span><span class="st">'last'</span>,</span>
+<span id="cb15-13"><a href="#cb15-13"></a>                text<span class="op">=</span><span class="st">'series'</span>)</span>
+<span id="cb15-14"><a href="#cb15-14"></a>        .add(so.Dots(pointsize<span class="op">=</span><span class="dv">8</span>))</span>
+<span id="cb15-15"><a href="#cb15-15"></a>        .add(so.Dot(pointsize<span class="op">=</span><span class="dv">8</span>, color<span class="op">=</span><span class="st">'r'</span>),</span>
+<span id="cb15-16"><a href="#cb15-16"></a>             data<span class="op">=</span>df.query(<span class="st">'series == "8"'</span>))</span>
+<span id="cb15-17"><a href="#cb15-17"></a>        .add(so.Text(halign<span class="op">=</span><span class="st">'left'</span>,</span>
+<span id="cb15-18"><a href="#cb15-18"></a>                     offset<span class="op">=</span><span class="dv">10</span>))</span>
+<span id="cb15-19"><a href="#cb15-19"></a>        .theme({<span class="op">**</span>style.library[<span class="st">"fivethirtyeight"</span>]})</span>
+<span id="cb15-20"><a href="#cb15-20"></a>    )</span>
+<span id="cb15-21"><a href="#cb15-21"></a></span>
+<span id="cb15-22"><a href="#cb15-22"></a></span>
+<span id="cb15-23"><a href="#cb15-23"></a>first_last.pipe(_plot_scatter_pop_out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<p><img src="20221030-tt_great_british_bakeoff_files/figure-html/cell-14-output-1.png" width="593" height="440"></p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Liam Kelly">
+<meta name="dcterms.date" content="2022-10-30">
+
+<title>LaughingRook - Analysing Cohort And Case-Control Studies</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LaughingRook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#two-exposures" id="toc-two-exposures" class="nav-link" data-scroll-target="#two-exposures">Two exposures</a>
+  <ul class="collapse">
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#measures-of-association" id="toc-measures-of-association" class="nav-link" data-scroll-target="#measures-of-association">Measures of association</a></li>
+  <li><a href="#tests-for-no-association" id="toc-tests-for-no-association" class="nav-link" data-scroll-target="#tests-for-no-association">Tests for no association</a></li>
+  </ul></li>
+  <li><a href="#three-or-more-exposures" id="toc-three-or-more-exposures" class="nav-link" data-scroll-target="#three-or-more-exposures">Three or more exposures</a>
+  <ul class="collapse">
+  <li><a href="#setup-1" id="toc-setup-1" class="nav-link" data-scroll-target="#setup-1">Setup</a></li>
+  <li><a href="#measures-of-association-1" id="toc-measures-of-association-1" class="nav-link" data-scroll-target="#measures-of-association-1">Measures of association</a></li>
+  <li><a href="#tests-for-no-association-1" id="toc-tests-for-no-association-1" class="nav-link" data-scroll-target="#tests-for-no-association-1">Tests for no association</a></li>
+  </ul></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Analysing Cohort And Case-Control Studies</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">Statistics</div>
+    <div class="quarto-category">M249</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Liam Kelly </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 30, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>Perform an epidemiological analysis on the results of a cohort or case-control study with two or more categories of exposure using <em>statsmodels</em> and <em>scipy</em>.</p>
+<p>There are two main questions addressed in this notebook.</p>
+<ol type="1">
+<li>How do we ensure the instance of <code>Table2x2</code> from <em>statsmodels</em> initialises correctly?</li>
+<li>How do we handle cases where there are multiple exposures?</li>
+</ol>
+<p>Both of these questions are solved by defining three functions that will handle the transfromation and initialisation of the needed data structures. They aren’t particularly interesting functions, so we don’t discuss them beyond noting what the arguments expect.</p>
+<p>We then show two worked examples, the first involving a cohort study with two exposures, and the second a case-control study with three exposures. This is a recipe book rather than a theoretical overview, so we don’t discuss the theory or interpretation of the results.</p>
+</section>
+<section id="dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> collections <span class="im">import</span> defaultdict</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">from</span> scipy <span class="im">import</span> stats <span class="im">as</span> st</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> statsmodels <span class="im">import</span> api <span class="im">as</span> sm</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="im">import</span> lrdataio</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">%</span>load_ext watermark</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>scipy      : 1.9.3
+statsmodels: 0.13.5
+lrdataio   : 0.3.0
+pandas     : 1.5.1
+</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="op">%</span>precision <span class="dv">6</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>'%.6f'</code></pre>
+</div>
+</div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<p><code>mask(df: pd.DataFrame, exposure: list, outcome: str) -&gt; pd.DataFrame</code></p>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> mask(df, exposures, outcome) <span class="op">-&gt;</span> pd.DataFrame:</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    e_dict <span class="op">=</span> defaultdict(<span class="kw">lambda</span>: <span class="st">'not exposed'</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="cf">for</span> n, e <span class="kw">in</span> <span class="bu">enumerate</span>(exposures):</span>
+<span id="cb6-4"><a href="#cb6-4"></a>        e_dict[e] <span class="op">=</span> <span class="ss">f'exposure</span><span class="sc">{</span>n<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    o_dict <span class="op">=</span> defaultdict(<span class="kw">lambda</span>: <span class="st">'no disease'</span>)</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    o_dict[outcome] <span class="op">=</span> <span class="st">'disease'</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="cf">return</span> (</span>
+<span id="cb6-8"><a href="#cb6-8"></a>        pd.DataFrame()</span>
+<span id="cb6-9"><a href="#cb6-9"></a>        .assign(n<span class="op">=</span>df[<span class="st">'n'</span>],</span>
+<span id="cb6-10"><a href="#cb6-10"></a>                exposure<span class="op">=</span>df[<span class="st">'exposure'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> s: e_dict[s]),</span>
+<span id="cb6-11"><a href="#cb6-11"></a>                outcome<span class="op">=</span>df[<span class="st">'outcome'</span>].<span class="bu">map</span>(<span class="kw">lambda</span> s: o_dict[s]))</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        .pivot_table(<span class="st">'n'</span>, <span class="st">'exposure'</span>, <span class="st">'outcome'</span>)</span>
+<span id="cb6-13"><a href="#cb6-13"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Return a masked <code>DataFrame</code>, where the exposures and outcomes columns are relabelled with generic labels.</p>
+<p>Pre-conditions:</p>
+<ul>
+<li><em>df</em> has three columns
+<ul>
+<li>‘n’, <code>int</code>, the number of observations</li>
+<li>‘exposures’, <code>str</code>, the exposure category</li>
+<li>‘outcomes’, <code>str</code>, the outcome</li>
+</ul></li>
+<li><em>exposure</em> is a list of the exposures, sans the reference exposure</li>
+<li><em>outcome</em> is the label representing a positive outcome, either the disease or the case</li>
+</ul>
+<p><code>collect_table2x2s(df: pd.DataFrame, exposure: list, outcome: str) -&gt; dict[str, sm.Table2x2]</code></p>
+<div class="cell" data-execution_count="5">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">def</span> collect_tables(df, exposures, outcome) <span class="op">-&gt;</span> <span class="bu">dict</span>[<span class="bu">str</span>, pd.DataFrame]:</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    masked_df <span class="op">=</span> df.pipe(mask, exposures, outcome)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    es <span class="op">=</span> [<span class="ss">f'exposure</span><span class="sc">{</span>n<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> n, e <span class="kw">in</span> <span class="bu">enumerate</span>(exposures)]</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="kw">def</span> filter_exposure(e): <span class="cf">return</span> (</span>
+<span id="cb7-6"><a href="#cb7-6"></a>        masked_df</span>
+<span id="cb7-7"><a href="#cb7-7"></a>        .query(<span class="st">'exposure in [@e, "not exposed"]'</span>)</span>
+<span id="cb7-8"><a href="#cb7-8"></a>        .to_numpy()</span>
+<span id="cb7-9"><a href="#cb7-9"></a>    )</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a>    <span class="cf">return</span> {e: sm.stats.Table2x2(filter_exposure(e)) <span class="cf">for</span> e <span class="kw">in</span> es}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Return a dictionary that maps each exposure to an instance of <code>Table2x2</code>. The exposure labels are replaced by the generic labels in the mapping.</p>
+<p>Pre-conditions:</p>
+<ul>
+<li><em>df</em> has three columns
+<ul>
+<li>‘n’, <code>int</code>, the number of observations</li>
+<li>‘exposures’, <code>str</code>, the exposure category</li>
+<li>‘outcomes’, <code>str</code>, the outcome</li>
+</ul></li>
+<li><em>exposure</em> is a list of the exposures, sans the reference exposure</li>
+<li><em>outcome</em> is the label representing a positive outcome, either the disease or the case</li>
+</ul>
+<p><code>make_table(df: pd.DataFrame, exposure: list, outcome: str) -&gt; sm.stats.Table</code></p>
+<div class="cell" data-execution_count="6">
+<details>
+<summary>Show the code</summary>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> make_table(df, exposures, outcome) <span class="op">-&gt;</span> sm.stats.Table:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    arr <span class="op">=</span> (</span>
+<span id="cb8-3"><a href="#cb8-3"></a>        df</span>
+<span id="cb8-4"><a href="#cb8-4"></a>        .pipe(mask, exposures, outcome)</span>
+<span id="cb8-5"><a href="#cb8-5"></a>        .to_numpy()</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    )</span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="cf">return</span> sm.stats.Table(arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Return an instance of <em>statsmodels</em> table.</p>
+<p>The returned <code>Table</code> is ordered exposure1, exposure2, …, no exposure, where expsoure1, exposure2, …, are the items of <em>exposure</em>.</p>
+<ul>
+<li><em>df</em> has three columns
+<ul>
+<li>‘n’, <code>int</code>, the number of observations</li>
+<li>‘exposures’, <code>str</code>, the exposure category</li>
+<li>‘outcomes’, <code>str</code>, the outcome</li>
+</ul></li>
+<li><em>exposure</em> is a list of the exposures, sans the reference exposure</li>
+<li><em>outcome</em> is the label representing a positive outcome, either the disease or the case</li>
+</ul>
+</section>
+<section id="two-exposures" class="level2">
+<h2 class="anchored" data-anchor-id="two-exposures">Two exposures</h2>
+<p>The data for this worked example is taken from a cohort study that investigated the association compulsory redundancy (the exposure), and incidences of serious self-harm. (Van Keefe <em>et al</em>, 2002.)</p>
+<p>The background of the study is…</p>
+<blockquote class="blockquote">
+<p><em>The association between unemployment and poor health outcomes is well documented.</em> <em>Significant debate exists as to whether unemployment causes ill health or whether those with poor health find it harder to obtain and maintain employment.</em> <em>Factory closure studies are well placed to comment on causation.</em> <em>The objective of this study was to investigate associations between involuntary job loss, mortality and serious illness.</em></p>
+</blockquote>
+<section id="setup" class="level3">
+<h3 class="anchored" data-anchor-id="setup">Setup</h3>
+<p>Cache and load the results into a <code>DataFrame</code>.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>_temp_path <span class="op">=</span> lrdataio.cache_url(<span class="st">'https://raw.githubusercontent.com/ljk233/laughingrook-datasets/main/m249/medical/redundancy_ssi.csv'</span>)  <span class="co"># noqa</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>redundancy_df <span class="op">=</span> pd.read_csv(_temp_path)</span>
+<span id="cb9-3"><a href="#cb9-3"></a>redundancy_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 4 entries, 0 to 3
+Data columns (total 3 columns):
+ #   Column    Non-Null Count  Dtype 
+---  ------    --------------  ----- 
+ 0   n         4 non-null      int64 
+ 1   exposure  4 non-null      object
+ 2   outcome   4 non-null      object
+dtypes: int64(1), object(2)
+memory usage: 224.0+ bytes</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>redundancy_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>n</th>
+      <th>exposure</th>
+      <th>outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>14</td>
+      <td>redundant</td>
+      <td>ssi</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1931</td>
+      <td>redundant</td>
+      <td>no ssi</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4</td>
+      <td>not redundant</td>
+      <td>ssi</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1763</td>
+      <td>not redundant</td>
+      <td>no ssi</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Use the <code>collect_table2x2s</code> function to collect the instances of <code>Table2x2</code> as a <code>dict</code>, where each item in the <code>dict</code> maps an exposure to an instance of <code>Table2x2</code>.</p>
+<p>Given there are only two exposures here, there will be only be a single item in the returned <code>dict</code>. We therefore bypass the <code>dict</code> and directly assign the item to a variable.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>_exposures <span class="op">=</span> [<span class="st">'redundant'</span>]  <span class="co"># exposure list</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>_outcome <span class="op">=</span> <span class="st">'ssi'</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>redundancy_table <span class="op">=</span> (</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    redundancy_df</span>
+<span id="cb12-5"><a href="#cb12-5"></a>    .pipe(collect_tables, _exposures, _outcome)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    [<span class="st">'exposure1'</span>]</span>
+<span id="cb12-7"><a href="#cb12-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output the table to ensure they have initialised successfully.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="bu">print</span>(redundancy_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A 2x2 contingency table with counts:
+[[  14. 1931.]
+ [   4. 1763.]]</code></pre>
+</div>
+</div>
+</section>
+<section id="measures-of-association" class="level3">
+<h3 class="anchored" data-anchor-id="measures-of-association">Measures of association</h3>
+<p>Output a summary table of the measures of association.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you coming here from <strong>M249</strong>, then we are only interested in the Odds ratio and Risk ratio rows. Also, the risk ratio is the <em>relative risk</em>.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>redundancy_table.summary()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+
+<table class="simpletable">
+<tbody><tr>
+         <td></td>        <th>Estimate</th>  <th>SE</th>    <th>LCB</th>   <th>UCB</th>  <th>p-value</th>
+</tr>
+<tr>
+  <th>Odds ratio</th>        <td>3.195</td>      <td></td> <td>1.050</td> <td>9.726</td>   <td>0.041</td>
+</tr>
+<tr>
+  <th>Log odds ratio</th>    <td>1.162</td> <td>0.568</td> <td>0.049</td> <td>2.275</td>   <td>0.041</td>
+</tr>
+<tr>
+  <th>Risk ratio</th>        <td>3.180</td>      <td></td> <td>1.049</td> <td>9.642</td>   <td>0.041</td>
+</tr>
+<tr>
+  <th>Log risk ratio</th>    <td>1.157</td> <td>0.566</td> <td>0.047</td> <td>2.266</td>   <td>0.041</td>
+</tr>
+</tbody></table>
+</div>
+</div>
+</section>
+<section id="tests-for-no-association" class="level3">
+<h3 class="anchored" data-anchor-id="tests-for-no-association">Tests for no association</h3>
+<section id="chi-squared-test" class="level4">
+<h4 class="anchored" data-anchor-id="chi-squared-test">Chi-squared test</h4>
+<p>Expected frequencies under the null hypothesis of no association.</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>redundancy_table.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([[   9.431573, 1935.568427],
+       [   8.568427, 1758.431573]])</code></pre>
+</div>
+</div>
+<p>Differences between the observed and expected frequencies.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>redundancy_table.table <span class="op">-</span> redundancy_table.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>array([[ 4.568427, -4.568427],
+       [-4.568427,  4.568427]])</code></pre>
+</div>
+</div>
+<p>Contributions to the chi-squared test statistic.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>redundancy_table.chi2_contribs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>array([[2.212836, 0.010783],
+       [2.435747, 0.011869]])</code></pre>
+</div>
+</div>
+<p>Chi-squared test result.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="bu">print</span>(redundancy_table.test_nominal_association())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>df          1
+pvalue      0.030671871146104812
+statistic   4.671234588585282</code></pre>
+</div>
+</div>
+</section>
+<section id="fishers-exact-test" class="level4">
+<h4 class="anchored" data-anchor-id="fishers-exact-test">Fisher’s exact test</h4>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is no implementation of Fisher’s exact test is <em>statsmodels</em>, so we use <em>scipy</em> implementation.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>pd.Series(</span>
+<span id="cb24-2"><a href="#cb24-2"></a>    data<span class="op">=</span>st.fisher_exact(redundancy_table.table)[<span class="dv">1</span>],</span>
+<span id="cb24-3"><a href="#cb24-3"></a>    index<span class="op">=</span>[<span class="st">'pvalue'</span>],</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    name<span class="op">=</span><span class="st">'fisher''s exact'</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>pvalue    0.033877
+Name: fishers exact, dtype: float64</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="three-or-more-exposures" class="level2">
+<h2 class="anchored" data-anchor-id="three-or-more-exposures">Three or more exposures</h2>
+<p>Data are taken from a cohort study that investigated the association the duration of the pregnancy (the exposure), and incidences of early childhood asthma. (Yuan <em>et al</em>, 2002.)</p>
+<p>The background of the study is…</p>
+<blockquote class="blockquote">
+<p><em>Childhood asthma may have a fetal origin.</em> <em>In order to examine this hypothesis we examined the association between fetal growth indicators and hospitalization with asthma during early childhood.</em></p>
+</blockquote>
+<section id="setup-1" class="level3">
+<h3 class="anchored" data-anchor-id="setup-1">Setup</h3>
+<p>Cache and load the results into a <code>DataFrame</code>.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>_temp_path <span class="op">=</span> lrdataio.cache_url(<span class="st">'https://raw.githubusercontent.com/ljk233/laughingrook-datasets/main/m249/medical/asthmagest.csv'</span>)  <span class="co"># noqa</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>asthma_df <span class="op">=</span> pd.read_csv(_temp_path)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>asthma_df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 6 entries, 0 to 5
+Data columns (total 3 columns):
+ #   Column    Non-Null Count  Dtype 
+---  ------    --------------  ----- 
+ 0   n         6 non-null      int64 
+ 1   exposure  6 non-null      object
+ 2   outcome   6 non-null      object
+dtypes: int64(1), object(2)
+memory usage: 272.0+ bytes</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>asthma_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>n</th>
+      <th>exposure</th>
+      <th>outcome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>18</td>
+      <td>pre-term</td>
+      <td>hospitalised</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>266</td>
+      <td>pre-term</td>
+      <td>not hospitalised</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>402</td>
+      <td>term</td>
+      <td>hospitalised</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>8565</td>
+      <td>term</td>
+      <td>not hospitalised</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>45</td>
+      <td>post-term</td>
+      <td>hospitalised</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1100</td>
+      <td>post-term</td>
+      <td>not hospitalised</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Use the <code>collect_tables2x2s</code> function to collect the instances of <code>Table2x2</code> as a <code>dict</code>.</p>
+<p>We take the ‘term’ exposure to be the reference exposure, so we do not add it to the exposures list.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>_exposures <span class="op">=</span> [<span class="st">'pre-term'</span>, <span class="st">'post-term'</span>]  <span class="co"># exposure list</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a>_outcome <span class="op">=</span> <span class="st">'hospitalised'</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a>asthma_tables <span class="op">=</span> asthma_df.pipe(collect_tables, _exposures, _outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output the tables to ensure they have initialised successfully.</p>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="cf">for</span> e, t <span class="kw">in</span> asthma_tables.items():</span>
+<span id="cb30-2"><a href="#cb30-2"></a>    <span class="bu">print</span>(<span class="ss">f'exposure=</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a>    <span class="bu">print</span>(t, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>exposure=exposure1
+A 2x2 contingency table with counts:
+[[  18.  266.]
+ [ 402. 8565.]] 
+
+exposure=exposure2
+A 2x2 contingency table with counts:
+[[  45. 1100.]
+ [ 402. 8565.]] 
+</code></pre>
+</div>
+</div>
+</section>
+<section id="measures-of-association-1" class="level3">
+<h3 class="anchored" data-anchor-id="measures-of-association-1">Measures of association</h3>
+<p>Output two summary tables, one for each exposure.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This is a case-control study, so only the Odds ratio is relevant.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a><span class="cf">for</span> e, t <span class="kw">in</span> asthma_tables.items():</span>
+<span id="cb32-2"><a href="#cb32-2"></a>    <span class="bu">print</span>(<span class="ss">f'exposure=</span><span class="sc">{</span>e<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3"></a>    <span class="bu">print</span>(t.summary(), <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>exposure=exposure1
+               Estimate   SE   LCB    UCB  p-value
+--------------------------------------------------
+Odds ratio        1.442        0.885 2.348   0.141
+Log odds ratio    0.366 0.249 -0.122 0.854   0.141
+Risk ratio        1.414        0.895 2.233   0.138
+Log risk ratio    0.346 0.233 -0.111 0.803   0.138
+-------------------------------------------------- 
+
+exposure=exposure2
+               Estimate   SE   LCB    UCB  p-value
+--------------------------------------------------
+Odds ratio        0.872        0.636 1.194   0.392
+Log odds ratio   -0.137 0.160 -0.452 0.177   0.392
+Risk ratio        0.877        0.648 1.186   0.393
+Log risk ratio   -0.132 0.154 -0.434 0.170   0.393
+-------------------------------------------------- 
+</code></pre>
+</div>
+</div>
+</section>
+<section id="tests-for-no-association-1" class="level3">
+<h3 class="anchored" data-anchor-id="tests-for-no-association-1">Tests for no association</h3>
+<section id="chi-squared-test-1" class="level4">
+<h4 class="anchored" data-anchor-id="chi-squared-test-1">Chi-squared test</h4>
+<p>Initialise the instance of <code>Table</code>.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1"></a>_exposures <span class="op">=</span> [<span class="st">'pre-term'</span>, <span class="st">'post-term'</span>]  <span class="co"># exposure list</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>_outcome <span class="op">=</span> <span class="st">'hospitalised'</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>asthma_table <span class="op">=</span> asthma_df.pipe(make_table, _exposures, _outcome)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Output the table to ensure they have initialised successfully.</p>
+<div class="callout-note callout callout-style-default callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The rows are ordered: pre-term, post-term, term, and columns are ordered hospitalised, not hospitalised.</p>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a><span class="bu">print</span>(asthma_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A 3x2 contingency table with counts:
+[[  18.  266.]
+ [  45. 1100.]
+ [ 402. 8565.]]</code></pre>
+</div>
+</div>
+<p>Expected frequencies under the null hypothesis of no association.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>asthma_table.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
+<pre><code>array([[  12.702963,  271.297037],
+       [  51.214409, 1093.785591],
+       [ 401.082628, 8565.917372]])</code></pre>
+</div>
+</div>
+<p>Differences between the observed and expected frequencies.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>asthma_table.table <span class="op">-</span> asthma_table.fittedvalues</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>array([[ 5.297037, -5.297037],
+       [-6.214409,  6.214409],
+       [ 0.917372, -0.917372]])</code></pre>
+</div>
+</div>
+<p>Contributions to the chi-squared test statistic.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>asthma_table.chi2_contribs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>array([[2.208824e+00, 1.034239e-01],
+       [7.540629e-01, 3.530755e-02],
+       [2.098250e-03, 9.824651e-05]])</code></pre>
+</div>
+</div>
+<p>Chi-squared test result.</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a><span class="bu">print</span>(asthma_table.test_nominal_association())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>df          2
+pvalue      0.21184355211692685
+statistic   3.1038144769010287</code></pre>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<p>Keefe V, Reid P, Ormsby C, et al.&nbsp;Serious health events following involuntary job loss in New Zealand meat processing workers. Int J Epidemiol. 2002;31(6):1155-1161 doi:10.1093/ije/31.6.1155</p>
+<p>Yuan W, Basso O, Sorensen HT, Olsen J. Fetal growth and hospitalization with asthma during early childhood: a follow-up study in Denmark. Int J Epidemiol. 2002;31(6):1240-1245. doi:10.1093/ije/31.6.1240</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

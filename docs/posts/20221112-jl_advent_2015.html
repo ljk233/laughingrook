@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Liam Kelly">
+<meta name="dcterms.date" content="2022-11-12">
+
+<title>LaughingRook - Advent of Code 2015</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">LaughingRook</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history">History</a></li>
+  <li><a href="#setup-evironment" id="toc-setup-evironment" class="nav-link" data-scroll-target="#setup-evironment">Setup Evironment</a></li>
+  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
+  <li><a href="#constants" id="toc-constants" class="nav-link" data-scroll-target="#constants">Constants</a></li>
+  <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions">Functions</a></li>
+  <li><a href="#puzzles" id="toc-puzzles" class="nav-link" data-scroll-target="#puzzles">Puzzles</a>
+  <ul class="collapse">
+  <li><a href="#day-1" id="toc-day-1" class="nav-link" data-scroll-target="#day-1">Day 1</a></li>
+  <li><a href="#day-2" id="toc-day-2" class="nav-link" data-scroll-target="#day-2">Day 2</a></li>
+  <li><a href="#day-3" id="toc-day-3" class="nav-link" data-scroll-target="#day-3">Day 3</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Advent of Code 2015</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
+  <div class="quarto-categories">
+    <div class="quarto-category">JuliaLang</div>
+    <div class="quarto-category">AdventOfCode</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Liam Kelly </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 12, 2022</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<p>These are my solutions to the Advent of Code 2015 in Julia.</p>
+</section>
+<section id="history" class="level2">
+<h2 class="anchored" data-anchor-id="history">History</h2>
+<ul>
+<li><strong>(2022-11-12)</strong> Initialised the notebook</li>
+</ul>
+</section>
+<section id="setup-evironment" class="level2">
+<h2 class="anchored" data-anchor-id="setup-evironment">Setup Evironment</h2>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">using</span> <span class="bu">Pkg; Pkg</span>.<span class="fu">activate</span>(<span class="st">"..</span><span class="sc">\\</span><span class="st">venvs</span><span class="sc">\\</span><span class="st">aoc_jl"</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>  Activating project at `D:\GitHub\laughingrook\venvs\aoc_jl`</code></pre>
+</div>
+</div>
+</section>
+<section id="dependencies" class="level2">
+<h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
+</section>
+<section id="constants" class="level2">
+<h2 class="anchored" data-anchor-id="constants">Constants</h2>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1"></a>ADVENT <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/ljk233/laughingrook-datasets/main/aoc/"</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="functions" class="level2">
+<h2 class="anchored" data-anchor-id="functions">Functions</h2>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">head</span>(a) <span class="op">=</span> a[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>head (generic function with 1 method)</code></pre>
+</div>
+</div>
+</section>
+<section id="puzzles" class="level2">
+<h2 class="anchored" data-anchor-id="puzzles">Puzzles</h2>
+<section id="day-1" class="level3">
+<h3 class="anchored" data-anchor-id="day-1">Day 1</h3>
+<p><a href="https://adventofcode.com/2015/day/1">--- Not Quite Lisp ---</a></p>
+<div class="cell" data-execution_count="4">
+<details>
+<summary>Load the input</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1"></a>tinput1 <span class="op">=</span> <span class="dt">String</span>[<span class="st">"(())"</span>, <span class="st">"()()"</span>, <span class="st">"((("</span>, <span class="st">"(()(()("</span>, <span class="st">"))((((("</span>,</span>
+<span id="cb6-2"><a href="#cb6-2"></a>                 <span class="st">"())"</span>, <span class="st">"))("</span>, <span class="st">")))"</span>, <span class="st">")())())"</span>];</span>
+<span id="cb6-3"><a href="#cb6-3"></a>input1 <span class="op">=</span> <span class="fu">read</span>(<span class="fu">open</span>(<span class="fu">download</span>(ADVENT <span class="op">*</span> <span class="st">"2015/2015_1.txt"</span>)), <span class="dt">String</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Prepare the input.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">floor_direction</span>(d) <span class="op">=</span> d <span class="op">==</span> <span class="ch">'('</span> ? <span class="fl">1</span> <span class="op">:</span> <span class="op">-</span><span class="fl">1</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>floor_directions <span class="op">=</span> [<span class="fu">floor_direction</span>(d) for d <span class="op">∈</span> <span class="fu">collect</span>(input1)]</span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">head</span>(floor_directions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>3-element Vector{Int64}:
+  1
+ -1
+  1</code></pre>
+</div>
+</div>
+<section id="part-1" class="level4">
+<h4 class="anchored" data-anchor-id="part-1">Part 1</h4>
+<p><em>To what floor do the instructions take Santa?</em></p>
+<p>Solution =</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">sum</span>(floor_directions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>138</code></pre>
+</div>
+</div>
+</section>
+<section id="part-2" class="level4">
+<h4 class="anchored" data-anchor-id="part-2">Part 2</h4>
+<p><em>What is the position of the character that causes Santa to first enter the basement?</em></p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">function</span> <span class="fu">search_basement</span>(fd, s, i)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="cf">if</span> i <span class="op">&gt;</span> <span class="fu">length</span>(fd)</span>
+<span id="cb11-3"><a href="#cb11-3"></a>        <span class="cf">return</span> <span class="cn">Inf</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="cf">elseif</span> s <span class="op">+</span> fd[i] <span class="op">==</span> <span class="op">-</span><span class="fl">1</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>        <span class="cf">return</span> i</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="cf">else</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>        <span class="cf">return</span> <span class="fu">search_basement</span>(fd, s <span class="op">+</span> fd[i], i<span class="op">+</span><span class="fl">1</span>)</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    <span class="cf">end</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>search_basement (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Solution =</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">search_basement</span>(floor_directions, <span class="fl">0</span>, <span class="fl">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>1771</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="day-2" class="level3">
+<h3 class="anchored" data-anchor-id="day-2">Day 2</h3>
+<p><a href="https://adventofcode.com/2015/day/2">--- I Was Told There Would Be No Math(s) ---</a></p>
+<div class="cell" data-execution_count="9">
+<details>
+<summary>Load the input</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1"></a>tinput2 <span class="op">=</span> <span class="dt">String</span>[<span class="st">"2x3x4"</span>, <span class="st">"1x1x10"</span>];</span>
+<span id="cb15-2"><a href="#cb15-2"></a>input2 <span class="op">=</span> <span class="fu">readlines</span>(<span class="fu">open</span>(<span class="fu">download</span>(ADVENT <span class="op">*</span> <span class="st">"2015/2015_2.txt"</span>)));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Prepare the input.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1"></a>ppdims <span class="op">=</span> <span class="fu">map</span>(input2) <span class="cf">do</span> s</span>
+<span id="cb16-2"><a href="#cb16-2"></a>    <span class="fu">parse</span>.(<span class="dt">Int</span>, <span class="fu">split</span>(s, <span class="ch">'x'</span>))</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="cf">end</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">head</span>(ppdims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>3-element Vector{Vector{Int64}}:
+ [4, 23, 21]
+ [22, 29, 19]
+ [11, 4, 11]</code></pre>
+</div>
+</div>
+<section id="part-1-1" class="level4">
+<h4 class="anchored" data-anchor-id="part-1-1">Part 1</h4>
+<p><em>All numbers in the elves’ list are in feet. How many total square feet of wrapping paper should they order?</em></p>
+<div class="cell" data-tags="[]" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">function</span> <span class="fu">paper_needed</span>(dims)</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    le, w, h <span class="op">=</span> dims</span>
+<span id="cb18-3"><a href="#cb18-3"></a>    planes <span class="op">=</span> [le <span class="op">*</span> w, w <span class="op">*</span> h, h <span class="op">*</span> le]</span>
+<span id="cb18-4"><a href="#cb18-4"></a>    <span class="cf">return</span> <span class="fu">minimum</span>(planes) <span class="op">+</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu">sum</span>(planes)</span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>paper_needed (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Solution =</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">sum</span>(<span class="fu">paper_needed</span>(pdims) <span class="cf">for</span> pdims <span class="kw">in</span> ppdims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>1598415</code></pre>
+</div>
+</div>
+</section>
+<section id="part-2-1" class="level4">
+<h4 class="anchored" data-anchor-id="part-2-1">Part 2</h4>
+<p><em>How many total feet of ribbon should they order?</em></p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1"></a><span class="kw">function</span> <span class="fu">ribbon_needed</span>(dims)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>    bow <span class="op">=</span> <span class="fu">prod</span>(dims)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>    ribbon <span class="op">=</span> <span class="fl">2</span> <span class="op">*</span> <span class="fu">sum</span>(<span class="fu">sort</span>(dims)[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span>])</span>
+<span id="cb22-4"><a href="#cb22-4"></a>    <span class="cf">return</span> bow <span class="op">+</span> ribbon</span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>ribbon_needed (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Solution =</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">sum</span>(<span class="fu">ribbon_needed</span>(pdims) <span class="cf">for</span> pdims <span class="kw">in</span> ppdims)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>3812909</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="day-3" class="level3">
+<h3 class="anchored" data-anchor-id="day-3">Day 3</h3>
+<p><a href="https://adventofcode.com/2015/day/3">--- Perfectly Spherical Houses in a Vacuum ---</a></p>
+<div class="cell" data-execution_count="96">
+<details>
+<summary>Load the input</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb26-1"><a href="#cb26-1"></a>tinput3 <span class="op">=</span> <span class="st">"^v^v^v^v^v"</span>;</span>
+<span id="cb26-2"><a href="#cb26-2"></a>input3 <span class="op">=</span> <span class="fu">read</span>(<span class="fu">open</span>(<span class="fu">download</span>(ADVENT <span class="op">*</span> <span class="st">"2015/2015_3.txt"</span>)), <span class="dt">String</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Prepare the input.</p>
+<div class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb27-1"><a href="#cb27-1"></a>delivery_deltas <span class="op">=</span> <span class="fu">map</span>(<span class="fu">collect</span>(input3)) <span class="cf">do</span> d</span>
+<span id="cb27-2"><a href="#cb27-2"></a>    <span class="cf">if</span> d <span class="op">==</span> <span class="ch">'&gt;'</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>        delta <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">0</span>]</span>
+<span id="cb27-4"><a href="#cb27-4"></a>    <span class="cf">elseif</span> d <span class="op">==</span> <span class="ch">'&lt;'</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>        delta <span class="op">=</span> [<span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>] </span>
+<span id="cb27-6"><a href="#cb27-6"></a>    <span class="cf">elseif</span> d <span class="op">==</span> <span class="ch">'^'</span></span>
+<span id="cb27-7"><a href="#cb27-7"></a>        delta <span class="op">=</span> [<span class="fl">0</span>, <span class="fl">1</span>] </span>
+<span id="cb27-8"><a href="#cb27-8"></a>    <span class="cf">else</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>        delta <span class="op">=</span> [<span class="fl">0</span>, <span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb27-10"><a href="#cb27-10"></a>    <span class="cf">end</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>    delta</span>
+<span id="cb27-12"><a href="#cb27-12"></a><span class="cf">end</span></span>
+<span id="cb27-13"><a href="#cb27-13"></a><span class="fu">head</span>(delivery_deltas)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="99">
+<pre><code>3-element Vector{Vector{Int64}}:
+ [0, 1]
+ [0, 1]
+ [-1, 0]</code></pre>
+</div>
+</div>
+<section id="part-1-2" class="level4">
+<h4 class="anchored" data-anchor-id="part-1-2">Part 1</h4>
+<p><em>However, the elf back at the north pole has had a little too much eggnog, and so his directions are a little off, and Santa ends up visiting some houses more than once. How many houses receive at least one present?</em></p>
+<div class="cell" data-tags="[]" data-execution_count="108">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">function</span> <span class="fu">deliver_presents</span>(deltas)</span>
+<span id="cb29-2"><a href="#cb29-2"></a>    houses, pos <span class="op">=</span> <span class="fu">Set</span>(), [<span class="fl">0</span>, <span class="fl">0</span>]</span>
+<span id="cb29-3"><a href="#cb29-3"></a>    <span class="fu">push!</span>(houses, pos)</span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="cf">for</span> delta <span class="kw">in</span> deltas</span>
+<span id="cb29-5"><a href="#cb29-5"></a>        pos <span class="op">+=</span> delta</span>
+<span id="cb29-6"><a href="#cb29-6"></a>        <span class="fu">push!</span>(houses, pos)</span>
+<span id="cb29-7"><a href="#cb29-7"></a>    <span class="cf">end</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>    <span class="cf">return</span> houses</span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="108">
+<pre><code>deliver_presents (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>Solution =</p>
+<div class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">length</span>(<span class="fu">deliver_presents</span>(delivery_deltas))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="109">
+<pre><code>2565</code></pre>
+</div>
+</div>
+</section>
+<section id="part-2-2" class="level4">
+<h4 class="anchored" data-anchor-id="part-2-2">Part 2</h4>
+<p><em>How many houses if you include robo-santa?</em></p>
+<p>Solution =</p>
+<div class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource julia number-lines code-with-copy"><code class="sourceCode julia"><span id="cb33-1"><a href="#cb33-1"></a>santa_deliveries <span class="op">=</span> <span class="fu">deliver_presents</span>(delivery_deltas[<span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="kw">end</span>])</span>
+<span id="cb33-2"><a href="#cb33-2"></a>rob_santa_deliveries <span class="op">=</span> <span class="fu">deliver_presents</span>(delivery_deltas[<span class="fl">2</span><span class="op">:</span><span class="fl">2</span><span class="op">:</span><span class="kw">end</span>])</span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="fu">length</span>(<span class="fu">union</span>(santa_deliveries, rob_santa_deliveries))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="112">
+<pre><code>2639</code></pre>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  const viewSource = window.document.getElementById('quarto-view-source') ||
+                     window.document.getElementById('quarto-code-tools-source');
+  if (viewSource) {
+    const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+    viewSource.addEventListener("click", function(e) {
+      if (sourceUrl) {
+        // rstudio viewer pane
+        if (/\bcapabilities=\b/.test(window.location)) {
+          window.open(sourceUrl);
+        } else {
+          window.location.href = sourceUrl;
+        }
+      } else {
+        const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+        modal.show();
+      }
+      return false;
+    });
+  }
+  function toggleCodeHandler(show) {
+    return function(e) {
+      const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+      for (let i=0; i<detailsSrc.length; i++) {
+        const details = detailsSrc[i].parentElement;
+        if (show) {
+          details.open = true;
+        } else {
+          details.removeAttribute("open");
+        }
+      }
+      const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+      const fromCls = show ? "hidden" : "unhidden";
+      const toCls = show ? "unhidden" : "hidden";
+      for (let i=0; i<cellCodeDivs.length; i++) {
+        const codeDiv = cellCodeDivs[i];
+        if (codeDiv.classList.contains(fromCls)) {
+          codeDiv.classList.remove(fromCls);
+          codeDiv.classList.add(toCls);
+        } 
+      }
+      return false;
+    }
+  }
+  const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+  if (hideAllCode) {
+    hideAllCode.addEventListener("click", toggleCodeHandler(false));
+  }
+  const showAllCode = window.document.getElementById("quarto-show-all-code");
+  if (showAllCode) {
+    showAllCode.addEventListener("click", toggleCodeHandler(true));
+  }
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

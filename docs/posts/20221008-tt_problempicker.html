@@ -2,14 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Liam Kelly">
 <meta name="dcterms.date" content="2022-10-08">
 
-<title>LaughingRook - TidyTuesday Problem Picker</title>
+<title>LaughingRook - TidyTuesday Project Tracker</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -150,12 +150,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -172,11 +172,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
-  <li><a href="#dependencies" id="toc-dependencies" class="nav-link" data-scroll-target="#dependencies">Dependencies</a></li>
-  <li><a href="#function" id="toc-function" class="nav-link" data-scroll-target="#function">Function</a></li>
-  <li><a href="#main" id="toc-main" class="nav-link" data-scroll-target="#main">Main</a></li>
-  <li><a href="#history" id="toc-history" class="nav-link" data-scroll-target="#history">History</a></li>
+  <li><a href="#history" id="toc-history" class="nav-link active" data-scroll-target="#history">History</a></li>
+  <li><a href="#project-picker" id="toc-project-picker" class="nav-link" data-scroll-target="#project-picker">Project picker</a></li>
   </ul>
 </nav>
     </div>
@@ -185,7 +182,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">TidyTuesday Problem Picker</h1>
+<div class="quarto-title-block"><div><h1 class="title">TidyTuesday Project Tracker</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li></ul></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">TidyTuesday</div>
     <div class="quarto-category">Recipe</div>
@@ -209,111 +206,106 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <p class="date">October 8, 2022</p>
     </div>
   </div>
+  
     
   </div>
   
 
 </header>
 
-<section id="summary" class="level2">
-<h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>Choose a random a problem for the <strong>TidyTuesday</strong> back catalogue, along with random data and graph libraries for a bit of spice.</p>
-</section>
-<section id="dependencies" class="level2">
-<h2 class="anchored" data-anchor-id="dependencies">Dependencies</h2>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> random <span class="im">import</span> choice</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> random <span class="im">import</span> randrange</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> datetime</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> IPython.core.display <span class="im">import</span> HTML</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="history" class="level2">
+<h2 class="anchored" data-anchor-id="history">History</h2>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="op">%</span>load_ext watermark</span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="op">%</span>watermark <span class="op">--</span>iv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>pandas: 1.5.0
-</code></pre>
-</div>
-</div>
-</section>
-<section id="function" class="level2">
-<h2 class="anchored" data-anchor-id="function">Function</h2>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="kw">def</span> select_project() <span class="op">-&gt;</span> pd.Series:</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    <span class="kw">def</span> find_prev_tuesday(dt):</span>
-<span id="cb4-3"><a href="#cb4-3"></a>        date <span class="op">=</span> dt.copy()</span>
-<span id="cb4-4"><a href="#cb4-4"></a>        <span class="cf">while</span> date.weekday <span class="op">!=</span> <span class="dv">2</span>:</span>
-<span id="cb4-5"><a href="#cb4-5"></a>            date <span class="op">=</span> date <span class="op">-</span> pd.Timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb4-6"><a href="#cb4-6"></a>        <span class="cf">return</span> date.date</span>
-<span id="cb4-7"><a href="#cb4-7"></a></span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="kw">def</span> get_url(date):</span>
-<span id="cb4-9"><a href="#cb4-9"></a>        url_str <span class="op">=</span> ( <span class="st">'https://github.com/rfordatascience/tidytuesday/blob/master'</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a>                   <span class="op">+</span> <span class="ss">f'/data/</span><span class="sc">{</span>date<span class="sc">.</span>year<span class="sc">}</span><span class="ss">'</span>)</span>
-<span id="cb4-11"><a href="#cb4-11"></a>        <span class="bu">print</span>(url_str)</span>
-<span id="cb4-12"><a href="#cb4-12"></a>        <span class="cf">return</span> url_str</span>
-<span id="cb4-13"><a href="#cb4-13"></a></span>
-<span id="cb4-14"><a href="#cb4-14"></a>    <span class="cf">return</span> (</span>
-<span id="cb4-15"><a href="#cb4-15"></a>        pd.DataFrame(</span>
-<span id="cb4-16"><a href="#cb4-16"></a>                index<span class="op">=</span>pd.date_range(</span>
-<span id="cb4-17"><a href="#cb4-17"></a>                            start<span class="op">=</span><span class="st">'2018-04-02'</span>,</span>
-<span id="cb4-18"><a href="#cb4-18"></a>                            end<span class="op">=</span>pd.to_datetime(<span class="st">'today'</span>).normalize(),</span>
-<span id="cb4-19"><a href="#cb4-19"></a>                            freq<span class="op">=</span><span class="st">'W'</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a>                )</span>
-<span id="cb4-21"><a href="#cb4-21"></a>        ).sample(<span class="dv">1</span>)</span>
-<span id="cb4-22"><a href="#cb4-22"></a>        .assign(</span>
-<span id="cb4-23"><a href="#cb4-23"></a>            <span class="co">#weekno=lambda df: [x + 1 for x in range(df.shape[0])],</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a>            date<span class="op">=</span><span class="kw">lambda</span> df: find_prev_tuesday(df.index),</span>
-<span id="cb4-25"><a href="#cb4-25"></a>            url<span class="op">=</span><span class="kw">lambda</span> df: df.date.<span class="bu">map</span>(get_url),</span>
-<span id="cb4-26"><a href="#cb4-26"></a>            datalib<span class="op">=</span>choice([<span class="st">'pandas'</span>,</span>
-<span id="cb4-27"><a href="#cb4-27"></a>                            <span class="st">'polars'</span>,</span>
-<span id="cb4-28"><a href="#cb4-28"></a>                            <span class="st">'duckdb'</span>,</span>
-<span id="cb4-29"><a href="#cb4-29"></a>                            <span class="st">'ibis'</span>,</span>
-<span id="cb4-30"><a href="#cb4-30"></a>                            <span class="st">'sqlite3'</span>]),</span>
-<span id="cb4-31"><a href="#cb4-31"></a>            graphlib<span class="op">=</span>choice([<span class="st">'seaborn'</span>,</span>
-<span id="cb4-32"><a href="#cb4-32"></a>                             <span class="st">'plotly'</span>,</span>
-<span id="cb4-33"><a href="#cb4-33"></a>                             <span class="st">'altair'</span>])</span>
-<span id="cb4-34"><a href="#cb4-34"></a>        ).sample(<span class="dv">1</span>)</span>
-<span id="cb4-35"><a href="#cb4-35"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="main" class="level2">
-<h2 class="anchored" data-anchor-id="main">Main</h2>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>select_project()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>https://github.com/rfordatascience/tidytuesday/blob/master/data/2019</code></pre>
-</div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-
-<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>tt_projects_df <span class="op">=</span> pd.read_csv(</span>
+<span id="cb2-2"><a href="#cb2-2"></a>    <span class="st">'https://raw.githubusercontent.com/ljk233/laughingrook-datasets/main/tidytuesday/project_tracker.csv'</span>,  <span class="co"># noqa</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>    index_col<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    parse_dates<span class="op">=</span>[<span class="dv">2</span>, <span class="dv">3</span>],</span>
+<span id="cb2-5"><a href="#cb2-5"></a>    dayfirst<span class="op">=</span><span class="va">True</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>)</span>
+<span id="cb2-7"><a href="#cb2-7"></a>HTML(tt_projects_df.to_html(render_links<span class="op">=</span><span class="va">True</span>, escape<span class="op">=</span><span class="va">False</span>, ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <table class="dataframe table table-sm table-striped">
   <thead>
     <tr>
       <th></th>
-      <th>date</th>
-      <th>url</th>
-      <th>datalib</th>
-      <th>graphlib</th>
+      <th>project</th>
+      <th>initial date</th>
+      <th>selection date</th>
+      <th>status</th>
+      <th>source</th>
+    </tr>
+    <tr>
+      <th>#</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th>2019-06-09</th>
-      <td>2019-06-05</td>
-      <td>https://github.com/rfordatascience/tidytuesday...</td>
-      <td>sqlite3</td>
-      <td>altair</td>
+      <th>1</th>
+      <td>Transit costs</td>
+      <td>2021-01-05</td>
+      <td>2022-11-02</td>
+      <td>in draft</td>
+      <td><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-05" target="_blank">https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-01-05</a></td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>National Park Visits</td>
+      <td>2019-09-17</td>
+      <td>2022-11-04</td>
+      <td>in backlog</td>
+      <td><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-17" target="_blank">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-09-17</a></td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>French Train stats</td>
+      <td>2019-02-26</td>
+      <td>2022-11-04</td>
+      <td>in draft</td>
+      <td><a href="https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-26" target="_blank">https://github.com/rfordatascience/tidytuesday/tree/master/data/2019/2019-02-26</a></td>
     </tr>
   </tbody>
 </table>
 </div>
 </div>
-</div>
 </section>
-<section id="history" class="level2">
-<h2 class="anchored" data-anchor-id="history">History</h2>
-<ol type="1">
-<li>2021-09-28, Economic records &gt; <code>Ibis, Seaborn</code></li>
-</ol>
+<section id="project-picker" class="level2">
+<h2 class="anchored" data-anchor-id="project-picker">Project picker</h2>
+<p>A recipe to select a random a problem from the #tidytuesday back catalogue.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># set the parameters</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>start_date <span class="op">=</span> datetime.date(<span class="dv">2018</span>, <span class="dv">4</span>, <span class="dv">2</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>today <span class="op">=</span> datetime.date.today()</span>
+<span id="cb3-4"><a href="#cb3-4"></a>oneday <span class="op">=</span> datetime.timedelta(days<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># select the candidate day</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>days_between_dates <span class="op">=</span> (today <span class="op">-</span> start_date).days</span>
+<span id="cb3-8"><a href="#cb3-8"></a>random_number_of_days <span class="op">=</span> randrange(days_between_dates)</span>
+<span id="cb3-9"><a href="#cb3-9"></a>selected_day <span class="op">=</span> start_date <span class="op">+</span> datetime.timedelta(days<span class="op">=</span>random_number_of_days)</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># find the previous tuesday</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="cf">while</span> selected_day.isoweekday() <span class="op">!=</span> <span class="dv">2</span>:</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    selected_day <span class="op">-=</span> oneday</span>
+<span id="cb3-14"><a href="#cb3-14"></a></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="bu">print</span>(<span class="ss">f'Selected project = </span><span class="sc">{</span>selected_day<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Selected project = 2022-05-10</code></pre>
+</div>
+</div>
 
 
 </section>
@@ -360,7 +352,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -447,24 +456,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>

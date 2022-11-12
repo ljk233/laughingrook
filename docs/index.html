@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-categories','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-date","listing-title","listing-author"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -114,12 +114,12 @@ ul.task-list li input[type="checkbox"] {
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/"><i class="bi bi-github" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com"><i class="bi bi-twitter" role="img">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -133,7 +133,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(12)</span></div><div class="category" data-category="Bayesian">Bayesian <span class="quarto-category-count">(1)</span></div><div class="category" data-category="DataHandling">DataHandling <span class="quarto-category-count">(1)</span></div><div class="category" data-category="DataIO">DataIO <span class="quarto-category-count">(1)</span></div><div class="category" data-category="M249">M249 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="M343">M343 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="PoissonProcesses">PoissonProcesses <span class="quarto-category-count">(1)</span></div><div class="category" data-category="PyPackage">PyPackage <span class="quarto-category-count">(1)</span></div><div class="category" data-category="RandomEvents">RandomEvents <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Recipe">Recipe <span class="quarto-category-count">(2)</span></div><div class="category" data-category="SQLite3">SQLite3 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="TidyTuesday">TidyTuesday <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="AdventOfCode">AdventOfCode <span class="quarto-category-count">(2)</span></div><div class="category" data-category="HypothesisTesting">HypothesisTesting <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JuliaLang">JuliaLang <span class="quarto-category-count">(1)</span></div><div class="category" data-category="M248">M248 <span class="quarto-category-count">(1)</span></div><div class="category" data-category="M249">M249 <span class="quarto-category-count">(2)</span></div><div class="category" data-category="M343">M343 <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Package">Package <span class="quarto-category-count">(1)</span></div><div class="category" data-category="PoissonProcess">PoissonProcess <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Probability">Probability <span class="quarto-category-count">(5)</span></div><div class="category" data-category="Recipe">Recipe <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(3)</span></div><div class="category" data-category="TidyTuesday">TidyTuesday <span class="quarto-category-count">(3)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -143,21 +143,27 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
      <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
+         <option value="listing-title" data-direction="asc">
+          Title
+        </option>
          <option value="listing-date-sort" data-direction="asc">
           Date - Oldest
         </option>
          <option value="listing-date-sort" data-direction="desc">
           Date - Newest
         </option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
+         <option value="listing-file-modified-sort" data-direction="asc">
+          Modified - Oldest
+        </option>
+         <option value="listing-file-modified-sort" data-direction="desc">
+          Modified - Newest
         </option>
      </select>
   </div>
@@ -166,155 +172,382 @@ ul.task-list li input[type="checkbox"] {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-date-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Date</a>
-</th>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-<th>
-Categories
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-date-sort="1665529200000" data-listing-file-modified-sort="1665570084126" data-listing-reading-time-sort="0.21" data-listing-title-sort="Advent of Code Day 3, 2018" data-listing-filename-sort="20221012-advent_of_code_2018_d3.ipynb">
-<td class="listing-date">
-Oct 12, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221012-advent_of_code_2018_d3.html" class="title">Advent of Code Day 3, 2018</a>
-</td>
-<td class="listing-categories">
-</td>
-</tr>
-<tr data-index="1" data-listing-date-sort="1665442800000" data-listing-file-modified-sort="1665570088185" data-listing-reading-time-sort="0.07" data-listing-title-sort="Advent of Code Day 1, 2018" data-listing-filename-sort="20221011-advent_of_code_2018_d1.ipynb">
-<td class="listing-date">
-Oct 11, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221011-advent_of_code_2018_d1.html" class="title">Advent of Code Day 1, 2018</a>
-</td>
-<td class="listing-categories">
-</td>
-</tr>
-<tr data-index="2" data-listing-date-sort="1665442800000" data-listing-file-modified-sort="1665570408500" data-listing-reading-time-sort="0.155" data-listing-title-sort="Advent of Code Day 2, 2018" data-listing-filename-sort="20221012-advent_of_code_2018_d2.ipynb">
-<td class="listing-date">
-Oct 11, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221012-advent_of_code_2018_d2.html" class="title">Advent of Code Day 2, 2018</a>
-</td>
-<td class="listing-categories">
-</td>
-</tr>
-<tr data-index="3" data-categories="TidyTuesday" data-listing-date-sort="1665183600000" data-listing-file-modified-sort="1665227587951" data-listing-reading-time-sort="1.14" data-listing-title-sort="College Tuition Fees in the USA" data-listing-filename-sort="20220830-tt_y2018_w01_us_avg_tuition.ipynb">
-<td class="listing-date">
-Oct 8, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20220830-tt_y2018_w01_us_avg_tuition.html" class="title">College Tuition Fees in the USA</a>
-</td>
-<td class="listing-categories">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="JuliaLang,AdventOfCode" data-listing-date-sort="1668211200000" data-listing-file-modified-sort="1668253278131" data-listing-reading-time-sort="0.825">
+<a href="./posts/20221112-jl_advent_2015.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Advent of Code 2015
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('JuliaLang'); return false;">
+JuliaLang
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('AdventOfCode'); return false;">
+AdventOfCode
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 12, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/12/22, 11:41:18 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Statistics,M248,HypothesisTesting" data-listing-date-sort="1667865600000" data-listing-file-modified-sort="1667982353041" data-listing-reading-time-sort="1.56">
+<a href="./posts/20221108-m248_ztests.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Z-Tests
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M248'); return false;">
+M248
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('HypothesisTesting'); return false;">
+HypothesisTesting
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 8, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/9/22, 8:25:53 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="TidyTuesday" data-listing-date-sort="1667779200000" data-listing-file-modified-sort="1668070630760" data-listing-reading-time-sort="2.41">
+<a href="./posts/20221107-tt_incarceration_trends.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Incarceration Trends
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('TidyTuesday'); return false;">
 TidyTuesday
-</td>
-</tr>
-<tr data-index="4" data-categories="M249,Bayesian,PyPackage" data-listing-date-sort="1665183600000" data-listing-file-modified-sort="1665216449041" data-listing-reading-time-sort="6.43" data-listing-title-sort="ConjugatePriors" data-listing-filename-sort="20221007-conjugatepriors.ipynb">
-<td class="listing-date">
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 7, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/10/22, 8:57:10 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="Probability,M343,PoissonProcess" data-listing-date-sort="1667692800000" data-listing-file-modified-sort="1668141989637" data-listing-reading-time-sort="4.265">
+<a href="./posts/20221106-m343_b2p2_poisson_processes.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Modelling Events In Time
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
+Probability
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M343'); return false;">
+M343
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('PoissonProcess'); return false;">
+PoissonProcess
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 6, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/11/22, 4:46:29 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="Probability,Package" data-listing-date-sort="1667692800000" data-listing-file-modified-sort="1667739982113" data-listing-reading-time-sort="5.59">
+<a href="./posts/20221106-poissonprocesses.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+PoissonProcesses
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
+Probability
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Package'); return false;">
+Package
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 6, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/6/22, 1:06:22 PM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="AdventOfCode" data-listing-date-sort="1667606400000" data-listing-file-modified-sort="1668255942678" data-listing-reading-time-sort="1.86">
+<a href="./posts/20221105-py_advent_2020.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Advent of Code 2020
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('AdventOfCode'); return false;">
+AdventOfCode
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 5, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/12/22, 12:25:42 PM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6" data-categories="Statistics,M249" data-listing-date-sort="1667347200000" data-listing-file-modified-sort="1667494508595" data-listing-reading-time-sort="1.135">
+<a href="./posts/20221102-m249_b3p1_summarise_mv_data.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Summarise And Visualise Multivariate Data
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M249'); return false;">
+M249
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 2, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/3/22, 4:55:08 PM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7" data-categories="Probability,M343" data-listing-date-sort="1667347200000" data-listing-file-modified-sort="1667494451271" data-listing-reading-time-sort="0.84">
+<a href="./posts/20221102-m343_b1ii_continuous_rv.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Modelling Continuous Random Variables Using SciPy
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
+Probability
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M343'); return false;">
+M343
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 2, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/3/22, 4:54:11 PM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="8" data-categories="Probability,M343" data-listing-date-sort="1667347200000" data-listing-file-modified-sort="1667493645859" data-listing-reading-time-sort="1.265">
+<a href="./posts/20221102-m343_b1i_discrete_rv.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Modelling Discrete Random Variables Using SciPy
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
+Probability
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M343'); return false;">
+M343
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 2, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/3/22, 4:40:45 PM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="9" data-categories="Probability,M343" data-listing-date-sort="1667347200000" data-listing-file-modified-sort="1667730567035" data-listing-reading-time-sort="1.55">
+<a href="./posts/20221102-m343_b2p1ii_poiss_proc.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Poisson Processes
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Probability'); return false;">
+Probability
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M343'); return false;">
+M343
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Nov 2, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/6/22, 10:29:27 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="10" data-categories="Statistics,M249" data-listing-date-sort="1667084400000" data-listing-file-modified-sort="1668164448066" data-listing-reading-time-sort="4.265">
+<a href="./posts/20221030-m249_b1p1_cohort_casecon.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Analysing Cohort And Case-Control Studies
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Statistics'); return false;">
+Statistics
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('M249'); return false;">
+M249
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 30, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/11/22, 11:00:48 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="11" data-categories="TidyTuesday" data-listing-date-sort="1667084400000" data-listing-file-modified-sort="1668165935280" data-listing-reading-time-sort="0.33">
+<a href="./posts/20221030-tt_great_british_bakeoff.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Great British Bakeoff
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('TidyTuesday'); return false;">
+TidyTuesday
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
+Oct 30, 2022
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/11/22, 11:25:35 AM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="12" data-categories="TidyTuesday,Recipe" data-listing-date-sort="1665183600000" data-listing-file-modified-sort="1667770104604" data-listing-reading-time-sort="0.075">
+<a href="./posts/20221008-tt_problempicker.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+TidyTuesday Project Tracker
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('TidyTuesday'); return false;">
+TidyTuesday
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Recipe'); return false;">
+Recipe
+</div>
+</div>
+<div class="card-attribution card-text-small end">
+<div class="listing-date">
 Oct 8, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221007-conjugatepriors.html" class="title">ConjugatePriors</a>
-</td>
-<td class="listing-categories">
-M249,Bayesian,PyPackage
-</td>
-</tr>
-<tr data-index="5" data-categories="DataHandling,Recipe" data-listing-date-sort="1665183600000" data-listing-file-modified-sort="1665244779768" data-listing-reading-time-sort="0.115" data-listing-title-sort="Cache a remote file" data-listing-filename-sort="20221008-cache_file.ipynb">
-<td class="listing-date">
-Oct 8, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221008-cache_file.html" class="title">Cache a remote file</a>
-</td>
-<td class="listing-categories">
-DataHandling,Recipe
-</td>
-</tr>
-<tr data-index="6" data-categories="TidyTuesday,Recipe" data-listing-date-sort="1665183600000" data-listing-file-modified-sort="1665244760893" data-listing-reading-time-sort="0.16" data-listing-title-sort="TidyTuesday Problem Picker" data-listing-filename-sort="20221008-tt_problempicker.ipynb">
-<td class="listing-date">
-Oct 8, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221008-tt_problempicker.html" class="title">TidyTuesday Problem Picker</a>
-</td>
-<td class="listing-categories">
-TidyTuesday,Recipe
-</td>
-</tr>
-
-<tr data-index="7" data-categories="DataIO,SQLite3" data-listing-date-sort="1665183600000" data-listing-file-modified-sort="1665284373284" data-listing-reading-time-sort="0.415" data-listing-title-sort="Write a CSV file To A SQLite3 Table" data-listing-filename-sort="20221008-write_csv_to_sqlite3_table.ipynb">
-<td class="listing-date">
-Oct 8, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221008-write_csv_to_sqlite3_table.html" class="title">Write a CSV file To A SQLite3 Table</a>
-</td>
-<td class="listing-categories">
-DataIO,SQLite3
-</td>
-</tr>
-<tr data-index="8" data-categories="M343,PoissonProcesses" data-listing-date-sort="1665097200000" data-listing-file-modified-sort="1665144053004" data-listing-reading-time-sort="0.825" data-listing-title-sort="Modelling A Single Poisson Process" data-listing-filename-sort="20221007-m343_b2p1ii_poiss_proc.ipynb">
-<td class="listing-date">
-Oct 7, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221007-m343_b2p1ii_poiss_proc.html" class="title">Modelling A Single Poisson Process</a>
-</td>
-<td class="listing-categories">
-M343,PoissonProcesses
-</td>
-</tr>
-<tr data-index="9" data-categories="Statistics,M343" data-listing-date-sort="1665010800000" data-listing-file-modified-sort="1665060167606" data-listing-reading-time-sort="1.2" data-listing-title-sort="Continuous Random Variables" data-listing-filename-sort="20221006-m343_b1ii_continuous_rv.ipynb">
-<td class="listing-date">
-Oct 6, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221006-m343_b1ii_continuous_rv.html" class="title">Continuous Random Variables</a>
-</td>
-<td class="listing-categories">
-Statistics,M343
-</td>
-</tr>
-<tr data-index="10" data-categories="Statistics,M343" data-listing-date-sort="1664924400000" data-listing-file-modified-sort="1665112970963" data-listing-reading-time-sort="1.165" data-listing-title-sort="Discrete Random Variables" data-listing-filename-sort="20221005-m343_b1i_discrete_rv.ipynb">
-<td class="listing-date">
-Oct 5, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221005-m343_b1i_discrete_rv.html" class="title">Discrete Random Variables</a>
-</td>
-<td class="listing-categories">
-Statistics,M343
-</td>
-</tr>
-<tr data-index="11" data-categories="Statistics,M343,RandomEvents" data-listing-date-sort="1664924400000" data-listing-file-modified-sort="1665069981939" data-listing-reading-time-sort="0.365" data-listing-title-sort="Bernoulli Process" data-listing-filename-sort="20221007-m343_b2p1i_bernoulli_proc.ipynb">
-<td class="listing-date">
-Oct 5, 2022
-</td>
-<td class="listing-title">
-<a href="./posts/20221007-m343_b2p1i_bernoulli_proc.html" class="title">Bernoulli Process</a>
-</td>
-<td class="listing-categories">
-Statistics,M343,RandomEvents
-</td>
-</tr>
-</tbody>
-
-</table>
+</div>
+</div>
+</div>
+<div class="card-footer">
+<div class="card-file-modified listing-file-modified">
+<p>11/6/22, 9:28:24 PM</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
@@ -360,7 +593,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -396,24 +646,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
