@@ -13,12 +13,11 @@ website:
         href: https://github.com/
       - icon: twitter
         href: https://twitter.com
+
 format:
   html:
-    theme: ember.scss
+    # theme: ember.scss
+    theme: journal
     css: styles.css
     toc: true
     toc-depth: 3
-
-execute:
-  freeze: auto
